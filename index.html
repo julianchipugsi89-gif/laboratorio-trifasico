@@ -45,6 +45,7 @@
   <button class="demo-chip" onclick="loadExercise(4)"><strong>Ej. 4</strong> · Carga RLC capacitiva con compensación inductiva</button>
 </div>
 
+<main>
 <div class="layout">
 <!-- COLUMNA IZQUIERDA: ENTRADA -->
 <aside>
@@ -62,17 +63,17 @@
         </div>
       </div>
       <div class="fg">
-        <div class="fl"><label id="v-lbl">Tensión U<sub>L</sub></label><span class="u" id="v-unit">V · línea-línea</span></div>
+        <div class="fl"><label for="inp-v" id="v-lbl">Tensión U<sub>L</sub></label><span class="u" id="v-unit">V · línea-línea</span></div>
         <input type="number" id="inp-v" value="220" min="1" step="1" oninput="onSourceChange()">
         <div class="hint" id="v-hint"></div>
       </div>
       <div class="two-col">
         <div class="fg" style="margin-bottom:0">
-          <div class="fl"><label>Frecuencia f</label><span class="u">Hz</span></div>
+          <div class="fl"><label for="inp-f">Frecuencia f</label><span class="u">Hz</span></div>
           <input type="number" id="inp-f" value="60" min="1" step="1" oninput="markPreset()">
         </div>
         <div class="fg" style="margin-bottom:0">
-          <div class="fl"><label>Secuencia</label></div>
+          <div class="fl"><label for="inp-seq">Secuencia</label></div>
           <select id="inp-seq"><option value="abc">ABC directa (+)</option><option value="acb">ACB inversa (−)</option></select>
         </div>
       </div>
@@ -105,11 +106,11 @@
         <div id="zl-inputs" style="display:none;margin-top:8px" class="zl-box">
           <div class="two-col">
             <div class="fg" style="margin-bottom:0">
-              <div class="fl"><label>R<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <div class="fl"><label for="inp-rl">R<sub>L</sub></label><span class="u">Ω/hilo</span></div>
               <input type="number" id="inp-rl" value="0.15" min="0" step="0.01" oninput="updateZLHint()">
             </div>
             <div class="fg" style="margin-bottom:0">
-              <div class="fl"><label>X<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <div class="fl"><label for="inp-xl">X<sub>L</sub></label><span class="u">Ω/hilo</span></div>
               <input type="number" id="inp-xl" value="0.20" min="0" step="0.01" oninput="updateZLHint()">
             </div>
           </div>
@@ -133,7 +134,7 @@
     <div class="card-hdr"><h2>Compensación de reactiva (opcional)</h2></div>
     <div class="card-body">
       <div class="fg" style="margin-bottom:0">
-        <div class="fl"><label>fp objetivo en bornes de carga</label><span class="u">0–1</span></div>
+        <div class="fl"><label for="inp-fptgt">fp objetivo en bornes de carga</label><span class="u">0–1</span></div>
         <input type="number" id="inp-fptgt" min="0.01" max="1" step="0.01" placeholder="p.ej. 0.96">
         <div class="hint">Calcula el banco de condensadores C (Y/Δ) o reactores L</div>
       </div>
@@ -145,11 +146,11 @@
     <div class="card-body">
       <div class="two-col">
         <div class="fg" style="margin-bottom:0">
-          <div class="fl"><label>fp mínimo</label></div>
+          <div class="fl"><label for="inp-fpmin">fp mínimo</label></div>
           <input type="number" id="inp-fpmin" value="0.94" min="0.5" max="1" step="0.01">
         </div>
         <div class="fg" style="margin-bottom:0">
-          <div class="fl"><label>ΔU máx</label><span class="u">%</span></div>
+          <div class="fl"><label for="inp-dumax">ΔU máx</label><span class="u">%</span></div>
           <input type="number" id="inp-dumax" min="0" max="50" step="0.5" placeholder="auto" oninput="updateLevelHint()">
         </div>
       </div>
@@ -399,6 +400,7 @@
     <div class="card-body"><div class="norm-list" id="norm-list"></div></div>
   </div>
 </div>
+</main>
 
 <!-- Print Modal -->
 <div id="print-modal" style="display:none" role="dialog" aria-modal="true" aria-label="Vista previa para imprimir">

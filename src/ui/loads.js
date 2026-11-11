@@ -31,22 +31,22 @@ export function addLoad(p={}){
       </div>
     </div>
     <div id="lc-${id}-imp" class="imp-row" style="display:${l.kind==='imp'?'grid':'none'}">
-      <div><div class="fl"><label>R</label><span class="u">Ω</span></div>
+      <div><div class="fl"><label for="lc-${id}-r">R</label><span class="u">Ω</span></div>
         <input type="number" id="lc-${id}-r" value="${l.R}" min="0" step="0.1" oninput="updLoad(${id})"></div>
-      <div><div class="fl"><label>X<sub>L</sub></label><span class="u">Ω</span></div>
+      <div><div class="fl"><label for="lc-${id}-xl">X<sub>L</sub></label><span class="u">Ω</span></div>
         <input type="number" id="lc-${id}-xl" value="${l.XL}" min="0" step="0.1" oninput="updLoad(${id})"></div>
-      <div><div class="fl"><label>X<sub>C</sub></label><span class="u">Ω</span></div>
+      <div><div class="fl"><label for="lc-${id}-xc">X<sub>C</sub></label><span class="u">Ω</span></div>
         <input type="number" id="lc-${id}-xc" value="${l.XC}" min="0" step="0.1" oninput="updLoad(${id})"></div>
     </div>
     <div id="lc-${id}-mot" class="motor-grid" style="display:${l.kind==='motor'?'grid':'none'}">
-      <div><div class="fl"><label>P útil (eje)</label></div>
+      <div><div class="fl"><label for="lc-${id}-p">P útil (eje)</label></div>
         <div class="inline"><input type="number" id="lc-${id}-p" value="${l.Pout}" min="0" step="0.1" oninput="updLoad(${id})">
-        <select id="lc-${id}-pu" onchange="updLoad(${id})"><option value="kW"${l.Punit==='kW'?' selected':''}>kW</option><option value="HP"${l.Punit==='HP'?' selected':''}>HP</option></select></div></div>
-      <div><div class="fl"><label>U<sub>n</sub> placa</label><span class="u">V línea</span></div>
+        <select id="lc-${id}-pu" aria-label="Unidad de potencia" onchange="updLoad(${id})"><option value="kW"${l.Punit==='kW'?' selected':''}>kW</option><option value="HP"${l.Punit==='HP'?' selected':''}>HP</option></select></div></div>
+      <div><div class="fl"><label for="lc-${id}-un">U<sub>n</sub> placa</label><span class="u">V línea</span></div>
         <input type="number" id="lc-${id}-un" value="${l.Unom}" min="1" step="1" oninput="updLoad(${id})"></div>
-      <div><div class="fl"><label>cosφ</label><span class="u">ind.</span></div>
+      <div><div class="fl"><label for="lc-${id}-cf">cosφ</label><span class="u">ind.</span></div>
         <input type="number" id="lc-${id}-cf" value="${l.cosphi}" min="0.05" max="1" step="0.01" oninput="updLoad(${id})"></div>
-      <div><div class="fl"><label>η</label><span class="u">%</span></div>
+      <div><div class="fl"><label for="lc-${id}-eta">η</label><span class="u">%</span></div>
         <input type="number" id="lc-${id}-eta" value="${l.eta}" min="1" max="100" step="0.5" oninput="updLoad(${id})"></div>
     </div>
     <div class="lp" id="lc-${id}-prev"></div>

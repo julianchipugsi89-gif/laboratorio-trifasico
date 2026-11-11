@@ -310,3 +310,46 @@ describe('Escala mínima de la escena por legibilidad', () => {
     expect(FUENTE_MIN * parseFloat(svg.style.minWidth) / W).toBeCloseTo(9, 1);
   });
 });
+
+describe('Coste de la animación', () => {
+  const pestana = id => window.showTab(id, [...document.querySelectorAll('.tab')].find(b => b.getAttribute('onclick').includes(`'${id}'`)));
+  afterEach(() => { window.resetWt(); delete window.matchMedia; });
+
+  it('animando en el laboratorio no se repinta el fasorial oculto; al abrirlo se pone al día', () => {
+    let fotograma = null;
+    window.requestAnimationFrame = cb => { fotograma = cb; return 1; };
+    window.cancelAnimationFrame = () => {};
+    window.loadExercise(1); pestana('lab'); window.setWt(0);
+    const lectura0 = $('wt-readout').textContent;
+    const particula = () => $('lab-wire-A').nextElementSibling.style.strokeDashoffset;
+    const p0 = particula();
+    window.toggleWtAnim();
+    fotograma(1000); fotograma(1100);                          // 100 ms a 60°/s → ωt = 6°
+    expect($('lab-wt-val').textContent).toBe('ωt = 6°');
+    expect(particula()).not.toBe(p0);                          // el laboratorio, a la vista, sí se mueve
+    expect($('wt-readout').textContent).toBe(lectura0);        // el fasorial, oculto, no se toca
+    pestana('phasor');
+    expect($('wt-readout').textContent).toContain('Instante ωt = 6°');
+  });
+
+  it('fijar ωt a mano lo repinta todo, también lo oculto', () => {
+    window.loadExercise(1); pestana('lab'); window.setWt(45);
+    expect($('wt-readout').textContent).toContain('Instante ωt = 45°');
+  });
+});
+
+describe('Accesibilidad de los campos', () => {
+  it('todo campo de entrada tiene una etiqueta asociada o un nombre accesible', () => {
+    window.loadExercise(2);
+    const sinNombre = [...document.querySelectorAll('input, select')]
+      .filter(c => !c.getAttribute('aria-label') && !document.querySelector(`label[for="${c.id}"]`))
+      .map(c => c.id);
+    expect(sinNombre).toEqual([]);
+  });
+
+  it('hay una única región principal', () => {
+    expect(document.querySelectorAll('main')).toHaveLength(1);
+    expect(document.querySelector('main .layout')).not.toBeNull();
+    expect(document.querySelector('main #bot-section')).not.toBeNull();
+  });
+});

@@ -29,7 +29,9 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   const navegacion = req.mode === 'navigate';
   e.respondWith(caches.open(CACHE).then(async c => {
-    const enCache = await (navegacion ? c.match('./index.html') : c.match(req));
+    // ignoreVary: los servidores añaden Vary (Origin, Accept-Encoding) y, sin esto, las peticiones de
+    // <script crossorigin> y de las hojas de estilo no casan con lo precargado y fallan sin red.
+    const enCache = await (navegacion ? c.match('./index.html') : c.match(req, { ignoreVary: true }));
     if (enCache) return enCache;
     try { return await fetch(req); } catch { return navegacion ? c.match('./index.html') : Response.error(); }
   }));

@@ -50,8 +50,8 @@
 .lab-pilot.bad .lab-lamp{background:var(--rd);box-shadow:0 0 0 1px var(--rd),0 0 0 5px var(--rd-bg)}
 .lab-pilot.bad{border-color:var(--rd)}
 .lab-pilot.warn{border-color:var(--am)}
-.lp-state{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg3)}
-.lab-pilot.ok .lp-state{color:var(--gn)}.lab-pilot.warn .lp-state{color:var(--am)}.lab-pilot.bad .lp-state{color:var(--rd)}
+.lp-state{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2)}
+/* El estado va en texto neutro: el color lo llevan la lámpara y el borde (contraste AA sobre el fondo) */
 .lp-txt{font-size:12px;font-weight:600;color:var(--fg);line-height:1.35}
 
 /* Pantalla completa: solo escena + panel de instrumentos */

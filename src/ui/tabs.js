@@ -1,5 +1,6 @@
 // Pestañas de resultados
 import { renderDiagrams } from '../graphics/diagrams.js';
+import { updateLabAnim } from '../graphics/labAnim.js';
 import { drawPhasors } from '../graphics/phasors.js';
 import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
@@ -16,7 +17,7 @@ export function showTab(id,btn){
   pauseWtOnTabChange();pauseGuideAuto();
   if(lastResult){
     if(id==='phasor'){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
-    if(id==='lab'){updateLabHint();autoStartWt();}
+    if(id==='lab'){updateLabAnim(lastResult);updateLabHint();autoStartWt();}
     if(id==='diagram')renderDiagrams(lastResult);
     if(id==='table')renderTriangle(lastResult);
   }

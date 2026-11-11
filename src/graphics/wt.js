@@ -15,7 +15,7 @@ export const WT_SPEED=60; // grados por segundo → un ciclo en 6 s
 const reducedMotion=()=>!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // El control Animar/deslizador está duplicado en la pestaña del laboratorio: ambos reflejan el mismo ωt
 const playBtns=t=>['wt-play','lab-wt-play'].forEach(id=>{const b=$(id);if(b)b.textContent=t;});
-function applyWt(v){
+function applyWt(v,animando=false){
   setWaveHoverDeg(v===null?null:((v%360)+360)%360);
   const txt=waveHoverDeg===null?'ωt = 0° (estático)':`ωt = ${fN(waveHoverDeg,0)}°`;
   $('wt-range').value=waveHoverDeg??0;
@@ -23,14 +23,18 @@ function applyWt(v){
   const lr=$('lab-wt-range');
   if(lr){lr.value=waveHoverDeg??0;$('lab-wt-val').textContent=txt;}
   if(lastResult){
-    drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);updateLabAnim(lastResult);
+    // Durante la animación solo se repinta la pestaña que está a la vista; showTab pone al día la otra
+    // al volver a ella. Fijar ωt a mano (deslizador, cursor) lo repinta todo, como siempre.
+    const ver=id=>!animando||$(id).classList.contains('active');
+    if(ver('tab-phasor')){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
+    if(ver('tab-lab'))updateLabAnim(lastResult);
   }
 }
 export function setWt(v){wtAuto=false;applyWt(v);}
 export function wtStep(ts){
   if(!wtAnim)return;
   const dt=wtLastTs?Math.min(ts-wtLastTs,100):0;wtLastTs=ts;
-  applyWt((waveHoverDeg??0)+dt*WT_SPEED/1000);
+  applyWt((waveHoverDeg??0)+dt*WT_SPEED/1000,true);
   wtAnim=requestAnimationFrame(wtStep);
 }
 function startWt(){
