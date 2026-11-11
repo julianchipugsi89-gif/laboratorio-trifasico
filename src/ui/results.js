@@ -42,6 +42,7 @@ export function renderResults(r){
   const thl=$('fp-thr-lbl');thl.style.left=`${r.lim.fpMin*100}%`;thl.textContent=fN(r.lim.fpMin,2);
   $('fp-one').style.display=r.lim.fpMin>0.88?'none':'';   // evita que el umbral se monte sobre el «1»
 
+  $('mv-udrop').previousElementSibling.textContent=r.recMode?'Caída en la línea respecto a la fuente':'ΔU en la carga';
   if(r.zLineEnabled){
     $('zl-metric-row').style.display='';
     $('mv-udrop').textContent=`${sgn(r.dUpct)} %`;
@@ -60,8 +61,8 @@ export function renderResults(r){
 
   const pairs=[['A','a','AN','AB',r.UA,r.IA],['B','b','BN','BC',r.UB,r.IB],['C','c','CN','CA',r.UC,r.IC]];
   $('phase-tbody').innerHTML=pairs.map(([lbl,cls,fn,ll,uA,iA])=>`<tr><td class="${cls}">${lbl}</td>
-      <td class="${cls}"><span class="ftag">Ū_${fn}</span> ${pStr(r.Uf,uA)}</td>
-      <td class="${cls}"><span class="ftag">Ū_${ll}</span> ${pStr(r.UL,uA+r.dir*30)}</td>
+      <td class="${cls}"><span class="ftag">Ū_${fn}</span> ${pStr(r.Uf_src,uA)}</td>
+      <td class="${cls}"><span class="ftag">Ū_${ll}</span> ${pStr(r.UL_src,uA+r.dir*30)}</td>
       <td class="${cls}"><span class="ftag">Ī_${lbl}</span> ${pStr(r.IL,iA)}</td></tr>`).join('');
   $('tbl-ufn-hdr').textContent=r.recMode?'Ū fase-neutro fuente, calculada (V)':r.zLineEnabled?'Ū fase-neutro fuente (V)':'Ū fase-neutro (V)';
   const tn=$('table-load-note');
@@ -149,7 +150,7 @@ export function compTableHTML(r,print){
   if(r.zLineEnabled){
     rows.push(['P pérdidas línea',fPow(r.Pline,'W'),fPow(c.Pline,'W'),pct(r.Pline,c.Pline)]);
     rows.push(['U_carga (fase)',`${fS(r.UloadF)} V`,`${fS(c.UloadF)} V`,pct(r.UloadF,c.UloadF)]);
-    rows.push(['ΔU respecto a U_n',`${sgn(r.dUpct)} %`,`${sgn(c.dUpct)} %`,null]);
+    rows.push([r.recMode?'Caída en la línea resp. a la fuente':'ΔU respecto a U_n',`${sgn(r.dUpct)} %`,`${sgn(c.dUpct)} %`,null]);
   }
   const bd=print?'#e3ddd0':'var(--bd-sub)',f3=print?'#7d857e':'var(--fg3)',gn=print?'#2b7a52':'var(--gn)',am=print?'#b87314':'var(--am)';
   const td=`padding:4px 6px;border-bottom:1px solid ${bd};text-align:right`;

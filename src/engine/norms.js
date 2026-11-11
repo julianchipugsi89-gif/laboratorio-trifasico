@@ -8,7 +8,14 @@ export function normItems(r){
   items.push({s:okFp(r.fp)?'ok':(r.comp&&okFp(r.comp.fpS)?'warn':'bad'),
     t:okFp(r.fp)?'Factor de potencia: cumple':(r.comp&&okFp(r.comp.fpS)?'Factor de potencia: cumple solo con la compensación propuesta':'Factor de potencia: bajo el umbral de penalización'),
     sub,src:'Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.'});
-  if(r.zLineEnabled){
+  if(r.recMode){
+    // Modo receptor: la tensión en bornes es el dato; se evalúa la caída en la línea como criterio de diseño
+    const ok=x=>Math.abs(x)<=r.lim.dUmax+1e-9;
+    let s=`Receptor a su tensión dato U_L = ${fS(r.UL)} V · tensión de fuente necesaria U_L,fuente = ${fS(r.UL_src)} V → ${sgn(r.dUpct)} % · límite ±${fN(r.lim.dUmax,1)} % (${r.level.name})`;
+    if(r.comp)s+=` · tras compensar: U_L,fuente = ${fS(r.comp.UL_src)} V → ${sgn(r.comp.dUpct)} % ${ok(r.comp.dUpct)?'✓':'✗'}`;
+    items.push({s:ok(r.dUpct)?'ok':'bad',t:`Caída de tensión en la línea (criterio de diseño): ${ok(r.dUpct)?'dentro del límite':'fuera del límite'}`,
+      sub:s,src:'Origen del límite: Regulación ARCERNNR-002/20, Tabla 1 (BV 8 %, MV 6 %, AV 5 %). El límite es editable.'});
+  }else if(r.zLineEnabled){
     const ok=x=>Math.abs(x)<=r.lim.dUmax+1e-9;
     let s=`U_carga = ${fS(r.UloadL)} V → ${sgn(r.dUpct)} % respecto a U_n = ${fS(r.UL)} V · límite ±${fN(r.lim.dUmax,1)} % (${r.level.name})`;
     if(r.comp)s+=` · tras compensar: ${sgn(r.comp.dUpct)} % ${ok(r.comp.dUpct)?'✓':'✗'}`;

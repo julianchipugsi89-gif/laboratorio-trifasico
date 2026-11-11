@@ -6,10 +6,10 @@ import { SQ3 } from './math.js';
 export function computeChecks(r){
   const rel=1e-4,near=(a,b,ref)=>Math.abs(a-b)<=rel*Math.max(Math.abs(ref),1e-9);
   const list=[];
-  list.push({ok:near(r.UL,r.Uf*SQ3,r.UL),txt:`U_L = √3·U_f: ${fN(r.UL,3)} ≈ ${fN(r.Uf*SQ3,3)} V`});
+  list.push({ok:near(r.UL_src,r.Uf_src*SQ3,r.UL_src),txt:`U_L = √3·U_f: ${fN(r.UL_src,3)} ≈ ${fN(r.Uf_src*SQ3,3)} V`});
   const Spq=Math.hypot(r.P3,r.Q3);
   list.push({ok:near(r.S3,Spq,r.S3),txt:`S = √(P²+Q²): ${fPow(r.S3,'VA')} ≈ ${fPow(Spq,'VA')}`});
-  const Pf=3*r.Uf*r.IL*Math.cos(r.φ),Qf=3*r.Uf*r.IL*Math.sin(r.φ);
+  const Pf=3*r.Uf_src*r.IL*Math.cos(r.φ),Qf=3*r.Uf_src*r.IL*Math.sin(r.φ);
   const Pq=r.bkd.reduce((s,b)=>s+b.Pk,0)+r.Pline,Qq=r.bkd.reduce((s,b)=>s+b.Qk,0)+r.Qline;
   const lin=r.zLineEnabled?' + línea':'';
   list.push({ok:near(Pq,Pf,r.S3),txt:`Boucherot P: ΣP_k${lin} = ${fPow(Pq,'W')} ≈ 3·U_f·I_L·cosφ = ${fPow(Pf,'W')}`});

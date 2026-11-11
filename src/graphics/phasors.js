@@ -83,8 +83,8 @@ export function drawPhasors(r){
 
   // Si hay Z_L, mostrar también Ū_carga
   if(r.zLineEnabled&&!live){
-    const kU=Math.min(0.95,Math.max(0.5,r.UloadF/r.Uf));
-    [[r.UA+r.UloadAng,cA],[r.UB+r.UloadAng,cB],[r.UC+r.UloadAng,cC]].forEach(([a,c])=>arrow(a,c,true,kU*0.88,null));
+    const kU=Math.min(0.95,Math.max(0.5,r.UloadF/r.Uf_src));
+    [[r.UloadAng,cA],[r.UB-r.UA+r.UloadAng,cB],[r.UC-r.UA+r.UloadAng,cC]].forEach(([a,c])=>arrow(a,c,true,kU*0.88,null));
   }
   // Fasores de tensión fuente (escala 0.92R) y corriente de línea (escala 0.68R)
   if(live){

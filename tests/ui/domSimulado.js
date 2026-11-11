@@ -21,6 +21,7 @@ export function instalarDomSimulado({ anchoLienzo = 400 } = {}) {
     parentElement: { clientWidth: anchoLienzo },
     addEventListener() {},
     getContext: () => ctx,
+    get previousElementSibling() { return this.hermanoAnterior ??= crear(); },
   });
 
   const el = id => {

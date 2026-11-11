@@ -55,8 +55,8 @@ export function buildPrintHTML(r){
     h+=row('U_carga (fase)',`${pStr(r.UloadF,r.UloadAng)} V`)+row('U_carga (línea)',`${fN(r.UloadL,3)} V`);
     h+=row('Variación de tensión ΔU',`${sgn(r.dUpct)} % · |Ī·Z_L| = ${fN(r.UlineDropF,3)} V/fase`);
   }
-  h+=row(`fp${r.zLineEnabled&&!r.recMode?' (entrada)':r.recMode?' (carga)':''}`,`${fN(r.fp,4)} ${fpTag(r.φ)}`);
-  if(r.zLineEnabled&&!r.recMode)h+=row('fp de las cargas',`${fN(r.fpLoad,4)} ${fpTag(r.φLoad)}`);
+  h+=row(`fp${r.zLineEnabled?' (entrada)':''}`,`${fN(r.fp,4)} ${fpTag(r.φ)}`);
+  if(r.zLineEnabled)h+=row('fp de las cargas',`${fN(r.fpLoad,4)} ${fpTag(r.φLoad)}`);
   h+=`<tr class="ptot"><td>P activa total</td><td>${fPow(r.P3,'W')}</td></tr>`;
   if(r.zLineEnabled)h+=row('  P en cargas',fPow(r.Pload,'W'))+row('  P pérdidas en línea',fPow(r.Pline,'W'))+row('  Rendimiento η',`${fN(r.Pload/r.P3*100,2)} %`);
   h+=`<tr class="ptot"><td>Q reactiva total</td><td>${fPow(r.Q3,'var')} ${r.Q3>=0?'(inductiva)':'(capacitiva)'}</td></tr>`;

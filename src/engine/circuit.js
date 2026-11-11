@@ -94,7 +94,7 @@ export function computeCircuit(inp){
   const UA=delta,UB=delta+dir*(-120),UC=delta+dir*120;
   const IA=cang(IAc),IB=IA+dir*(-120),IC=IA+dir*120;
   const dropC=cmul(IAc,ZLc),UlineDropF=cabs(dropC);
-  const dUpct=recMode?0:(UloadL-UL)/UL*100;
+  const dUpct=recMode?(UL-UL_src)/UL_src*100:(UloadL-UL)/UL*100;
   const φLoad=Math.atan2(Zeq.X,Zeq.R),fpLoad=Math.cos(φLoad);
 
   const Pload=3*IL*IL*Zeq.R,Qload=3*IL*IL*Zeq.X,Pline=3*IL*IL*ZL.R,Qline=3*IL*IL*ZL.X;
@@ -136,17 +136,17 @@ export function computeCircuit(inp){
         s2=solveNode(Uf,ZLc,Zimp,Sph,Cx(0,B));
         U2=s2.U;I2=nodeCurrent(U2,Zimp,Sph,Cx(0,B));UAN2=Cx(Uf);
       }
-      const U2m=cabs(U2),IL2=cabs(I2);
+      const U2m=cabs(U2),IL2=cabs(I2),UL_src2=cabs(UAN2)*SQ3;
       const Ssrc=cscale(cmul(UAN2,cconj(I2)),3),Sld=cscale(cmul(U2,cconj(I2)),3);
       comp={IL:IL2,IAang:cang(I2),fpS:Ssrc.re/cabs(Ssrc),φS:Math.atan2(Ssrc.im,Ssrc.re),
         fpL:Sld.re/cabs(Sld),φL:Math.atan2(Sld.im,Sld.re),UloadF:U2m,UloadL:U2m*SQ3,
         Pline:3*IL2*IL2*ZL.R,Ptot:Ssrc.re,Qtot:Ssrc.im,Stot:cabs(Ssrc),
-        dUpct:recMode?0:(U2m*SQ3-UL)/UL*100};
+        UL_src:UL_src2,dUpct:recMode?(UL-UL_src2)/UL_src2*100:(U2m*SQ3-UL)/UL*100};
       UcapF=U2m;
       const Qbank=3*U2m*U2m*B;
       if(B>0){
         compType='C';QC=Qbank;CY=B/ω;CD=CY/3;
-        Qnom=3*(recMode?Uf_src:Uf)*(recMode?Uf_src:Uf)*B;
+        Qnom=3*Uf*Uf*B;
         kvarStep=KVAR_STEPS.find(s=>s*1000>=Qnom*(1-1e-9))??NaN;
       }else{compType='L';QLr=-Qbank;LY=-1/(ω*B);LD=3*LY;}
     }

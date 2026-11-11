@@ -53,7 +53,7 @@ export function renderSteps(r){
     mono+=`Y_eq = Σ Y_k = ${rstr(r.Yeq,5)} S\n`;
     mono+=`Ī_A = Ū_A′N · Y_eq = (${fN(r.UloadF,3)} ∠0°) · (${cstr(r.Yeq,4)})\n`+
       `    = ${sp(pStr(r.IL,r.IA)+' A')}\n`+
-      `fp${r.zLineEnabled?' (carga)':''} = ${sp(fN(r.fp,4)+' '+fpTag(r.φ))}  ${su(r.φd>=0?'(I retrasada respecto a U)':'(I adelantada respecto a U)')}`;
+      `fp${r.zLineEnabled?' (entrada)':''} = ${sp(fN(r.fp,4)+' '+fpTag(r.φ))}  ${su(r.φd>=0?'(I retrasada respecto a U)':'(I adelantada respecto a U)')}`;
   } else {
     if(r.zLineEnabled)mono+=`Z_total = Z_L + Z_eq = (${rstr(r.ZLc)}) + (${rstr(r.ZeqC)}) = ${rstr(Zt)} Ω = ${spam(cstr(Zt,4)+' Ω')}\n`;
     const zn=r.zLineEnabled?'Z_total':'Z_eq';
@@ -71,7 +71,8 @@ export function renderSteps(r){
         `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+
         `Ū_AN = Ū_A′N + ΔŪ = ${sp(pStr(r.Uf_src,r.UA)+' V')}  ${su('(tensión de fuente calculada)')}\n`+
         `U_L,fuente = √3·|Ū_AN| = √3·${fN(r.Uf_src,4)} = ${sp(fN(r.UL_src,3)+' V')}\n`+
-        `δ = ∠Ū_AN = ${sp(fA(r.delta)+'  (ángulo de la fuente respecto al datum del receptor)')}`});
+        `δ = ∠Ū_AN = ${sp(fA(r.delta)+'  (ángulo de la fuente respecto al datum del receptor)')}\n`+
+        `${su('fp de la carga = cos(∠Z_eq) = '+fN(r.fpLoad,4)+' '+fpTag(r.φLoad))}`});
     } else {
       steps.push({t:'Tensión en la carga y caída en la línea',am:true,b:
         `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+

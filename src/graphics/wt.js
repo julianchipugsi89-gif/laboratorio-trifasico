@@ -36,7 +36,7 @@ export function resetWt(){stopWtAnim();setWt(null);}
 // Lectura instantánea: u_k = √2·U_f·sen(ωt+θ_k), i_k = √2·I_L·sen(ωt+θ_Ik)
 export function renderWtReadout(r){
   const el=$('wt-readout');if(!el)return;
-  const wt=waveHoverDeg??0,Up=r.Uf*Math.SQRT2,Ip=r.IL*Math.SQRT2;
+  const wt=waveHoverDeg??0,Up=r.Uf_src*Math.SQRT2,Ip=r.IL*Math.SQRT2;
   const u=[r.UA,r.UB,r.UC].map(a=>Up*Math.sin(d2r(wt+a))),i=[r.IA,r.IB,r.IC].map(a=>Ip*Math.sin(d2r(wt+a)));
   const su=u.reduce((x,y)=>x+y,0),si=i.reduce((x,y)=>x+y,0);
   const cell=(v,d,cls)=>`<td class="${cls}">${fN(Math.abs(v)<1e-9?0:v,d)}</td>`;
