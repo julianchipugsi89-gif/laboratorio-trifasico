@@ -4,7 +4,7 @@
 
 ### Corregido — modo receptor con Z_L
 
-Seis inconsistencias que solo afectaban al modo «tensión conocida en el receptor» con impedancia
+Siete inconsistencias que solo afectaban al modo «tensión conocida en el receptor» con impedancia
 de línea. El modo fuente no cambia: la comparación contra `legacy/trifasico_equilibrado_v2.html`
 sigue siendo idéntica en todos sus escenarios.
 
@@ -57,6 +57,12 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
    dato del receptor y la tensión de fuente necesaria, y cita ARCERNNR-002/20 como origen del
    límite (el límite es el mismo). En la tabla de compensación la fila se llama «Caída en la línea
    resp. a la fuente».
+
+7. **Tabla «Efecto en la fuente tras compensar».** En modo receptor mostraba «U_carga (fase)», que es el
+   dato y no cambia, y la nota afirmaba «U_carga sube al compensar». Ahora la fila es «U_L,fuente
+   necesaria» (antes/después) y la nota dice que la tensión de fuente necesaria baja (o sube, si la
+   carga es capacitiva y se compensa con reactores).
+   Caso A con fp objetivo 0,95: U_L,fuente necesaria 416,1 V → 411,2 V (−1,2 %).
 
 ### Añadido
 

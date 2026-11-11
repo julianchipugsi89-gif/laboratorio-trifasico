@@ -43,7 +43,10 @@ export function compTableHTML(r,print){
   ];
   if(r.zLineEnabled){
     rows.push(['P pérdidas línea',fPow(r.Pline,'W'),fPow(c.Pline,'W'),pct(r.Pline,c.Pline)]);
-    rows.push(['U_carga (fase)',`${fS(r.UloadF)} V`,`${fS(c.UloadF)} V`,pct(r.UloadF,c.UloadF)]);
+    // En modo receptor U_carga es el dato y no cambia: lo que varía es la tensión de fuente necesaria
+    rows.push(r.recMode
+      ?['U_L,fuente necesaria',`${fS(r.UL_src)} V`,`${fS(c.UL_src)} V`,pct(r.UL_src,c.UL_src)]
+      :['U_carga (fase)',`${fS(r.UloadF)} V`,`${fS(c.UloadF)} V`,pct(r.UloadF,c.UloadF)]);
     rows.push([r.recMode?'Caída en la línea resp. a la fuente':'ΔU respecto a U_n',`${sgn(r.dUpct)} %`,`${sgn(c.dUpct)} %`,null]);
   }
   const bd=print?'#e3ddd0':'var(--bd-sub)',f3=print?'#7d857e':'var(--fg3)',gn=print?'#2b7a52':'var(--gn)',am=print?'#b87314':'var(--am)';
@@ -56,6 +59,9 @@ export function compTableHTML(r,print){
     h+=`<tr><td style="${td};text-align:left">${l}</td><td style="${td}">${a}</td><td style="${td};font-weight:600">${b}</td><td style="${td}">${pc}</td></tr>`;
   });
   h+='</table>';
-  if(r.zLineEnabled)h+=`<div style="font-size:10.5px;color:${f3};margin-top:4px">U_carga sube al compensar: la línea transporta menos corriente reactiva y cae menos tensión en Z_L.</div>`;
+  const nota=!r.recMode?'U_carga sube al compensar: la línea transporta menos corriente reactiva y cae menos tensión en Z_L.'
+    :c.UL_src<=r.UL_src?'La tensión de fuente necesaria baja al compensar: la línea transporta menos corriente reactiva y cae menos tensión en Z_L.'
+    :'La tensión de fuente necesaria sube al compensar: la corriente capacitiva de la carga elevaba la tensión en bornes a través de Z_L, y ese efecto se reduce.';
+  if(r.zLineEnabled)h+=`<div style="font-size:10.5px;color:${f3};margin-top:4px">${nota}</div>`;
   return h;
 }

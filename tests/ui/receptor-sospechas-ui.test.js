@@ -94,6 +94,39 @@ describe('Arreglo 6 — redacción de ΔU en modo receptor', () => {
   });
 });
 
+describe('Tabla de compensación en modo receptor: tensión de fuente necesaria', () => {
+  // Y 30+j40 Ω, Z_L = 2+j1 Ω, fp objetivo 0,95: U_L,fuente 416,08 V → 411,18 V (−1,2 %)
+  it('la fila «U_carga (fase)» se sustituye por «U_L,fuente necesaria» antes/después', () => {
+    pintar(receptorA1({ fpTgt: 0.95 }));
+    const txt = sinEtiquetas(dom.el('fp-corr-body').innerHTML);
+    expect(txt).toContain('U_L,fuente necesaria416.1 V411.2 V−1.2 %');
+    expect(txt).not.toContain('U_carga (fase)');
+  });
+
+  it('la nota dice que baja la tensión de fuente necesaria', () => {
+    pintar(receptorA1({ fpTgt: 0.95 }));
+    const txt = sinEtiquetas(dom.el('fp-corr-body').innerHTML);
+    expect(txt).toContain('La tensión de fuente necesaria baja al compensar');
+    expect(txt).not.toContain('U_carga sube');
+  });
+
+  it('carga capacitiva con reactores (Y 30−j40 Ω): la tensión de fuente necesaria sube', () => {
+    // Antes: Ū_AN = 230,94 + (2,771+j3,695)(2+j1) → 233,0 V; después (fp 0,95 cap.): → 235,6 V
+    const r = pintar(receptorA1({ fpTgt: 0.95, loads: [imp('star', 30, 0, 40)] }));
+    expect(r.comp.UL_src).toBeGreaterThan(r.UL_src);
+    expect(sinEtiquetas(dom.el('fp-corr-body').innerHTML)).toContain('La tensión de fuente necesaria sube al compensar');
+  });
+
+  it('modo fuente sin cambios: fila «U_carga (fase)» y nota «U_carga sube al compensar»', () => {
+    pintar(receptorA1({ fpTgt: 0.95, vRef: 'source' }));
+    const txt = sinEtiquetas(dom.el('fp-corr-body').innerHTML);
+    expect(txt).toContain('U_carga (fase)');
+    expect(txt).toContain('ΔU respecto a U_n');
+    expect(txt).toContain('U_carga sube al compensar: la línea transporta menos corriente reactiva y cae menos tensión en Z_L.');
+    expect(txt).not.toContain('U_L,fuente necesaria');
+  });
+});
+
 describe('Sospecha 4 — texto «Banco a U_L nominal»', () => {
   it('el valor mostrado junto a «U_L nominal (400.0 V)» es Q a 400 V = 1,929 kvar', () => {
     pintar(receptorA1({ fpTgt: 0.95 }));
