@@ -6452,844 +6452,6 @@ S' = 22.47 kVA (fp'=0.950)
 
 exports[`ej3-acb > vacio 1`] = `""`;
 
-exports[`ej3-tabla > alerta 1`] = `""`;
-
-exports[`ej3-tabla > entradas 1`] = `
-"Fuente trifásica y línea
-Niveles normalizados
-220 V · 60 Hz
-208 V · 60 Hz
-440 V · 60 Hz
-480 V · 60 Hz
-13,8 kV · 60 Hz
-400 V · 50 Hz (libro)
-Especificación de tensión
-U
-L
-línea-línea
-U
-f
-fase-neutro
-Tensión U
-L
-V · línea-línea
-≡ U_f = 400/√3 = 230.94 V por fase
-Frecuencia f
-Hz
-Secuencia
-ABC directa (+)
-ACB inversa (−)
-Conductores del sistema
-Auto
-3 hilos
-4 hilos (con N)
-Neutro distribuido.
-Punto donde se conoce la tensión
-En la fuente (A, B, C)
-En el receptor (A′, B′, C′)
-Sin Z_L el receptor recibe la misma tensión que la fuente.
-Impedancia de línea Z
-L
-Línea ideal (Z
-L
-=0)
-Con Z
-L
-(R
-L
-+jX
-L
-)
-Cargas en paralelo
-3 cargas
-+ Z
-+ Motor
-Impedancia RLC
-Motor 3~
-Z1
-✕
-Y
-Estrella
-Δ
-Triángulo
-R
-Ω
-X
-L
-Ω
-X
-C
-Ω
-|Z| = 20.000 Ω ∠+36.87° ind.
-Impedancia RLC
-Motor 3~
-Z2
-✕
-Y
-Estrella
-Δ
-Triángulo
-R
-Ω
-X
-L
-Ω
-X
-C
-Ω
-|Z| = 75.000 Ω ∠+53.13° ind.
-Z_Y = Z_Δ/3 → |Z_Y| = 25.000 Ω (equivalente estrella)
-Impedancia RLC
-Motor 3~
-M3
-✕
-Y
-Estrella
-Δ
-Triángulo
-P útil (eje)
-kW
-HP
-U
-n
-placa
-V línea
-cosφ
-ind.
-η
-%
-P_abs = 11.11 kW · Q = 6.886 kvar · I_n = 18.87 A
-Potencia constante · devanados en Δ: I_f = I_L/√3
-Compensación de reactiva (opcional)
-fp objetivo en bornes de carga
-0–1
-Calcula el banco de condensadores C (Y/Δ) o reactores L
-Criterios normativos
-fp mínimo
-ΔU máx
-%
-fp: Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25).
-ΔU auto: bajo voltaje → ±8 % (ARCERNNR-002/20, Tabla 1).
-⚡ Resolver circuito trifásico
-↺ Limpiar todo / nuevo ejercicio
-Formulario de referencia (Patrón 5)
-Magnitud
-Relación fundamental
-U
-f
-= U
-L
-/ √3
-Estrella (Y)
-I
-L
-= I
-f
-= U
-f
-/ |Z
-Y
-|
-Triángulo (Δ)
-I
-f
-= I
-L
-/ √3 · U
-ff
-= U
-L
-Conversión Δ→Y
-Z
-Y
-= Z
-Δ
-/ 3
-Paralelo
-Y
-eq
-= Σ (1 / Z
-k,Y
-)
-Motor 3~
-P
-abs
-= P
-útil
-/ η · Z
-Y
-= U
-f
-² / S*
-f
-Potencia 3~
-P = √3·U
-L
-·I
-L
-·cosφ · Q = √3·U
-L
-·I
-L
-·senφ"
-`;
-
-exports[`ej3-tabla > esquema 1`] = `
-"Planta y topología del sistema trifásico
-Generador 3~, embarrado, elementos R-L-C por rama y motores M 3~
-← desliza para ver el esquema completo →
-FUENTE 3~
-A
-Ī
-A
-39.2A
-B
-Ī
-B
-39.2A
-C
-Ī
-C
-39.2A
-N
-I_N = 0 A (equilibrado)
-A′
-B′
-C′
-N′
-N
-A′
-C′
-B′
-Z1 (Y): Z = 16.00+j12.00 Ω
-|Z|=20.0Ω · I_L=11.5A
-A′
-B′
-C′
-A′
-C′
-B′
-Z2 (Δ): Z = 45.00+j60.00 Ω
-|Z|=75.0Ω · I_L=9.24A
-A′
-B′
-C′
-M
-3~ Δ
-M3: Motor 10.0 kW (Δ)
-cosφ=0.85 · η=90% · I_L=18.9A
-Banco Q_C (Δ): 64.91 μF/fase
-Q = 9.788 kvar → fp = 0.950
-Circuito monofásico equivalente (Fase A — Neutro)
-Reducción al equivalente estrella (Patrón 5 · Fraile Mora)
-A
-N
-Ū_AN = 230.94∠+0.00° V (DATO)
-(U_L / √3)
-Ī_A = 39.219 ∠−38.21° A
-A′
-Z_eq,Y = 4.627+j3.642 Ω
-|Z_eq| = 5.888 ∠+38.21° Ω
-Ū_A′N = Ū_AN (línea ideal)
-C_Y=194.7μF
-N′
-Conductor neutro físico N (I_N = 0 A)"
-`;
-
-exports[`ej3-tabla > fasorial 1`] = `
-"▶ Animar
-ωt = 0° (estático)
-↺ t = 0
-Diagrama fasorial polar (transportador)
-Los fasores giran con ωt; su proyección vertical es el valor instantáneo
-Osciloscopio trifásico instantáneo u(ωt) e i(ωt)
-Pasa el cursor (o desliza) para fijar ωt
-Fase A (Terracota)
-Fase B (Ocre)
-Fase C (Pizarra)
-— Tensión u(ωt) / Ū --- Corriente i(ωt) / Ī
-Tensiones y corrientes a escalas independientes: compara ángulos, no longitudes. La altura de cada punta en el fasorial es proporcional al valor instantáneo en el osciloscopio.
-Instante ωt = 0°
-Fase A
-Fase B
-Fase C
-Suma
-Pico
-u fase-neutro (V)
-0.0
-282.8
--282.8
-0.0
-Û = 326.6
-i de línea (A)
--34.31
-54.90
--20.59
-0.00
-Î = 55.46
-En un sistema equilibrado las tres tensiones y las tres corrientes suman cero en todo instante; por eso el neutro no transporta corriente.
-Ū_AN = 230.94 V ∠+0.00° | Ī_A = 39.219 A ∠−38.21° | Desfase φ = 38.21° (ind.)"
-`;
-
-exports[`ej3-tabla > inferior 1`] = `
-"Desglose detallado por carga en el punto de operación
-Carga
-Tipo
-|Z| (Ω)
-I_L (A)
-I_f (A)
-P (W)
-Q (var)
-S (VA)
-fp
-Z1
-Y
-20.00 ∠+36.87°
-11.55
-11.55
-(=I_L)
-6.400 k
-4.800 k
-8.000 k
-0.8000
-ind.
-Z2
-Δ
-75.00 ∠+53.13°
-9.238
-5.333
-(Δ)
-3.840 k
-5.120 k
-6.400 k
-0.6000
-ind.
-M3
-Motor Δ
-12.24 ∠+31.79°
-Y-eq.
-18.87
-10.89
-(Δ)
-11.11 k
-6.886 k
-13.07 k
-0.8500
-ind.
-TOTAL (fuente)
-39.22
-ver cada carga
-21.35 k
-16.81 k
-27.17 k
-0.7858
-ind.
-M3: I_n de placa = 18.87 A · I de operación = 18.87 A · U en bornes = 400.0 V (+0.00 % de U_n = 400.0 V) · P_abs = 11.11 kW constante
-Comprobación de leyes (Boucherot / Kirchhoff)
-✓ 6/6 OK
-✓
-U_L = √3·U_f: 400.000 ≈ 400.000 V
-✓
-S = √(P²+Q²): 27.17 kVA ≈ 27.17 kVA
-✓
-Boucherot P: ΣP_k = 21.35 kW ≈ 3·U_f·I_L·cosφ = 21.35 kW
-✓
-Boucherot Q: ΣQ_k = 16.81 kvar ≈ 3·U_f·I_L·senφ = 16.81 kvar
-✓
-LKC: Σ Ī_A,k = 39.219 ∠−38.21° A ≈ Ī_A = 39.219 ∠−38.21° A
-✓
-I_N = |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (neutro sin corriente)
-Banco de compensación de factor de potencia
-fp medido en bornes de carga · carga inductiva (en retraso)
-fp actual: 0.7858 ind. → objetivo:
-0.950 ind.
-Q_C = P_carga·(tanφ₁ − tanφ₂) =
-9.788 kvar
-(banco de condensadores)
-C_Y (estrella) = Q_C/(3·ω·U_f²) =
-194.732 μF
-C_Δ (triángulo) = C_Y/3 =
-64.911 μF
-Tensión de cada condensador: Y → 230.9 V · Δ → 400.0 V
-Banco a U_L nominal (400.0 V): 9.788 kvar → paso comercial sugerido:
-10 kvar
-Un banco comercial ligeramente mayor sobrecompensa un poco; Q varía con (U/U_n)².
-Efecto en la fuente tras compensar
-Magnitud
-Antes
-Después
-Δ
-I_L (fuente)
-39.22 A
-32.44 A
-−17.3 %
-fp en la fuente
-0.7858 ind.
-0.9500 ind.
-fp en la carga
-0.7858 ind.
-0.9500 ind.
-S total
-27.17 kVA
-22.47 kVA
-−17.3 %
-Diagnóstico de cumplimiento normativo (ARCONEL / ARCERNNR)
-⚠ 1 aviso
-Factor de potencia: cumple solo con la compensación propuesta
-fp en la fuente (punto de medición) = 0.7858 ind. · umbral 0.94 · tras compensar: 0.9500 ind. ✓
-Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.
-Variación de tensión: no aplica
-Sin Z_L la carga recibe la tensión de la fuente (0 %).
-M3: tensión en bornes frente a la placa
-400.0 V frente a U_n = 400.0 V → +0.00 %
-Referencia orientativa de diseño: ±10 % de U_n en motores. Fuera de ese rango el modelo de potencia constante deja de ser fiable."
-`;
-
-exports[`ej3-tabla > informe 1`] = `
-"Circuito Trifásico Equilibrado
-Fraile Mora · Circuitos Eléctricos · Patrón 5
-Datos del circuito
-Tensión de línea U_L
-400.000 V
-Tensión de fase U_f
-230.9401 V
-Frecuencia
-50 Hz → ω = 314.159 rad/s
-Secuencia de fases
-ACB inversa
-Sistema
-4 hilos
-Cargas del circuito
-Carga
-Conexión
-Datos
-Z por fase (Ω)
-Z1
-Y (Estrella)
-R 16.000 · X_L 12.000 · X_C 0.000
-20.0000 ∠+36.87°
-Z2
-Δ (Triángulo)
-R 45.000 · X_L 60.000 · X_C 0.000
-75.0000 ∠+53.13°
-M3
-Δ (Triángulo)
-Motor: 10.00 kW · U_n 400.0 V · cosφ 0.85 · η 90.0 %
-12.2400 ∠+31.79° (Y-eq., en operación)
-Resolución — Patrón 5
-Paso 1
-Sistema trifásico
-U_L =
-400.000 V
-| U_f = U_L/√3 =
-230.9401 V
-f = 50 Hz → ω = 2πf = 314.159 rad/s | Secuencia: ACB inversa
-Sistema de 4 hilos: el neutro N está distribuido hasta las cargas.
-Paso 2
-Cargas y conversión Δ→Y
-Z1 (Y): Z = 16.000+j12.000 Ω =
-20.000 ∠+36.87° Ω
-Z2 (Δ): Z = 45.000+j60.000 Ω =
-75.000 ∠+53.13° Ω
-→ Z_Y = Z_Δ/3 = 25.000 ∠+53.13° Ω (equivalente estrella para el monofásico)
-M3 (motor, devanados en Δ): P_útil = 10.00 kW, η = 90.0 %
-P_abs = P_útil/η = 10.00 kW/0.900 =
-11.11 kW
-cosφ = 0.850 → Q = P_abs·tanφ =
-6.886 kvar
-| S = 13.07 kVA
-(potencia constante)
-Paso 3
-Punto de operación de los motores
-Sin Z_L los motores reciben Ū_AN =
-230.940 ∠+0.00° V
-y absorben su potencia de placa.
-M3: S_f = (P+jQ)/3 = 3703.7+j2295.3 VA → Z_M,Y = U_f²/S*_f = 230.940² / (3703.7−j2295.3) =
-12.240 ∠+31.79° Ω
-Esta impedancia equivalente solo es válida en este punto de operación.
-Paso 4
-Paralelo de admitancias → Z_eq
-Y_Z1 = 1/Z_Z1,Y = 0.04000−j0.03000 S
-Y_Z2 = 1/Z_Z2,Y = 0.02400−j0.03200 S
-Y_M3 = 1/Z_M3,Y = 0.06944−j0.04304 S
-Y_eq = Σ Y_k = 0.13344−j0.10504 S
-Z_eq = 1/Y_eq = 4.6270+j3.6420 Ω =
-5.8884 ∠+38.21° Ω
-Paso 5
-Circuito monofásico equivalente
-Ī_A = Ū_AN / Z_eq = (230.940 ∠0°) / (5.8884 ∠+38.21°)
-= (230.940 / 5.8884) ∠(0° − (+38.21°)) =
-39.219 ∠−38.21° A
-fp = cos(+38.21°) =
-0.7858 ind.
-(I retrasada respecto a U)
-Paso 6
-Corrientes por carga
-Ū_AN =
-230.940 ∠+0.00° V
-(tensión fase-neutro que ve cada carga)
-Ī_A,Z1 = Ū_AN/Z_Z1,Y = (230.940 ∠+0.00°) / (20.000 ∠+36.87°) = (230.940/20.000) ∠(+0.00° − (+36.87°)) =
-11.547 ∠−36.87° A
-Z1 (Y): I_f = I_L = 11.5470 A
-Ī_A,Z2 = Ū_AN/Z_Z2,Y = (230.940 ∠+0.00°) / (25.000 ∠+53.13°) = (230.940/25.000) ∠(+0.00° − (+53.13°)) =
-9.238 ∠−53.13° A
-Z2 (Δ): I_f = I_L/√3 = 9.2376/√3 =
-5.333 ∠−83.13° A
-(rama AB, adelanta 30° a Ī_A en ABC)
-Ī_A,M3 = Ū_AN/Z_M3,Y = (230.940 ∠+0.00°) / (12.240 ∠+31.79°) = (230.940/12.240) ∠(+0.00° − (+31.79°)) =
-18.868 ∠−31.79° A
-M3 (Δ): I_f = I_L/√3 = 18.8677/√3 =
-10.893 ∠−61.79° A
-(rama AB, adelanta 30° a Ī_A en ABC)
-Σ Ī_A,k =
-39.219 ∠−38.21° A
-= Ī_A total ✓ (suma fasorial, LKC)
-Paso 7
-Simetría: desfase 120°
-Ū_AN = 230.940 ∠+0.00° → Ī_A =
-39.219 ∠−38.21°
-Ū_BN = 230.940 ∠+120.00° → Ī_B =
-39.219 ∠+81.79°
-Ū_CN = 230.940 ∠−120.00° → Ī_C =
-39.219 ∠−158.21°
-I_N = Ī_A + Ī_B + Ī_C = 0 → el neutro no transporta corriente en equilibrio
-Paso 8
-Potencias totales
-P = √3·U_L·I_L·cosφ = √3·400.00·39.2193·0.7858 =
-21.35 kW
-Q = √3·U_L·I_L·senφ =
-16.81 kvar
-| S = √3·U_L·I_L =
-27.17 kVA
-Resultados
-Z_eq (cargas)
-5.8884 ∠+38.21° Ω
-Corriente de línea I_L
-39.219 ∠−38.21° A
-Corriente de fase I_f en Z2 (Δ)
-5.333 ∠−83.13° A
-(I_L,Z2 = 9.2376 A)
-Corriente de fase I_f en M3 (Δ)
-10.893 ∠−61.79° A
-(I_L,M3 = 18.8677 A)
-fp
-0.7858 ind.
-P activa total
-21.35 kW
-Q reactiva total
-16.81 kvar (inductiva)
-S aparente total
-27.17 kVA
-Triángulo de potencias
-φ=38.2° (fp=0.786)
-P = 21.35 kW
-Q = 16.81 kvar
-S = 27.17 kVA
-Q_C = 9.788 kvar
-S' = 22.47 kVA (fp'=0.950)
-— Estado inicial - - - Compensado
-Corrección de factor de potencia (en bornes de carga)
-fp medido en bornes de carga · carga inductiva (en retraso)
-fp actual: 0.7858 ind. → objetivo:
-0.950 ind.
-Q_C = P_carga·(tanφ₁ − tanφ₂) =
-9.788 kvar
-(banco de condensadores)
-C_Y (estrella) = Q_C/(3·ω·U_f²) =
-194.732 μF
-C_Δ (triángulo) = C_Y/3 =
-64.911 μF
-Tensión de cada condensador: Y → 230.9 V · Δ → 400.0 V
-Banco a U_L nominal (400.0 V): 9.788 kvar → paso comercial sugerido:
-10 kvar
-Un banco comercial ligeramente mayor sobrecompensa un poco; Q varía con (U/U_n)².
-Efecto en la fuente tras compensar
-Magnitud
-Antes
-Después
-Δ
-I_L (fuente)
-39.22 A
-32.44 A
-−17.3 %
-fp en la fuente
-0.7858 ind.
-0.9500 ind.
-fp en la carga
-0.7858 ind.
-0.9500 ind.
-S total
-27.17 kVA
-22.47 kVA
-−17.3 %
-Cumplimiento normativo
-● Factor de potencia: cumple solo con la compensación propuesta
-fp en la fuente (punto de medición) = 0.7858 ind. · umbral 0.94 · tras compensar: 0.9500 ind. ✓
-Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.
-● Variación de tensión: no aplica
-Sin Z_L la carga recibe la tensión de la fuente (0 %).
-● M3: tensión en bornes frente a la placa
-400.0 V frente a U_n = 400.0 V → +0.00 %
-Referencia orientativa de diseño: ±10 % de U_n en motores. Fuera de ese rango el modelo de potencia constante deja de ser fiable.
-Verificación
-✓ U_L = √3·U_f: 400.000 ≈ 400.000 V
-✓ S = √(P²+Q²): 27.17 kVA ≈ 27.17 kVA
-✓ Boucherot P: ΣP_k = 21.35 kW ≈ 3·U_f·I_L·cosφ = 21.35 kW
-✓ Boucherot Q: ΣQ_k = 16.81 kvar ≈ 3·U_f·I_L·senφ = 16.81 kvar
-✓ LKC: Σ Ī_A,k = 39.219 ∠−38.21° A ≈ Ī_A = 39.219 ∠−38.21° A
-✓ I_N = |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (neutro sin corriente)
-Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
-`;
-
-exports[`ej3-tabla > laboratorio 1`] = `
-"Banco de laboratorio
-Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
-N
-G
-3~
-FUENTE
-A
-B
-C
-230.9 V/fase · 50 Hz
-sec. ACB · 4 hilos
-V
-400.0 V
-W1
-5.824 kW
-W2
-15.53 kW
-A
-39.22 A
-A
-39.22 A
-A
-39.22 A
-cos
-φ
-cos φ = 0.786 ind.
-línea ideal
-A′
-B′
-C′
-EMBARRADO
-V
-400.0 V
-Z1 · Y · 11.55 A
-6.400 kW · fp 0.80
-Z2 · Δ · 9.238 A
-3.840 kW · fp 0.60
-M
-3~
-M3 · Δ · 18.87 A
-11.11 kW · fp 0.85
-K
-Banco C · 9.788 kvar
-contactor K abierto
-V
-Voltímetro · fuente
-400.0 V
-línea-línea A–B
-V
-Voltímetro · receptor
-400.0 V
-línea-línea A′–B′
-A
-Amperímetros de línea
-39.22 A
-I_A = I_B = I_C · ∠−38.21°
-W1
-Vatímetro 1
-5.824 kW
-Ī_A con Ū_AC
-W2
-Vatímetro 2
-15.53 kW
-Ī_B con Ū_BC
-Σ
-W1 + W2 = P
-21.35 kW
-Q = √3·(W2 − W1) = 16.81 kvar
-φ
-Cosfímetro
-0.7858 ind.
-φ = +38.21° · en la fuente
-Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
-Pilotos de alarma
-Según el diagnóstico de cumplimiento normativo
-Aviso
-Factor de potencia: cumple solo con la compensación propuesta
-No aplica
-Variación de tensión: no aplica
-Normal
-M3: tensión en bornes frente a la placa"
-`;
-
-exports[`ej3-tabla > pasos 1`] = `
-"Paso 1
-Sistema trifásico
-U_L =
-400.000 V
-| U_f = U_L/√3 =
-230.9401 V
-f = 50 Hz → ω = 2πf = 314.159 rad/s | Secuencia: ACB inversa
-Sistema de 4 hilos: el neutro N está distribuido hasta las cargas.
-Paso 2
-Cargas y conversión Δ→Y
-Z1 (Y): Z = 16.000+j12.000 Ω =
-20.000 ∠+36.87° Ω
-Z2 (Δ): Z = 45.000+j60.000 Ω =
-75.000 ∠+53.13° Ω
-→ Z_Y = Z_Δ/3 = 25.000 ∠+53.13° Ω (equivalente estrella para el monofásico)
-M3 (motor, devanados en Δ): P_útil = 10.00 kW, η = 90.0 %
-P_abs = P_útil/η = 10.00 kW/0.900 =
-11.11 kW
-cosφ = 0.850 → Q = P_abs·tanφ =
-6.886 kvar
-| S = 13.07 kVA
-(potencia constante)
-Paso 3
-Punto de operación de los motores
-Sin Z_L los motores reciben Ū_AN =
-230.940 ∠+0.00° V
-y absorben su potencia de placa.
-M3: S_f = (P+jQ)/3 = 3703.7+j2295.3 VA → Z_M,Y = U_f²/S*_f = 230.940² / (3703.7−j2295.3) =
-12.240 ∠+31.79° Ω
-Esta impedancia equivalente solo es válida en este punto de operación.
-Paso 4
-Paralelo de admitancias → Z_eq
-Y_Z1 = 1/Z_Z1,Y = 0.04000−j0.03000 S
-Y_Z2 = 1/Z_Z2,Y = 0.02400−j0.03200 S
-Y_M3 = 1/Z_M3,Y = 0.06944−j0.04304 S
-Y_eq = Σ Y_k = 0.13344−j0.10504 S
-Z_eq = 1/Y_eq = 4.6270+j3.6420 Ω =
-5.8884 ∠+38.21° Ω
-Paso 5
-Circuito monofásico equivalente
-Ī_A = Ū_AN / Z_eq = (230.940 ∠0°) / (5.8884 ∠+38.21°)
-= (230.940 / 5.8884) ∠(0° − (+38.21°)) =
-39.219 ∠−38.21° A
-fp = cos(+38.21°) =
-0.7858 ind.
-(I retrasada respecto a U)
-Paso 6
-Corrientes por carga
-Ū_AN =
-230.940 ∠+0.00° V
-(tensión fase-neutro que ve cada carga)
-Ī_A,Z1 = Ū_AN/Z_Z1,Y = (230.940 ∠+0.00°) / (20.000 ∠+36.87°) = (230.940/20.000) ∠(+0.00° − (+36.87°)) =
-11.547 ∠−36.87° A
-Z1 (Y): I_f = I_L = 11.5470 A
-Ī_A,Z2 = Ū_AN/Z_Z2,Y = (230.940 ∠+0.00°) / (25.000 ∠+53.13°) = (230.940/25.000) ∠(+0.00° − (+53.13°)) =
-9.238 ∠−53.13° A
-Z2 (Δ): I_f = I_L/√3 = 9.2376/√3 =
-5.333 ∠−83.13° A
-(rama AB, adelanta 30° a Ī_A en ABC)
-Ī_A,M3 = Ū_AN/Z_M3,Y = (230.940 ∠+0.00°) / (12.240 ∠+31.79°) = (230.940/12.240) ∠(+0.00° − (+31.79°)) =
-18.868 ∠−31.79° A
-M3 (Δ): I_f = I_L/√3 = 18.8677/√3 =
-10.893 ∠−61.79° A
-(rama AB, adelanta 30° a Ī_A en ABC)
-Σ Ī_A,k =
-39.219 ∠−38.21° A
-= Ī_A total ✓ (suma fasorial, LKC)
-Paso 7
-Simetría: desfase 120°
-Ū_AN = 230.940 ∠+0.00° → Ī_A =
-39.219 ∠−38.21°
-Ū_BN = 230.940 ∠+120.00° → Ī_B =
-39.219 ∠+81.79°
-Ū_CN = 230.940 ∠−120.00° → Ī_C =
-39.219 ∠−158.21°
-I_N = Ī_A + Ī_B + Ī_C = 0 → el neutro no transporta corriente en equilibrio
-Paso 8
-Potencias totales
-P = √3·U_L·I_L·cosφ = √3·400.00·39.2193·0.7858 =
-21.35 kW
-Q = √3·U_L·I_L·senφ =
-16.81 kvar
-| S = √3·U_L·I_L =
-27.17 kVA"
-`;
-
-exports[`ej3-tabla > sintesis 1`] = `
-"3 cargas paralelas (1 motor) · 4 hilos · Compensado
-U
-f
-(fase)
-230.9 V
-U_L = 400.0 V
-Z
-eq
-cargas (Y)
-5.888 Ω
-∠+38.21° · en operación
-I
-L
-total (línea)
-39.22 A
-∠−38.21°
-I_f por carga: ver desglose
-fp (cosφ)
-0.7858
-ind.
-0
-0.5
-0.94"
-`;
-
-exports[`ej3-tabla > tabla 1`] = `
-"Fase
-Ū fase-neutro (V)
-Ū línea-línea (V)
-Ī línea (A)
-A
-Ū_AN
-230.940 ∠+0.00°
-Ū_AB
-400.000 ∠−30.00°
-Ī_A
-39.219 ∠−38.21°
-B
-Ū_BN
-230.940 ∠+120.00°
-Ū_BC
-400.000 ∠+90.00°
-Ī_B
-39.219 ∠+81.79°
-C
-Ū_CN
-230.940 ∠−120.00°
-Ū_CA
-400.000 ∠−150.00°
-Ī_C
-39.219 ∠−158.21°
-P activa total
-21.35 kW
-= √3·U_L·I_L·cosφ
-Q reactiva total
-16.81 kvar
-(inductiva)
-S aparente total
-27.17 kVA
-= √(P²+Q²)
-Desfase φ eq.
-+38.21°
-carga inductiva
-Triángulo vectorial de potencias (P, Q, S)
-Con superposición del efecto de compensación reactiva
-φ=38.2° (fp=0.786)
-P = 21.35 kW
-Q = 16.81 kvar
-S = 27.17 kVA
-Q_C = 9.788 kvar
-S' = 22.47 kVA (fp'=0.950)
-— Estado inicial - - - Compensado"
-`;
-
-exports[`ej3-tabla > vacio 1`] = `""`;
-
 exports[`ej3-wt75 > alerta 1`] = `""`;
 
 exports[`ej3-wt75 > entradas 1`] = `
@@ -9758,6 +8920,682 @@ arriba
 y pulsa
 Resolver circuito trifásico"
 `;
+
+exports[`mt-fase-delta > alerta 1`] = `""`;
+
+exports[`mt-fase-delta > entradas 1`] = `
+"Fuente trifásica y línea
+Niveles normalizados
+220 V · 60 Hz
+208 V · 60 Hz
+440 V · 60 Hz
+480 V · 60 Hz
+13,8 kV · 60 Hz
+400 V · 50 Hz (libro)
+Especificación de tensión
+U
+L
+línea-línea
+U
+f
+fase-neutro
+Tensión U
+f
+V · fase-neutro
+≡ U_L = 7967.433714816836·√3 = 13800.00 V línea
+Frecuencia f
+Hz
+Secuencia
+ABC directa (+)
+ACB inversa (−)
+Conductores del sistema
+Auto
+3 hilos
+4 hilos (con N)
+Auto → 3 hilos (solo Δ y motores). Sin conductor de neutro: neutro ficticio en el monofásico.
+Punto donde se conoce la tensión
+En la fuente (A, B, C)
+En el receptor (A′, B′, C′)
+La tensión es el dato en los bornes de la fuente; Z_L causa caída.
+Impedancia de línea Z
+L
+Línea ideal (Z
+L
+=0)
+Con Z
+L
+(R
+L
++jX
+L
+)
+R
+L
+Ω/hilo
+X
+L
+Ω/hilo
+|Z_L| = 4.472 Ω ∠+63.43° por conductor
+Cargas en paralelo
+1 carga
++ Z
++ Motor
+Impedancia RLC
+Motor 3~
+Z1
+✕
+Y
+Estrella
+Δ
+Triángulo
+R
+Ω
+X
+L
+Ω
+X
+C
+Ω
+|Z| = 375.000 Ω ∠+36.87° ind.
+Z_Y = Z_Δ/3 → |Z_Y| = 125.000 Ω (equivalente estrella)
+Compensación de reactiva (opcional)
+fp objetivo en bornes de carga
+0–1
+Calcula el banco de condensadores C (Y/Δ) o reactores L
+Criterios normativos
+fp mínimo
+ΔU máx
+%
+fp: Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25).
+ΔU auto: medio voltaje → ±6 % (ARCERNNR-002/20, Tabla 1).
+⚡ Resolver circuito trifásico
+↺ Limpiar todo / nuevo ejercicio
+Formulario de referencia (Patrón 5)
+Magnitud
+Relación fundamental
+U
+f
+= U
+L
+/ √3
+Estrella (Y)
+I
+L
+= I
+f
+= U
+f
+/ |Z
+Y
+|
+Triángulo (Δ)
+I
+f
+= I
+L
+/ √3 · U
+ff
+= U
+L
+Conversión Δ→Y
+Z
+Y
+= Z
+Δ
+/ 3
+Paralelo
+Y
+eq
+= Σ (1 / Z
+k,Y
+)
+Motor 3~
+P
+abs
+= P
+útil
+/ η · Z
+Y
+= U
+f
+² / S*
+f
+Potencia 3~
+P = √3·U
+L
+·I
+L
+·cosφ · Q = √3·U
+L
+·I
+L
+·senφ"
+`;
+
+exports[`mt-fase-delta > esquema 1`] = `
+"Planta y topología del sistema trifásico
+Generador 3~, embarrado, elementos R-L-C por rama y motores M 3~
+← desliza para ver el esquema completo →
+FUENTE 3~
+A
+Z_L = 2.00+j4.00 Ω
+Ī
+A
+61.8A
+B
+Ī
+B
+61.8A
+C
+Ī
+C
+61.8A
+Sistema a 3 hilos · sin conductor neutro
+A′
+B′
+C′
+A′
+C′
+B′
+Z1 (Δ): Z = 300.00+j225.00 Ω
+|Z|=375Ω · I_L=61.8A
+Circuito monofásico equivalente (Fase A — Neutro)
+Reducción al equivalente estrella (Patrón 5 · Fraile Mora)
+A
+N
+Ū_AN = 7967.43∠+0.00° V (DATO)
+(U_L / √3)
+Z_L = 2.00+j4.00 Ω
+ΔŪ = 276.18 V
+Ī_A = 61.756 ∠−37.76° A
+A′
+Z_eq,Y = 100.000+j75.000 Ω
+|Z_eq| = 125.000 ∠+36.87° Ω
+Ū_A′N = 7719.454 ∠−0.89° V
+N′
+Neutro ficticio de referencia (V_N′N = 0 V por simetría equilibrada)"
+`;
+
+exports[`mt-fase-delta > fasorial 1`] = `
+"▶ Animar
+ωt = 0° (estático)
+↺ t = 0
+Diagrama fasorial polar (transportador)
+Los fasores giran con ωt; su proyección vertical es el valor instantáneo
+Osciloscopio trifásico instantáneo u(ωt) e i(ωt)
+Pasa el cursor (o desliza) para fijar ωt
+Fase A (Terracota)
+Fase B (Ocre)
+Fase C (Pizarra)
+— Tensión u(ωt) / Ū --- Corriente i(ωt) / Ī
+Tensiones y corrientes a escalas independientes: compara ángulos, no longitudes. La altura de cada punta en el fasorial es proporcional al valor instantáneo en el osciloscopio.
+Instante ωt = 0°
+Fase A
+Fase B
+Fase C
+Suma
+Pico
+u fase-neutro (V)
+0.0
+-9758.1
+9758.1
+0.0
+Û = 11267.7
+i de línea (A)
+-53.48
+-33.06
+86.54
+0.00
+Î = 87.34
+En un sistema equilibrado las tres tensiones y las tres corrientes suman cero en todo instante; por eso el neutro no transporta corriente.
+Ū_AN = 7967.43 V ∠+0.00° | Ī_A = 61.756 A ∠−37.76° | Desfase φ = 37.76° (ind.)"
+`;
+
+exports[`mt-fase-delta > inferior 1`] = `
+"Desglose detallado por carga en el punto de operación
+Carga
+Tipo
+|Z| (Ω)
+I_L (A)
+I_f (A)
+P (W)
+Q (var)
+S (VA)
+fp
+Z1
+Δ
+375.0 ∠+36.87°
+61.76
+35.65
+(Δ)
+1.144 M
+858.1 k
+1.430 M
+0.8000
+ind.
+Comprobación de leyes (Boucherot / Kirchhoff)
+✓ 6/6 OK
+✓
+U_L = √3·U_f: 13800.000 ≈ 13800.000 V
+✓
+S = √(P²+Q²): 1.476 MVA ≈ 1.476 MVA
+✓
+Boucherot P: ΣP_k + línea = 1.167 MW ≈ 3·U_f·I_L·cosφ = 1.167 MW
+✓
+Boucherot Q: ΣQ_k + línea = 903.9 kvar ≈ 3·U_f·I_L·senφ = 903.9 kvar
+✓
+LKT: Ī_A·Z_L + Ū_carga = 7967.434 ∠+0.00° V ≈ Ū_AN = 7967.434 ∠+0.00° V
+✓
+|Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (3 hilos: LKC sin neutro)
+Banco de compensación de factor de potencia
+Introduce un fp objetivo arriba.
+Diagnóstico de cumplimiento normativo (ARCONEL / ARCERNNR)
+✗ 1 incumple
+Factor de potencia: bajo el umbral de penalización
+fp en la fuente (punto de medición) = 0.7906 ind. · umbral 0.94
+Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.
+Variación de tensión en la carga: dentro del límite
+U_carga = 13370 V → −3.11 % respecto a U_n = 13800 V · límite ±6.0 % (medio voltaje)
+Regulación ARCERNNR-002/20, Tabla 1 (BV 8 %, MV 6 %, AV 5 %). El límite es editable."
+`;
+
+exports[`mt-fase-delta > informe 1`] = `
+"Circuito Trifásico Equilibrado
+Fraile Mora · Circuitos Eléctricos · Patrón 5
+Datos del circuito
+Tensión de línea U_L
+13800.000 V
+Tensión de fase U_f
+7967.4337 V
+Frecuencia
+60 Hz → ω = 376.991 rad/s
+Secuencia de fases
+ABC directa
+Sistema
+3 hilos (neutro ficticio) · automático
+Impedancia de línea Z_L
+2.000+j4.000 Ω · |Z_L| = 4.472 Ω
+Cargas del circuito
+Carga
+Conexión
+Datos
+Z por fase (Ω)
+Z1
+Δ (Triángulo)
+R 300.000 · X_L 225.000 · X_C 0.000
+375.0000 ∠+36.87°
+Resolución — Patrón 5
+Paso 1
+Sistema trifásico
+U_L =
+13800.000 V
+| U_f = U_L/√3 =
+7967.4337 V
+f = 60 Hz → ω = 2πf = 376.991 rad/s | Secuencia: ABC directa
+Sistema de 3 hilos:
+no hay conductor de neutro; se usa un neutro ficticio. En equilibrio V_N'N = 0, por eso el monofásico equivalente sigue siendo válido.
+Paso 2
+Cargas y conversión Δ→Y
+Z1 (Δ): Z = 300.000+j225.000 Ω =
+375.000 ∠+36.87° Ω
+→ Z_Y = Z_Δ/3 = 125.000 ∠+36.87° Ω (equivalente estrella para el monofásico)
+Paso 3
+Circuito monofásico equivalente
+Z_total = Z_L + Z_eq = (2.000+j4.000) + (100.000+j75.000) = 102.000+j79.000 Ω =
+129.0155 ∠+37.76° Ω
+Ī_A = Ū_AN / Z_total = (7967.434 ∠0°) / (129.0155 ∠+37.76°)
+= (7967.434 / 129.0155) ∠(0° − (+37.76°)) =
+61.756 ∠−37.76° A
+fp (entrada) = cos(+37.76°) =
+0.7906 ind.
+(I retrasada respecto a U)
+⚡ Paso 4
+Tensión en la carga y caída en la línea
+ΔŪ = Ī_A·Z_L = (61.756 ∠−37.76°)·(4.472 ∠+63.43°) = (61.756·4.472) ∠(−37.76° + +63.43°) =
+276.180 ∠+25.68° V
+Ū_carga = Ū_AN − ΔŪ =
+7719.454 ∠−0.89° V
+→ U_carga,L = √3·U_carga =
+13370.486 V
+ΔU = (U_carga,L − U_L)/U_L = (13370.49 − 13800.00)/13800.00 =
+−3.11 %
+(escalar: es la que evalúa la normativa)
+|ΔŪ| = 276.180 V ≠ |U_AN| − |U_carga| = 247.980 V, porque ΔŪ no está en fase con Ū_AN
+fp de la carga = cos(∠Z_eq) = 0.8000 ind.
+Paso 5
+Corrientes por carga
+Ū_carga =
+7719.454 ∠−0.89° V
+(tensión fase-neutro que ve cada carga)
+Ī_A,Z1 = Ū_carga/Z_Z1,Y = (7719.454 ∠−0.89°) / (125.000 ∠+36.87°) = (7719.454/125.000) ∠(−0.89° − (+36.87°)) =
+61.756 ∠−37.76° A
+Z1 (Δ): I_f = I_L/√3 = 61.7556/√3 =
+35.655 ∠−7.76° A
+(rama AB, adelanta 30° a Ī_A en ABC)
+Paso 6
+Simetría: desfase 120°
+Ū_AN = 7967.434 ∠+0.00° → Ī_A =
+61.756 ∠−37.76°
+Ū_BN = 7967.434 ∠−120.00° → Ī_B =
+61.756 ∠−157.76°
+Ū_CN = 7967.434 ∠+120.00° → Ī_C =
+61.756 ∠+82.24°
+Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)
+Paso 7
+Potencias totales
+P_carga =
+1.144 MW
+| P_línea = 3·I²·R_L =
+22.88 kW
+P_total = P_carga + P_línea =
+1.167 MW
+Q =
+903.9 kvar
+| S = √3·U_L·I_L =
+1.476 MVA
+Rendimiento η = P_carga/P_total =
+98.04 %
+Resultados
+Z_eq (cargas)
+125.0000 ∠+36.87° Ω
+Z_total (línea + cargas)
+129.0155 ∠+37.76° Ω
+Corriente de línea I_L
+61.756 ∠−37.76° A
+Corriente de fase I_f en Z1 (Δ)
+35.655 ∠−7.76° A
+(I_L,Z1 = 61.7556 A)
+U_carga (fase)
+7719.454 ∠−0.89° V
+U_carga (línea)
+13370.486 V
+Variación de tensión ΔU
+−3.11 % · |Ī·Z_L| = 276.180 V/fase
+fp (entrada)
+0.7906 ind.
+fp de las cargas
+0.8000 ind.
+P activa total
+1.167 MW
+P en cargas
+1.144 MW
+P pérdidas en línea
+22.88 kW
+Rendimiento η
+98.04 %
+Q reactiva total
+903.9 kvar (inductiva)
+S aparente total
+1.476 MVA
+Triángulo de potencias
+φ=37.8° (fp=0.791)
+P = 1.167 MW
+Q = 903.9 kvar
+S = 1.476 MVA
+Potencia reactiva inductiva (+Q)
+Cumplimiento normativo
+● Factor de potencia: bajo el umbral de penalización
+fp en la fuente (punto de medición) = 0.7906 ind. · umbral 0.94
+Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.
+● Variación de tensión en la carga: dentro del límite
+U_carga = 13370 V → −3.11 % respecto a U_n = 13800 V · límite ±6.0 % (medio voltaje)
+Regulación ARCERNNR-002/20, Tabla 1 (BV 8 %, MV 6 %, AV 5 %). El límite es editable.
+Verificación
+✓ U_L = √3·U_f: 13800.000 ≈ 13800.000 V
+✓ S = √(P²+Q²): 1.476 MVA ≈ 1.476 MVA
+✓ Boucherot P: ΣP_k + línea = 1.167 MW ≈ 3·U_f·I_L·cosφ = 1.167 MW
+✓ Boucherot Q: ΣQ_k + línea = 903.9 kvar ≈ 3·U_f·I_L·senφ = 903.9 kvar
+✓ LKT: Ī_A·Z_L + Ū_carga = 7967.434 ∠+0.00° V ≈ Ū_AN = 7967.434 ∠+0.00° V
+✓ |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (3 hilos: LKC sin neutro)
+Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
+`;
+
+exports[`mt-fase-delta > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+G
+3~
+FUENTE
+A
+B
+C
+7967 V/fase · 60 Hz
+sec. ABC · 3 hilos
+V
+13800 V
+W1
+844.4 kW
+W2
+322.6 kW
+A
+61.76 A
+A
+61.76 A
+A
+61.76 A
+cos
+φ
+cos φ = 0.791 ind.
+Z_L
+Z_L
+Z_L
+2.000+j4.000 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+13370 V
+Z1 · Δ · 61.76 A
+1.144 MW · fp 0.80
+V
+Voltímetro · fuente
+13800 V
+línea-línea A–B · dato
+V
+Voltímetro · receptor
+13370 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+61.76 A
+I_A = I_B = I_C · ∠−37.76°
+W1
+Vatímetro 1
+844.4 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+322.6 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+1.167 MW
+Q = √3·(W1 − W2) = 903.9 kvar
+φ
+Cosfímetro
+0.7906 ind.
+φ = +37.76° · en la fuente
+Δ
+ΔU en la carga
+−3.11 %
+pérdidas 22.88 kW
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Alarma
+Factor de potencia: bajo el umbral de penalización
+Normal
+Variación de tensión en la carga: dentro del límite"
+`;
+
+exports[`mt-fase-delta > pasos 1`] = `
+"Paso 1
+Sistema trifásico
+U_L =
+13800.000 V
+| U_f = U_L/√3 =
+7967.4337 V
+f = 60 Hz → ω = 2πf = 376.991 rad/s | Secuencia: ABC directa
+Sistema de 3 hilos:
+no hay conductor de neutro; se usa un neutro ficticio. En equilibrio V_N'N = 0, por eso el monofásico equivalente sigue siendo válido.
+Paso 2
+Cargas y conversión Δ→Y
+Z1 (Δ): Z = 300.000+j225.000 Ω =
+375.000 ∠+36.87° Ω
+→ Z_Y = Z_Δ/3 = 125.000 ∠+36.87° Ω (equivalente estrella para el monofásico)
+Paso 3
+Circuito monofásico equivalente
+Z_total = Z_L + Z_eq = (2.000+j4.000) + (100.000+j75.000) = 102.000+j79.000 Ω =
+129.0155 ∠+37.76° Ω
+Ī_A = Ū_AN / Z_total = (7967.434 ∠0°) / (129.0155 ∠+37.76°)
+= (7967.434 / 129.0155) ∠(0° − (+37.76°)) =
+61.756 ∠−37.76° A
+fp (entrada) = cos(+37.76°) =
+0.7906 ind.
+(I retrasada respecto a U)
+⚡ Paso 4
+Tensión en la carga y caída en la línea
+ΔŪ = Ī_A·Z_L = (61.756 ∠−37.76°)·(4.472 ∠+63.43°) = (61.756·4.472) ∠(−37.76° + +63.43°) =
+276.180 ∠+25.68° V
+Ū_carga = Ū_AN − ΔŪ =
+7719.454 ∠−0.89° V
+→ U_carga,L = √3·U_carga =
+13370.486 V
+ΔU = (U_carga,L − U_L)/U_L = (13370.49 − 13800.00)/13800.00 =
+−3.11 %
+(escalar: es la que evalúa la normativa)
+|ΔŪ| = 276.180 V ≠ |U_AN| − |U_carga| = 247.980 V, porque ΔŪ no está en fase con Ū_AN
+fp de la carga = cos(∠Z_eq) = 0.8000 ind.
+Paso 5
+Corrientes por carga
+Ū_carga =
+7719.454 ∠−0.89° V
+(tensión fase-neutro que ve cada carga)
+Ī_A,Z1 = Ū_carga/Z_Z1,Y = (7719.454 ∠−0.89°) / (125.000 ∠+36.87°) = (7719.454/125.000) ∠(−0.89° − (+36.87°)) =
+61.756 ∠−37.76° A
+Z1 (Δ): I_f = I_L/√3 = 61.7556/√3 =
+35.655 ∠−7.76° A
+(rama AB, adelanta 30° a Ī_A en ABC)
+Paso 6
+Simetría: desfase 120°
+Ū_AN = 7967.434 ∠+0.00° → Ī_A =
+61.756 ∠−37.76°
+Ū_BN = 7967.434 ∠−120.00° → Ī_B =
+61.756 ∠−157.76°
+Ū_CN = 7967.434 ∠+120.00° → Ī_C =
+61.756 ∠+82.24°
+Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)
+Paso 7
+Potencias totales
+P_carga =
+1.144 MW
+| P_línea = 3·I²·R_L =
+22.88 kW
+P_total = P_carga + P_línea =
+1.167 MW
+Q =
+903.9 kvar
+| S = √3·U_L·I_L =
+1.476 MVA
+Rendimiento η = P_carga/P_total =
+98.04 %"
+`;
+
+exports[`mt-fase-delta > sintesis 1`] = `
+"Δ · 3 hilos · Z_L
+U
+AN
+fuente
+7967 V
+U_L = 13800 V (fuente)
+Z
+eq
+cargas (Y)
+125.0 Ω
+∠+36.87°
+I
+L
+total (línea)
+61.76 A
+∠−37.76°
+I_f(Δ) = I_L/√3 = 35.65 A
+fp entrada
+0.7906
+ind.
+0
+0.5
+0.94
+ΔU en la carga
+−3.11 %
+|Ī·Z_L| = 276.2 V/fase
+U
+carga
+(fase)
+7719 V
+U_L = 13370 V carga
+P
+pérdidas
+línea
+22.88 kW
+η = 98.0 %
+fp
+carga
+0.8000
+ind.
+solo cargas"
+`;
+
+exports[`mt-fase-delta > tabla 1`] = `
+"Fase
+Ū fase-neutro fuente (V)
+Ū línea-línea (V)
+Ī línea (A)
+A
+Ū_AN
+7967.434 ∠+0.00°
+Ū_AB
+13800.000 ∠+30.00°
+Ī_A
+61.756 ∠−37.76°
+B
+Ū_BN
+7967.434 ∠−120.00°
+Ū_BC
+13800.000 ∠−90.00°
+Ī_B
+61.756 ∠−157.76°
+C
+Ū_CN
+7967.434 ∠+120.00°
+Ū_CA
+13800.000 ∠+150.00°
+Ī_C
+61.756 ∠+82.24°
+Ū_carga = 7719.454 ∠−0.89° V/fase | U_carga,L = 13370 V | ΔU = −3.11 %
+P activa total
+1.167 MW
+= P_carga + P_línea
+Q reactiva total
+903.9 kvar
+(inductiva)
+S aparente total
+1.476 MVA
+= √(P²+Q²)
+Desfase φ eq.
++37.76°
+ángulo total (Z_L+Z_eq)
+Triángulo vectorial de potencias (P, Q, S)
+Con superposición del efecto de compensación reactiva
+φ=37.8° (fp=0.791)
+P = 1.167 MW
+Q = 903.9 kvar
+S = 1.476 MVA
+Potencia reactiva inductiva (+Q)"
+`;
+
+exports[`mt-fase-delta > vacio 1`] = `""`;
 
 exports[`tema-alt > alerta 1`] = `""`;
 

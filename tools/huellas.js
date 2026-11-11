@@ -16,6 +16,17 @@ const pestana = (w, id) => {
 };
 const ej3acb = w => { w.loadExercise(3); w.document.getElementById('inp-seq').value = 'acb'; w.solve(); };
 
+// Media tensión: tensión especificada como U_f fase-neutro (13,8 kV de línea), una carga Δ y línea Z_L
+const mediaTension = w => {
+  const d = w.document;
+  w.clearAll();
+  w.setVT('phase'); d.getElementById('inp-v').value = 13800 / Math.sqrt(3); w.onSourceChange();
+  w.setZL(true); d.getElementById('inp-rl').value = 2; d.getElementById('inp-xl').value = 4; w.updateZLHint();
+  d.getElementById('lc-1-r').value = 300; d.getElementById('lc-1-xl').value = 225; w.setConn(1, 'delta');
+  w.solve();
+  return () => w.setVT('line');
+};
+
 // Cada escenario parte de un ejercicio cargado, así que no depende del orden. Puede devolver una función de limpieza.
 export const ESCENARIOS = [
   ['ej1', w => w.loadExercise(1)],
@@ -26,7 +37,7 @@ export const ESCENARIOS = [
   ['ej2-receptor', w => { w.loadExercise(2); w.setVRef('load'); w.solve(); }],
   ['ej3-wt75', w => { w.loadExercise(3); w.setWt(75); return () => w.resetWt(); }],
   ['ej3-acb', ej3acb],
-  ['ej3-tabla', w => { ej3acb(w); pestana(w, 'table'); }],
+  ['mt-fase-delta', mediaTension],
   ['informe', w => { w.loadExercise(4); w.showPrintView(); return () => w.closePrint(); }],
   ['tema-alt', w => { ej3acb(w); w.toggleTheme(); return () => w.toggleTheme(); }],
   ['colapso-alerta', w => { w.loadExercise(2); w.document.getElementById('inp-rl').value = 30; w.solve(); }],
