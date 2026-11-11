@@ -5,6 +5,7 @@ import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
 import { pauseWtOnTabChange, autoStartWt, renderWtReadout } from '../graphics/wt.js';
 import { $ } from '../core/dom.js';
+import { pauseGuideAuto } from './guide.js';
 import { updateLabHint } from './lab.js';
 import { lastResult } from '../core/state.js';
 
@@ -12,7 +13,7 @@ export function showTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');$('tab-'+id).classList.add('active');
-  pauseWtOnTabChange();
+  pauseWtOnTabChange();pauseGuideAuto();
   if(lastResult){
     if(id==='phasor'){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
     if(id==='lab'){updateLabHint();autoStartWt();}

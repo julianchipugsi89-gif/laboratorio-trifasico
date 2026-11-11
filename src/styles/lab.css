@@ -87,3 +87,17 @@
 .lab-cmp-v b{color:var(--fg);font-size:16px}
 .lab-stage:fullscreen .lab-cmp-v{font-size:18px}
 .lab-stage:fullscreen .lab-cmp-v b{font-size:22px}
+
+/* ── 3c: desarrollo guiado ───────────────────────────────────────── */
+.lab-svg.lab-guided > *{opacity:.2;transition:opacity .25s}
+.lab-svg.lab-guided > .lab-hl{opacity:1}
+.lab-svg.lab-guided .lab-hl .lab-el,.lab-svg.lab-guided .lab-hl.lab-el{stroke:var(--ac);stroke-width:2.6}
+.lab-svg.lab-guided path.lab-hl.lab-w{stroke-width:3.4}
+@media(prefers-reduced-motion:reduce){.lab-svg.lab-guided > *{transition:none}}
+.lab-guide{margin-top:12px;padding:12px 14px;border:1px solid var(--ac);border-radius:9px;background:var(--ac-bg)}
+.lab-guide .step-body{max-height:11.5em;overflow:auto;overflow-wrap:anywhere}
+.lab-guide-ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.lab-guide-ctrl .btn-icon{background:var(--bg-card)}
+.lab-guide-ctrl .btn-icon:disabled,#lab-guide-btn:disabled{opacity:.45;cursor:not-allowed}
+.lab-stage:fullscreen .lab-guide .step-body{font-size:16px;max-height:none}
+.lab-stage:fullscreen .lab-guide .step-title{font-size:17px}

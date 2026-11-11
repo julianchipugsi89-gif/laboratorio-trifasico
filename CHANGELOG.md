@@ -75,6 +75,11 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
   con la secuencia ACB, y contactor del banco que alterna las lecturas entre el estado sin compensar y
   el compensado sin recalcular, con el antes → después de I_L, fp, pérdidas y ΔU (o U_L,fuente en modo
   receptor). Botón de pantalla completa para la escena y el panel de instrumentos.
+- Laboratorio, entrega 3c: desarrollo guiado. Cada paso tiene un identificador estable y resalta en la
+  escena lo que se está calculando, con el texto del paso junto a ella; controles anterior/siguiente,
+  avance automático y salir, y teclado (flechas, AvPág/RePág, Esc). Funciona en pantalla completa.
+- Pilotos de alarma en estado compensado (`computePilots`) cuando el contactor está cerrado, y escala
+  mínima de la escena basada en legibilidad (el texto más pequeño no baja de 9 px efectivos).
 - Instantáneas de Vitest del texto visible de 13 escenarios (pantalla e informe) y
   `tools/huellas.js` para comparar los lienzos contra `legacy/` en el navegador.
 - Proyecto Vite con JavaScript modular: `src/engine` (cálculo puro), `src/core` (DOM y estado), `src/ui`, `src/graphics`,

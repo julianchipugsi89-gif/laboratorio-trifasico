@@ -4,10 +4,15 @@ import { fN, fPow, rstr, cstr, pStr, fpTag, fA, sgn } from '../engine/format.js'
 import { $ } from '../core/dom.js';
 
 // ── Paso a paso ───────────────────────────────────────────────────────
-export function renderSteps(r){
+// Cada paso lleva un identificador estable (los pasos presentes dependen de si hay motores, Z_L, varias
+// cargas o modo receptor, así que el índice no sirve) y los elementos de la escena del laboratorio
+// (graphics/labScene.js) que resalta el desarrollo guiado.
+export function buildSteps(r){
+  const elCargas=r.bkd.map(b=>`lab-load-${b.k}`),elMotores=r.bkd.filter(b=>b.kind==='motor').map(b=>`lab-load-${b.k}`);
+  const elHilos=['lab-wire-A','lab-wire-B','lab-wire-C'];
   const sp=m=>`<span class="hl">${m}</span>`,spam=m=>`<span class="hlam">${m}</span>`,su=m=>`<span class="sub">${m}</span>`;
   const steps=[],nL=r.bkd.length;
-  steps.push({t:'Sistema trifásico',b:
+  steps.push({id:'sistema',els:['lab-src','lab-v1',...elHilos],t:'Sistema trifásico',b:
     `U_L = ${sp(fN(r.UL,3)+' V')}  |  U_f = U_L/√3 = ${sp(fN(r.Uf,4)+' V')}\n`+
     `f = ${fN(r.f,0)} Hz → ω = 2πf = ${fN(r.ω,3)} rad/s  |  Secuencia: ${r.seq==='abc'?'ABC directa':'ACB inversa'}\n`+
     (r.wires===4?'Sistema de 4 hilos: el neutro N está distribuido hasta las cargas.'
@@ -23,7 +28,7 @@ export function renderSteps(r){
     let t=`${b.tag} (${cn}): Z = ${rstr(Zo)} Ω = ${sp(cstr(Zo)+' Ω')}`;
     if(b.conn==='delta')t+=`\n  ${su('→ Z_Y = Z_Δ/3 = '+cstr(b.ZY)+' Ω  (equivalente estrella para el monofásico)')}`;
     return t;});
-  steps.push({t:'Cargas'+(r.bkd.some(b=>b.conn==='delta'&&b.kind!=='motor')?' y conversión Δ→Y':''),b:lines.join('\n')});
+  steps.push({id:'cargas',els:elCargas,t:'Cargas'+(r.bkd.some(b=>b.conn==='delta'&&b.kind!=='motor')?' y conversión Δ→Y':''),b:lines.join('\n')});
 
   if(r.hasMotor){
     let t=r.zLineEnabled
@@ -36,13 +41,13 @@ export function renderSteps(r){
       return `${b.tag}: S_f = (P+jQ)/3 = ${rstr(Sf,1)} VA → Z_M,Y = U_f²/S*_f = ${fN(r.UloadF,3)}² / (${rstr(cconj(Sf),1)}) = ${sp(cstr(b.ZY)+' Ω')}`;
     }).join('\n');
     t+=`\n${su('Esta impedancia equivalente solo es válida en este punto de operación.')}`;
-    steps.push({t:'Punto de operación de los motores',b:t});
+    steps.push({id:'motores',els:[...elMotores,'lab-v2'],t:'Punto de operación de los motores',b:t});
   }
 
   if(nL>1){
     let t=r.bkd.map(b=>`Y_${b.tag} = 1/Z_${b.tag},Y = ${rstr(b.Y,5)} S`).join('\n');
     t+=`\nY_eq = Σ Y_k = ${rstr(r.Yeq,5)} S\nZ_eq = 1/Y_eq = ${rstr(r.ZeqC,4)} Ω = ${sp(cstr(r.ZeqC,4)+' Ω')}`;
-    steps.push({t:'Paralelo de admitancias → Z_eq',b:t});
+    steps.push({id:'paralelo',els:['lab-bus',...elCargas],t:'Paralelo de admitancias → Z_eq',b:t});
   }
 
   const Zt=r.ZtotC;
@@ -61,12 +66,12 @@ export function renderSteps(r){
       `    = (${fN(r.Uf,3)} / ${fN(r.ZtotM,4)}) ∠(0° − (${fA(r.φd)})) = ${sp(pStr(r.IL,r.IA)+' A')}\n`+
       `fp${r.zLineEnabled?' (entrada)':''} = cos(${fA(r.φd)}) = ${sp(fN(r.fp,4)+' '+fpTag(r.φ))}  ${su(r.φd>=0?'(I retrasada respecto a U)':'(I adelantada respecto a U)')}`;
   }
-  steps.push({t:'Circuito monofásico equivalente',b:mono});
+  steps.push({id:'monofasico',els:['lab-src','lab-wire-A','lab-amp','lab-cos',...(r.zLineEnabled?['lab-zl']:[])],t:'Circuito monofásico equivalente',b:mono});
 
   if(r.zLineEnabled){
     const φZL=cang(r.ZLc);
     if(r.recMode){
-      steps.push({t:'Tensión de fuente: cálculo hacia atrás',am:true,b:
+      steps.push({id:'fuente-hacia-atras',els:['lab-v2','lab-zl','lab-v1','lab-src'],t:'Tensión de fuente: cálculo hacia atrás',am:true,b:
         `[MODO RECEPTOR] Ū_A′N = ${sp(pStr(r.UloadF,r.UloadAng)+' V')} (DATO)\n`+
         `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+
         `Ū_AN = Ū_A′N + ΔŪ = ${sp(pStr(r.Uf_src,r.UA)+' V')}  ${su('(tensión de fuente calculada)')}\n`+
@@ -74,7 +79,7 @@ export function renderSteps(r){
         `δ = ∠Ū_AN = ${sp(fA(r.delta)+'  (ángulo de la fuente respecto al datum del receptor)')}\n`+
         `${su('fp de la carga = cos(∠Z_eq) = '+fN(r.fpLoad,4)+' '+fpTag(r.φLoad))}`});
     } else {
-      steps.push({t:'Tensión en la carga y caída en la línea',am:true,b:
+      steps.push({id:'caida-linea',els:['lab-v1','lab-zl','lab-v2'],t:'Tensión en la carga y caída en la línea',am:true,b:
         `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+
         `Ū_carga = Ū_AN − ΔŪ = ${sp(pStr(r.UloadF,r.UloadAng)+' V')}  →  U_carga,L = √3·U_carga = ${sp(fN(r.UloadL,3)+' V')}\n`+
         `ΔU = (U_carga,L − U_L)/U_L = (${fN(r.UloadL,2)} − ${fN(r.UL,2)})/${fN(r.UL,2)} = ${spam(sgn(r.dUpct)+' %')}  ${su('(escalar: es la que evalúa la normativa)')}\n`+
@@ -96,11 +101,11 @@ export function renderSteps(r){
       const sum=cadd(...r.bkd.map(b=>cpol(b.Ik,b.IkAng)));
       t+=`\nΣ Ī_A,k = ${sp(cstr(sum)+' A')}  ${su('= Ī_A total ✓ (suma fasorial, LKC)')}`;
     }
-    steps.push({t:'Corrientes por carga',b:t});
+    steps.push({id:'corrientes-carga',els:['lab-bus',...elCargas],t:'Corrientes por carga',b:t});
   }
 
   if(r.recMode&&r.zLineEnabled){
-    steps.push({t:'Simetría: desfase 120°',b:
+    steps.push({id:'simetria',els:[...elHilos,'lab-amp'],t:'Simetría: desfase 120°',b:
       `[Receptor] Ū_A′N = ${sp(pStr(r.UloadF,r.UloadAng))} V (DATO)  →  Ī_A = ${sp(pStr(r.IL,r.IA))}\n`+
       `           Ū_B′N = ${pStr(r.UloadF,r.UloadAng+r.dir*(-120))} V  →  Ī_B = ${sp(pStr(r.IL,r.IB))}\n`+
       `           Ū_C′N = ${pStr(r.UloadF,r.UloadAng+r.dir*120)} V  →  Ī_C = ${sp(pStr(r.IL,r.IC))}\n`+
@@ -108,7 +113,7 @@ export function renderSteps(r){
       su(r.wires===4?'I_N = Ī_A + Ī_B + Ī_C = 0 → el neutro no transporta corriente en equilibrio'
         :'Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)')});
   } else {
-    steps.push({t:'Simetría: desfase 120°',b:
+    steps.push({id:'simetria',els:[...elHilos,'lab-amp'],t:'Simetría: desfase 120°',b:
       `Ū_AN = ${pStr(r.Uf,r.UA)}  →  Ī_A = ${sp(pStr(r.IL,r.IA))}\n`+
       `Ū_BN = ${pStr(r.Uf,r.UB)}  →  Ī_B = ${sp(pStr(r.IL,r.IB))}\n`+
       `Ū_CN = ${pStr(r.Uf,r.UC)}  →  Ī_C = ${sp(pStr(r.IL,r.IC))}\n`+
@@ -116,13 +121,18 @@ export function renderSteps(r){
         :'Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)')});
   }
 
-  steps.push({t:'Potencias totales',b:r.zLineEnabled
+  steps.push({id:'potencias',els:['lab-w1','lab-w2','lab-cos'],t:'Potencias totales',b:r.zLineEnabled
     ?`P_carga = ${spam(fPow(r.Pload,'W'))}  |  P_línea = 3·I²·R_L = ${spam(fPow(r.Pline,'W'))}\n`+
       `P_total = P_carga + P_línea = ${sp(fPow(r.P3,'W'))}\n`+
       `Q = ${sp(fPow(r.Q3,'var'))}  |  S = √3·U_L·I_L = ${sp(fPow(r.S3,'VA'))}\n`+
       `Rendimiento η = P_carga/P_total = ${sp(fN(r.Pload/r.P3*100,2)+' %')}`
     :`P = √3·U_L·I_L·cosφ = √3·${fN(r.UL,2)}·${fN(r.IL,4)}·${fN(r.fp,4)} = ${sp(fPow(r.P3,'W'))}\n`+
       `Q = √3·U_L·I_L·senφ = ${sp(fPow(r.Q3,'var'))}  |  S = √3·U_L·I_L = ${sp(fPow(r.S3,'VA'))}`});
+  return steps;
+}
+
+export function renderSteps(r){
+  const steps=buildSteps(r);
   $('steps-container').innerHTML=steps.map((s,i)=>`
     <div class="step">
       <div class="step-hdr"><span class="step-n${s.am?' am':''}">${s.am?'⚡ ':''}Paso ${i+1}</span><span class="step-title">${s.t}</span></div>

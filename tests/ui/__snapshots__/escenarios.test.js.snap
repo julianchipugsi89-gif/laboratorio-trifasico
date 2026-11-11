@@ -697,6 +697,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0° (estático)
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
@@ -743,7 +744,7 @@ Z3 · Δ · 10.34 A
 7.692 kW · fp 1.00
 K
 Banco C · 5.666 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 440.0 V
@@ -1605,6 +1606,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -1646,7 +1648,7 @@ Z2 · Δ · 8.256 A
 2.454 kW · fp 0.80
 K
 Banco C · 2.097 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 220.0 V
@@ -2488,6 +2490,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -2529,7 +2532,7 @@ Z2 · Δ · 8.468 A
 2.581 kW · fp 0.80
 K
 Banco C · 2.175 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 225.6 V
@@ -3459,6 +3462,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
@@ -3505,7 +3509,7 @@ Z3 · Δ · 10.34 A
 7.692 kW · fp 1.00
 K
 Banco C · 5.666 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 440.0 V
@@ -4476,6 +4480,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
@@ -4522,7 +4527,7 @@ Z3 · Δ · 10.58 A
 8.067 kW · fp 1.00
 K
 Banco C · 5.578 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 450.2 V
@@ -5386,6 +5391,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -5428,7 +5434,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 400.0 V
@@ -6227,6 +6233,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0° (estático)
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -6269,7 +6276,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 400.0 V
@@ -7068,6 +7075,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 75°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -7110,7 +7118,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 400.0 V
@@ -7830,6 +7838,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0°
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -7868,7 +7877,7 @@ Z2 · Δ · 6.612 A
 1.967 kW · fp 0.78
 K
 Banco L · 2.210 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 220.0 V
@@ -8565,6 +8574,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0° (estático)
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -8603,7 +8613,7 @@ Z2 · Δ · 6.612 A
 1.967 kW · fp 0.78
 K
 Banco L · 2.210 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 220.0 V
@@ -9386,6 +9396,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0° (estático)
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Contactor deshabilitado: no hay fp objetivo, así que no hay banco dimensionado.
 Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
@@ -10229,6 +10240,7 @@ Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
 ▶ Animar
 ωt = 0° (estático)
 Conectar banco
+☰ Desarrollo guiado
 ⛶ Pantalla completa
 Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
@@ -10271,7 +10283,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-K abierto · pulsa para conectar
+K abierto · pulsa aquí
 V
 Voltímetro · fuente
 400.0 V

@@ -4,6 +4,7 @@ import { closePrint, showPrintView } from './print/report.js';
 import { clearAll } from './ui/clear.js';
 import { loadExercise } from './ui/exercises.js';
 import { applyPreset, markPreset, onSourceChange, renderPresets, setVRef, setVT, setWires, setZL, updateLevelHint, updateZLHint } from './ui/inputs.js';
+import { exitGuide, guideNext, guidePrev, startGuide, toggleGuideAuto } from './ui/guide.js';
 import { toggleLabContactor, toggleLabFullscreen } from './ui/lab.js';
 import { addLoad, removeLoad, setConn, setKind, updLoad } from './ui/loads.js';
 import { solve } from './ui/solve.js';
@@ -12,6 +13,7 @@ import { syncThemeBtn, toggleTheme } from './ui/theme.js';
 
 // El HTML usa atributos onclick/oninput; los módulos ES no crean globales, así que se exponen aquí.
 Object.assign(window, {
+  exitGuide, guideNext, guidePrev, startGuide, toggleGuideAuto,
   addLoad, applyPreset, clearAll, closePrint, loadExercise, markPreset, onSourceChange, removeLoad, resetWt, setConn, setKind, setVRef, setVT, setWires, setWt, setZL, showPrintView, showTab, solve, stopWtAnim, toggleLabContactor, toggleLabFullscreen, toggleTheme, toggleWtAnim, updLoad, updateLevelHint, updateZLHint,
 });
 

@@ -7,7 +7,7 @@
 import { fS, fN, fPow, fpTag, rstr } from '../engine/format.js';
 
 const Y={A:70,B:130,C:190,N:250};
-const X={src:98,v1:140,w1:215,w2:265,amp:335,cos:425,zl:500,term:575,v2:615,load0:705,pitch:152};
+const X={src:98,v1:140,w1:215,w2:265,amp:335,cos:425,zl:500,term:575,v2:605,load0:690,pitch:146};
 const FASES=['A','B','C'];
 // Legibilidad: ningún texto de la escena es menor que FUENTE_MIN px (styles/lab.css) y la escena no se
 // reduce por debajo de la escala en la que ese texto mediría PX_LEGIBLE px; a partir de ahí, desplazamiento.
@@ -62,7 +62,7 @@ function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto,bloqueado}){
     :`<path class="lab-glyph" d="M${xc} 318 V332 M${xc-16} 332 H${xc+16} M${xc-16} 343 H${xc+16} M${xc} 343 V358"/>`;
   if(hay){
     s+=tx(xc,393,`Banco ${esL?'L':'C'} · ${fPow(esL?r.QLr:r.QC,'var')}`,'lab-val','middle');
-    s+=tx(xc,408,cerrado?`K cerrado · ${fS(m.banco.I)} A`:bloqueado?'K abierto · modo guiado':'K abierto · pulsa para conectar','lab-t','middle');
+    s+=tx(xc,408,cerrado?`K cerrado · ${fS(m.banco.I)} A`:bloqueado?'K abierto · modo guiado':'K abierto · pulsa aquí','lab-t','middle');
   }else{
     s+=tx(xc,393,'Banco sin dimensionar','lab-val','middle')+tx(xc,408,motivoCorto,'lab-t','middle');
   }
