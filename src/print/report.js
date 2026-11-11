@@ -5,7 +5,7 @@ import { fN, rstr, fS, cstr, pStr, fA, sgn, fpTag, fPow } from '../engine/format
 import { normItems } from '../engine/norms.js';
 import { genTriangleSVG } from '../graphics/triangle.js';
 import { $ } from '../core/dom.js';
-import { fpCorrHTML, compTableHTML } from '../ui/results.js';
+import { fpCorrHTML, compTableHTML } from '../core/compHtml.js';
 import { lastResult } from '../core/state.js';
 
 export function showPrintView(){
