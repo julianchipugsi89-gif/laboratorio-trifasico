@@ -212,3 +212,101 @@ describe('Arranque y pausas de la animación', () => {
     delete document.hidden;
   });
 });
+
+describe('Sentido de las partículas respecto a i = Î·sen(ωt + θ)', () => {
+  // La posición a lo largo del trazo es −(desplazamiento del patrón de guiones): un stroke-dashoffset
+  // positivo retrasa los guiones hacia el inicio del trazo.
+  const linea = () => $('lab-wire-A').nextElementSibling;
+  const pos = (f, w) => { window.setWt(w); return -(+f.style.strokeDashoffset); };
+  afterEach(() => window.resetWt());
+
+  it('el trazo de la línea va de la fuente a los bornes del receptor', () => {
+    window.loadExercise(1);
+    const [, x0, x1] = linea().getAttribute('d').match(/^M(\d+) \d+ H(\d+)$/).map(Number);
+    expect(x0).toBeLessThan(x1);                             // x crece de la fuente (izquierda) a la carga
+    expect(x0).toBe(98);
+  });
+
+  it.each([1, 2, 4])('Ej. %i: con i_A > 0 la partícula avanza de fuente a carga; con i_A < 0 retrocede', n => {
+    window.loadExercise(n);
+    const f = linea(), ang = +f.getAttribute('data-ang');
+    for (let w = 0; w < 360; w += 15) {
+      const i = Math.sin((w + ang) * Math.PI / 180);         // signo de i_A(ωt)
+      if (Math.abs(i) < 0.2) continue;                       // cerca del cruce por cero no se compara
+      const v = pos(f, w + 1) - pos(f, w - 1);               // velocidad ∝ dx/d(ωt)
+      expect(Math.sign(v)).toBe(Math.sign(i));
+    }
+  });
+
+  it('en el pico de i_A la velocidad es máxima y la partícula está en el centro de su recorrido', () => {
+    window.loadExercise(1);
+    const f = linea(), amp = +f.getAttribute('data-amp'), ang = +f.getAttribute('data-ang');
+    const pico = 90 - ang;                                   // ωt + θ = 90° → i = +Î
+    expect(pos(f, pico)).toBeCloseTo(0, 1);                  // centro del recorrido (que va de −amp a +amp)
+    const vel = w => Math.abs(pos(f, w + 1) - pos(f, w - 1));
+    const vPico = vel(pico);
+    for (const d of [30, 60, 90, 120, 150]) expect(vel(pico + d)).toBeLessThan(vPico);
+    expect(vel(pico + 90)).toBeLessThan(0.05 * vPico);       // en el cruce por cero de i, la partícula se detiene…
+    expect(Math.abs(pos(f, pico + 90))).toBeCloseTo(amp, 1); // …en un extremo del recorrido
+  });
+
+  it('en las derivaciones, i > 0 baja del embarrado hacia la carga', () => {
+    window.loadExercise(1);
+    const f = $('lab-load-1').querySelector('.lab-flow'), ang = +f.getAttribute('data-ang');
+    const [, y0, y1] = f.getAttribute('d').match(/^M\d+ (\d+) V(\d+)$/).map(Number);
+    expect(y0).toBeLessThan(y1);                             // el trazo baja del embarrado al bloque de carga
+    const pico = 90 - ang;
+    expect(pos(f, pico + 1) - pos(f, pico - 1)).toBeGreaterThan(0);
+  });
+});
+
+describe('Pilotos con el contactor', () => {
+  const estados = () => [...document.querySelectorAll('#lab-pilots .lab-pilot')].map(p => p.className.replace('lab-pilot ', ''));
+
+  it('Ej. 1: el piloto de fp pasa de aviso a normal al conectar el banco y vuelve al desconectar', () => {
+    window.loadExercise(1);
+    expect(estados()[0]).toBe('warn');
+    window.toggleLabContactor();
+    expect(estados()[0]).toBe('ok');
+    expect($('lab-pilots').textContent).toContain('Factor de potencia: cumple con el banco conectado');
+    expect($('lab-pilots-sub').textContent).toBe('Estado con el banco conectado');
+    window.toggleLabContactor();
+    expect(estados()[0]).toBe('warn');
+  });
+
+  it('el diagnóstico normativo de la parte inferior y el informe no cambian con el contactor', () => {
+    window.loadExercise(1);
+    const antes = capturar(window);
+    window.toggleLabContactor();
+    const t = capturar(window);
+    expect(t.inferior).toBe(antes.inferior);
+    expect(t.informe).toBe(antes.informe);
+    expect(t.inferior).toContain('cumple solo con la compensación propuesta');
+  });
+});
+
+describe('Escala mínima de la escena por legibilidad', () => {
+  it('ningún texto de la escena tiene una fuente menor que FUENTE_MIN', async () => {
+    const { FUENTE_MIN } = await import('../../src/graphics/labScene.js');
+    const fs = await import('node:fs');
+    const css = fs.readFileSync('src/styles/lab.css', 'utf8');
+    window.loadExercise(2); window.toggleLabContactor();
+    const clases = new Set([...$('lab-scene').querySelectorAll('text')].flatMap(t => t.getAttribute('class').split(' ')));
+    const tam = [];
+    for (const c of clases) {
+      const m = css.match(new RegExp(`^\.${c}\{[^}]*font-size:([\d.]+)px`, 'm'));
+      if (m) tam.push([c, +m[1]]);
+    }
+    expect(tam.length).toBeGreaterThanOrEqual(5);              // lab-t, lab-cap, lab-val, lab-sym, lab-big, lab-flag
+    for (const [c, px] of tam) expect(px, c).toBeGreaterThanOrEqual(FUENTE_MIN);
+  });
+
+  it('el ancho mínimo deja el texto más pequeño en 9 px efectivos (escala 9/11)', async () => {
+    const { FUENTE_MIN, PX_LEGIBLE } = await import('../../src/graphics/labScene.js');
+    window.loadExercise(2);
+    const svg = $('lab-scene').querySelector('svg');
+    const W = +svg.getAttribute('viewBox').split(' ')[2];
+    expect(parseFloat(svg.style.minWidth)).toBe(Math.round(W * PX_LEGIBLE / FUENTE_MIN));
+    expect(FUENTE_MIN * parseFloat(svg.style.minWidth) / W).toBeCloseTo(9, 1);
+  });
+});

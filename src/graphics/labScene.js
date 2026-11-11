@@ -9,6 +9,9 @@ import { fS, fN, fPow, fpTag, rstr } from '../engine/format.js';
 const Y={A:70,B:130,C:190,N:250};
 const X={src:98,v1:140,w1:215,w2:265,amp:335,cos:425,zl:500,term:575,v2:615,load0:705,pitch:152};
 const FASES=['A','B','C'];
+// Legibilidad: ningún texto de la escena es menor que FUENTE_MIN px (styles/lab.css) y la escena no se
+// reduce por debajo de la escala en la que ese texto mediría PX_LEGIBLE px; a partir de ahí, desplazamiento.
+export const FUENTE_MIN=11,PX_LEGIBLE=9;
 const AMP_MAX=15;   // recorrido máximo de las partículas, en px del viewBox (la corriente mayor de la escena)
 
 const tx=(x,y,t,cls='lab-t',anchor='start')=>`<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`;
@@ -39,8 +42,8 @@ function cargaSVG(b,c,xc,cuatro,flujo){
   return s+'</g>';
 }
 
-function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto}){
-  const taps=[xc-16,xc,xc+16],hay=!!r.comp,esL=r.compType==='L';
+function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto,bloqueado}){
+  const taps=[xc-16,xc,xc+16],hay=!!r.comp,activo=hay&&!bloqueado,esL=r.compType==='L';
   let s=`<g id="lab-bank" class="lab-bank${hay?'':' lab-dis'}">`;
   FASES.forEach((f,i)=>{
     s+=`<path class="lab-w lab-tap lab-${f}" d="M${taps[i]} ${Y[f]} V262"/>`;
@@ -48,7 +51,7 @@ function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto}){
     s+=dot(taps[i],Y[f],f);
   });
   // Contactor tripolar: pulsable solo si hay banco dimensionado
-  s+=`<g id="lab-contactor" class="lab-k${hay?' lab-k-on':''}${cerrado?' cerrado':''}"${hay?` role="button" tabindex="0" aria-pressed="${cerrado}" aria-label="${cerrado?'Desconectar':'Conectar'} el banco de compensación"`:' aria-disabled="true"'}>`;
+  s+=`<g id="lab-contactor" class="lab-k${activo?' lab-k-on':''}${cerrado?' cerrado':''}"${activo?` role="button" tabindex="0" aria-pressed="${cerrado}" aria-label="${cerrado?'Desconectar':'Conectar'} el banco de compensación"`:' aria-disabled="true"'}>`;
   s+=`<rect class="lab-k-hit" x="${xc-46}" y="254" width="92" height="42" rx="8"/>`;
   taps.forEach(x=>{s+=`<path class="lab-k-blade" d="M${x} 288 L${cerrado?x:x-10} ${cerrado?264:265}"/><circle cx="${x}" cy="262" r="2.6" class="lab-k-pin"/><circle cx="${x}" cy="288" r="2.6" class="lab-k-pin"/>`;});
   s+=`<path class="lab-lead" d="M${xc-26} 276 H${xc+16}"/>`+tx(xc-31,280,'K','lab-val','end')+`</g>`;
@@ -59,7 +62,7 @@ function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto}){
     :`<path class="lab-glyph" d="M${xc} 318 V332 M${xc-16} 332 H${xc+16} M${xc-16} 343 H${xc+16} M${xc} 343 V358"/>`;
   if(hay){
     s+=tx(xc,393,`Banco ${esL?'L':'C'} · ${fPow(esL?r.QLr:r.QC,'var')}`,'lab-val','middle');
-    s+=tx(xc,408,cerrado?`K cerrado · ${fS(m.banco.I)} A`:'K abierto · pulsa para conectar','lab-t','middle');
+    s+=tx(xc,408,cerrado?`K cerrado · ${fS(m.banco.I)} A`:bloqueado?'K abierto · modo guiado':'K abierto · pulsa para conectar','lab-t','middle');
   }else{
     s+=tx(xc,393,'Banco sin dimensionar','lab-val','middle')+tx(xc,408,motivoCorto,'lab-t','middle');
   }
@@ -68,13 +71,13 @@ function bancoSVG(r,m,xc,flujo,{cerrado,motivoCorto}){
 
 // m: lecturas de computeInstruments en el estado mostrado. iref: mayor corriente de la escena (escala de
 // las partículas). cerrado: contactor del banco. motivoCorto: por qué no hay banco (si no lo hay).
-export function genLabSVG(r,m,{iref=m.amp.IL,cerrado=false,motivoCorto=''}={}){
+export function genLabSVG(r,m,{iref=m.amp.IL,cerrado=false,motivoCorto='',bloqueado=false}={}){
   const n=r.bkd.length,cuatro=r.wires===4;
   const W=Math.max(880,X.load0+n*X.pitch+72),H=420,xFin=W-18;
   const yCaja=cuatro?Y.N+20:Y.C+24;
   const desfase=[0,r.dir*(-120),r.dir*120];
   const flujo=(d,I,ang,i)=>`<path class="lab-flow" d="${d}" data-amp="${(AMP_MAX*I/iref).toFixed(2)}" data-ang="${(ang+desfase[i]).toFixed(2)}"/>`;
-  let s=`<svg class="lab-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banco de laboratorio trifásico con instrumentos" style="width:100%;min-width:${Math.round(W*0.25)}px;height:auto">`;
+  let s=`<svg class="lab-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banco de laboratorio trifásico con instrumentos" style="width:100%;min-width:${Math.round(W*PX_LEGIBLE/FUENTE_MIN)}px;height:auto">`;
 
   // Conductores de fase: tramo fuente → bornes del receptor (con partículas de corriente) y embarrado
   FASES.forEach((f,i)=>{
@@ -108,9 +111,9 @@ export function genLabSVG(r,m,{iref=m.amp.IL,cerrado=false,motivoCorto=''}={}){
   s+=`</g>`;
 
   // Cosfímetro: bobina de corriente en la línea A y tomas de tensión a B y C
-  s+=`<g id="lab-cos"><path class="lab-lead" d="M${X.cos-7} ${Y.A+14} V${Y.B}"/>${dot(X.cos-7,Y.B,'B')}<path class="lab-lead" d="M${X.cos+7} ${Y.A+14} V${Y.C}"/>${dot(X.cos+7,Y.C,'C')}`;
-  s+=`<circle cx="${X.cos}" cy="${Y.A}" r="17" class="lab-el lab-inst"/>`+tx(X.cos,Y.A+3,'cos φ','lab-sym lab-sym-s','middle');
-  s+=tx(X.cos,Y.A-24,`${fN(m.fp,3)} ${fpTag(m.φ)}`,'lab-val','middle')+`</g>`;
+  s+=`<g id="lab-cos"><path class="lab-lead" d="M${X.cos-7} ${Y.A+16} V${Y.B}"/>${dot(X.cos-7,Y.B,'B')}<path class="lab-lead" d="M${X.cos+7} ${Y.A+16} V${Y.C}"/>${dot(X.cos+7,Y.C,'C')}`;
+  s+=`<circle cx="${X.cos}" cy="${Y.A}" r="19" class="lab-el lab-inst"/>`+tx(X.cos,Y.A+4,'cosφ','lab-sym','middle');
+  s+=tx(X.cos,Y.A-26,`${fN(m.fp,3)} ${fpTag(m.φ)}`,'lab-val','middle')+`</g>`;
 
   // Línea
   s+=`<g id="lab-zl">`;
@@ -130,6 +133,6 @@ export function genLabSVG(r,m,{iref=m.amp.IL,cerrado=false,motivoCorto=''}={}){
   s+=tx(X.v2+20,104,`${fS(m.vReceptor.UL)} V`,'lab-val')+`</g>`;
 
   r.bkd.forEach((b,k)=>{s+=cargaSVG(b,m.cargas[k],X.load0+k*X.pitch,cuatro,flujo);});
-  s+=bancoSVG(r,m,X.load0+n*X.pitch,flujo,{cerrado,motivoCorto});
+  s+=bancoSVG(r,m,X.load0+n*X.pitch,flujo,{cerrado,motivoCorto,bloqueado});
   return s+'</svg>';
 }

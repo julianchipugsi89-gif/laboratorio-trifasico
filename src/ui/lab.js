@@ -2,7 +2,7 @@
 import { fS, fN, fA, fPow, fpTag, sgn } from '../engine/format.js';
 import { computeInstruments } from '../engine/instruments.js';
 import { r2d, bad } from '../engine/math.js';
-import { normItems } from '../engine/norms.js';
+import { computePilots } from '../engine/pilots.js';
 import { updateLabAnim } from '../graphics/labAnim.js';
 import { genLabSVG } from '../graphics/labScene.js';
 import { WT_SPEED } from '../graphics/wt.js';
@@ -12,6 +12,13 @@ const ESTADO={ok:'Normal',warn:'Aviso',bad:'Alarma',na:'No aplica'};
 
 // Estado propio del laboratorio: el contactor no afecta a las demás pestañas ni recalcula el circuito
 let labR=null,cerrado=false;
+let bloqueo='';   // motivo por el que el contactor está bloqueado (lo fija el modo guiado)
+const alPintar=[],alNuevo=[];
+
+// Enganches para el modo guiado (ui/guide.js), que depende de este módulo y no al revés
+export const onLabPintado=f=>alPintar.push(f);
+export const onLabNuevoResultado=f=>alNuevo.push(f);
+export const labEstado=()=>({r:labR,cerrado});
 
 function tarjeta(sim,nombre,valor,sub,neg){
   return `<div class="lab-meter"><div class="lm-head"><span class="lm-sym">${sim}</span><span class="lm-name">${nombre}</span></div>`+
@@ -47,10 +54,11 @@ function pintar(){
   const r=labR;
   const base=computeInstruments(r),comp=r.comp?computeInstruments(r,{compensado:true}):null;
   const m=cerrado?comp:base;
-  const [motivo,motivoCorto]=motivoSinBanco(r);
+  const [sinBanco,motivoCorto]=motivoSinBanco(r);
+  const motivo=bloqueo||sinBanco;
   // Escala común de las partículas en ambos estados: al conectar el banco se ve bajar la corriente de línea
   const iref=Math.max(...[base,comp].filter(Boolean).flatMap(x=>[x.amp.IL,...x.cargas.map(c=>c.I),x.banco?x.banco.I:0]));
-  $('lab-scene').innerHTML=genLabSVG(r,m,{iref,cerrado,motivoCorto});
+  $('lab-scene').innerHTML=genLabSVG(r,m,{iref,cerrado,motivoCorto,bloqueado:!!bloqueo});
 
   const abc=r.seq==='abc';
   const cards=[
@@ -76,7 +84,7 @@ function pintar(){
 
   const btn=$('lab-k-btn');
   btn.textContent=cerrado?'Desconectar banco':'Conectar banco';
-  btn.disabled=!r.comp;
+  btn.disabled=!r.comp||!!bloqueo;
   btn.title=motivo;
   btn.setAttribute('aria-pressed',String(cerrado));
   const why=$('lab-k-why');
@@ -86,24 +94,35 @@ function pintar(){
   $('lab-slow-note').textContent=`Cámara lenta: un ciclo de la red (1/${fN(r.f,0)} s) se muestra en ${fN(360/WT_SPEED,0)} s. `+
     `Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.`;
 
+  // Los pilotos siguen al contactor: con el banco conectado evalúan el estado compensado
+  $('lab-pilots-sub').textContent=cerrado?'Estado con el banco conectado':'Según el diagnóstico de cumplimiento normativo';
+  $('lab-pilots').innerHTML=computePilots(r,{compensado:cerrado}).map(i=>
+    `<div class="lab-pilot ${i.s}"><span class="lab-lamp"></span><div><div class="lp-state">${ESTADO[i.s]}</div><div class="lp-txt">${i.t}</div></div></div>`).join('');
+
   updateLabAnim(r);
   updateLabHint();
+  alPintar.forEach(f=>f());
 }
 
 export function renderLab(r){
-  labR=r;cerrado=false;   // cada resolución empieza con el banco desconectado
+  labR=r;cerrado=false;bloqueo='';   // cada resolución empieza con el banco desconectado y sin modo guiado
+  alNuevo.forEach(f=>f());
   pintar();
-  $('lab-pilots').innerHTML=normItems(r).map(i=>
-    `<div class="lab-pilot ${i.s}"><span class="lab-lamp"></span><div><div class="lp-state">${ESTADO[i.s]}</div><div class="lp-txt">${i.t}</div></div></div>`).join('');
 }
 
 // Conecta o desconecta el banco: solo cambia de lecturas (r ↔ r.comp), no recalcula
 export function toggleLabContactor(){
-  if(!labR||!labR.comp)return;
+  if(!labR||!labR.comp||bloqueo)return;
   cerrado=!cerrado;
   pintar();
 }
-export const labContactorCerrado=()=>cerrado;
+// Fija el contactor y, opcionalmente, lo bloquea con un motivo visible (cadena vacía = desbloqueado)
+export function fijarLabContactor(valor,motivoBloqueo=''){
+  if(!labR)return;
+  cerrado=!!valor&&!!labR.comp;
+  bloqueo=motivoBloqueo;
+  pintar();
+}
 
 // El contactor dibujado en la escena también se puede pulsar (clic, Enter o espacio)
 const enContactor=e=>e.target&&e.target.closest&&e.target.closest('#lab-contactor');
@@ -115,7 +134,7 @@ $('lab-scene').addEventListener('keydown',e=>{
   }
 });
 
-// El aviso «desliza» solo aparece si la escena, ya escalada al mínimo, no cabe en su caja
+// El aviso «desliza» solo aparece si la escena, en su escala mínima legible, no cabe en su caja
 export function updateLabHint(){
   const box=$('lab-scene'),hint=$('lab-hint');
   if(box&&hint)hint.style.display=box.scrollWidth>box.clientWidth+1?'block':'none';

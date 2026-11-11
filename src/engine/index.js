@@ -7,3 +7,4 @@ export * from './circuit.js';
 export * from './checks.js';
 export * from './norms.js';
 export * from './instruments.js';
+export * from './pilots.js';

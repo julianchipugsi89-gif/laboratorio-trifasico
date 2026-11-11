@@ -20,10 +20,9 @@
 .lab-k-blade{fill:none;stroke:var(--fg);stroke-width:2.2;stroke-linecap:round}
 .lab-k-pin{fill:var(--fg)}
 .lab-t{fill:var(--fg2);font-size:11px}
-.lab-cap{fill:var(--fg3);font-size:9.5px;font-weight:700;letter-spacing:.08em}
+.lab-cap{fill:var(--fg3);font-size:11px;font-weight:700;letter-spacing:.06em}
 .lab-val{fill:var(--fg);font-size:12px;font-weight:600}
 .lab-sym{fill:var(--fg);font-size:11px;font-weight:700;font-family:var(--sans)}
-.lab-sym-s{font-size:9px}
 .lab-big{fill:var(--fg);font-size:21px;font-weight:700;font-family:var(--serif)}
 .lab-tA{fill:var(--pa-t)}.lab-tB{fill:var(--pb-t)}.lab-tC{fill:var(--pc-t)}
 
@@ -57,7 +56,7 @@
 
 /* Pantalla completa: solo escena + panel de instrumentos */
 .lab-stage:fullscreen{background:var(--bg);padding:20px max(20px,env(safe-area-inset-right,0px)) 20px max(20px,env(safe-area-inset-left,0px));overflow:auto}
-.lab-stage:fullscreen .lab-svg{min-width:0!important;max-height:62vh}
+.lab-stage:fullscreen .lab-svg{min-width:0!important;max-height:62vh}   /* a pantalla completa siempre cabe */
 .lab-stage:fullscreen .lab-meters{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .lab-stage:fullscreen .lm-val{font-size:26px}
 .lab-stage:fullscreen .lm-name{font-size:12px}
