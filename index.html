@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trifásico Equilibrado · Ingeniería Eléctrica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<link rel="stylesheet" href="/src/styles/app.css">
+<link rel="stylesheet" href="/src/styles/print.css">
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-logo" title="Laboratorio de Sistemas Trifásicos">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 3v9l6.3 6.3M12 12L5.7 18.3"/>
+    </svg>
+  </div>
+  <div>
+    <div class="hdr-title">Trifásico Equilibrado · banco de ingeniería</div>
+    <div class="hdr-sub">Fraile Mora · Patrón 5 · Cargas Y/Δ, líneas Z_L, motores de inducción y compensación Q_C</div>
+  </div>
+  <div class="hdr-actions">
+    <button class="btn-icon" onclick="clearAll()" title="Limpiar y empezar nuevo ejercicio">↺ Reiniciar</button>
+    <button class="btn-icon" id="btn-export" onclick="showPrintView()" style="display:none">⬡ Informe / PDF</button>
+    <button class="btn-icon" id="themeBtn" onclick="toggleTheme()">Modo oscuro</button>
+  </div>
+</div>
+
+<!-- Barra de ejercicios prácticos reales -->
+<div class="demos-bar">
+  <span class="demos-lbl">✦ Ejercicios reales:</span>
+  <button class="demo-chip" onclick="loadExercise(1)"><strong>Ej. 1</strong> · Taller mixto Y + Δ con línea Z_L (220 V · 60 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(2)"><strong>Ej. 2</strong> · Planta con 2 motores + calefactor y banco Q_C (440 V · 60 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(3)"><strong>Ej. 3</strong> · Clásico Fraile Mora · Y + Δ + Motor (400 V · 50 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(4)"><strong>Ej. 4</strong> · Carga RLC capacitiva con compensación inductiva</button>
+</div>
+
+<div class="layout">
+<!-- COLUMNA IZQUIERDA: ENTRADA -->
+<aside>
+  <div class="card">
+    <div class="card-hdr"><h2>Fuente trifásica y línea</h2></div>
+    <div class="card-body">
+      <div id="alertBox" class="alert"></div>
+      <div class="fl"><label>Niveles normalizados</label></div>
+      <div class="preset-row" id="preset-row"></div>
+      <div class="fg">
+        <div class="fl"><label>Especificación de tensión</label></div>
+        <div class="seg-ctrl">
+          <button class="seg active" id="vt-line" onclick="setVT('line')">U<sub>L</sub> línea-línea</button>
+          <button class="seg" id="vt-phase" onclick="setVT('phase')">U<sub>f</sub> fase-neutro</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fl"><label id="v-lbl">Tensión U<sub>L</sub></label><span class="u" id="v-unit">V · línea-línea</span></div>
+        <input type="number" id="inp-v" value="220" min="1" step="1" oninput="onSourceChange()">
+        <div class="hint" id="v-hint"></div>
+      </div>
+      <div class="two-col">
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>Frecuencia f</label><span class="u">Hz</span></div>
+          <input type="number" id="inp-f" value="60" min="1" step="1" oninput="markPreset()">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>Secuencia</label></div>
+          <select id="inp-seq"><option value="abc">ABC directa (+)</option><option value="acb">ACB inversa (−)</option></select>
+        </div>
+      </div>
+      <!-- Hilos -->
+      <div style="margin-top:10px">
+        <div class="fl"><label>Conductores del sistema</label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="w-auto" onclick="setWires('auto')">Auto</button>
+          <button class="seg" id="w-3" onclick="setWires('3')">3 hilos</button>
+          <button class="seg" id="w-4" onclick="setWires('4')">4 hilos (con N)</button>
+        </div>
+        <div class="hint" id="w-hint"></div>
+      </div>
+      <!-- Punto de referencia de la tensión dato -->
+      <div style="margin-top:10px" id="vref-block">
+        <div class="fl"><label>Punto donde se conoce la tensión</label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="vref-src" onclick="setVRef('source')">En la fuente (A, B, C)</button>
+          <button class="seg" id="vref-load" onclick="setVRef('load')">En el receptor (A′, B′, C′)</button>
+        </div>
+        <div class="hint" id="vref-hint">La tensión es el dato en los bornes de la fuente; Z_L causa caída.</div>
+      </div>
+      <!-- Impedancia de línea -->
+      <div style="margin-top:10px">
+        <div class="fl"><label>Impedancia de línea Z<sub>L</sub></label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="zl-off" onclick="setZL(false)">Línea ideal (Z<sub>L</sub>=0)</button>
+          <button class="seg" id="zl-on" onclick="setZL(true)">Con Z<sub>L</sub> (R<sub>L</sub>+jX<sub>L</sub>)</button>
+        </div>
+        <div id="zl-inputs" style="display:none;margin-top:8px" class="zl-box">
+          <div class="two-col">
+            <div class="fg" style="margin-bottom:0">
+              <div class="fl"><label>R<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <input type="number" id="inp-rl" value="0.15" min="0" step="0.01" oninput="updateZLHint()">
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <div class="fl"><label>X<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <input type="number" id="inp-xl" value="0.20" min="0" step="0.01" oninput="updateZLHint()">
+            </div>
+          </div>
+          <div class="hint" style="margin-top:6px" id="zl-hint">Z_L en serie en cada conductor de fase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr">
+      <h2>Cargas en paralelo</h2>
+      <span class="badge" id="loads-badge">1 carga</span>
+      <button class="add-btn" onclick="addLoad({kind:'imp',R:24,XL:18,XC:0,conn:'delta'})">+ Z</button>
+      <button class="add-btn" style="margin-left:0" onclick="addLoad({kind:'motor'})">+ Motor</button>
+    </div>
+    <div id="loads-list"></div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Compensación de reactiva (opcional)</h2></div>
+    <div class="card-body">
+      <div class="fg" style="margin-bottom:0">
+        <div class="fl"><label>fp objetivo en bornes de carga</label><span class="u">0–1</span></div>
+        <input type="number" id="inp-fptgt" min="0.01" max="1" step="0.01" placeholder="p.ej. 0.96">
+        <div class="hint">Calcula el banco de condensadores C (Y/Δ) o reactores L</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Criterios normativos</h2></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>fp mínimo</label></div>
+          <input type="number" id="inp-fpmin" value="0.94" min="0.5" max="1" step="0.01">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>ΔU máx</label><span class="u">%</span></div>
+          <input type="number" id="inp-dumax" min="0" max="50" step="0.5" placeholder="auto" oninput="updateLevelHint()">
+        </div>
+      </div>
+      <div class="hint" style="margin-top:6px">fp: Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25).</div>
+      <div class="hint" id="lvl-hint"></div>
+    </div>
+  </div>
+
+  <button class="btn-solve" style="margin-top:12px" onclick="solve()">⚡ Resolver circuito trifásico</button>
+  <button class="btn-clear" onclick="clearAll()">↺ Limpiar todo / nuevo ejercicio</button>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Formulario de referencia (Patrón 5)</h2></div>
+    <div class="card-body" style="padding:0">
+      <table class="ref-tbl">
+        <thead><tr><th>Magnitud</th><th>Relación fundamental</th></tr></thead>
+        <tbody>
+          <tr><td>U<sub>f</sub></td><td>= U<sub>L</sub> / √3</td></tr>
+          <tr><td>Estrella (Y)</td><td>I<sub>L</sub> = I<sub>f</sub> = U<sub>f</sub> / |Z<sub>Y</sub>|</td></tr>
+          <tr><td>Triángulo (Δ)</td><td>I<sub>f</sub> = I<sub>L</sub> / √3 · U<sub>ff</sub> = U<sub>L</sub></td></tr>
+          <tr><td>Conversión Δ→Y</td><td>Z<sub>Y</sub> = Z<sub>Δ</sub> / 3</td></tr>
+          <tr><td>Paralelo</td><td>Y<sub>eq</sub> = Σ (1 / Z<sub>k,Y</sub>)</td></tr>
+          <tr><td>Motor 3~</td><td>P<sub>abs</sub> = P<sub>útil</sub> / η · Z<sub>Y</sub> = U<sub>f</sub>² / S*<sub>f</sub></td></tr>
+          <tr><td>Potencia 3~</td><td>P = √3·U<sub>L</sub>·I<sub>L</sub>·cosφ · Q = √3·U<sub>L</sub>·I<sub>L</sub>·senφ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</aside>
+
+<!-- COLUMNA DERECHA: RESULTADOS Y GRÁFICAS REALISTAS -->
+<div>
+  <div id="empty-state" class="card">
+    <div class="card-body">
+      <div class="empty">
+        <div style="font-size:36px;opacity:.55">⚡</div>
+        <div>Configura la fuente y las cargas o elige un <strong>Ejercicio real</strong> arriba<br>y pulsa <strong>Resolver circuito trifásico</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-section" style="display:none">
+    <div class="card">
+      <div class="card-hdr"><h2>Síntesis de resultados</h2><span class="badge gn" id="res-badge">—</span></div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric">
+            <div class="m-label" id="lbl-uf">U<sub>f</sub> (fase)</div>
+            <div class="m-val" id="mv-uf">—</div>
+            <div class="m-sub" id="ms-uf">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Z<sub>eq</sub> cargas (Y)</div>
+            <div class="m-val" id="mv-z">—</div>
+            <div class="m-sub" id="ms-z">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label" id="lbl-il">I<sub>L</sub></div>
+            <div class="m-val ac" id="mv-il">—</div>
+            <div class="m-sub" id="ms-il">—</div>
+            <div class="m-sub" id="ms-il2" style="display:none;color:var(--am)">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label" id="lbl-fp">fp (cosφ)</div>
+            <div class="m-val" id="mv-fp">—</div>
+            <div class="fp-bar-wrap">
+              <div class="fp-bar-track" style="overflow:visible"><div class="fp-bar-fill" id="fp-bar" style="width:0%"></div><div class="fp-thr" id="fp-thr" style="left:94%" title="Umbral de penalización"></div></div>
+              <div class="fp-bar-ticks"><span style="left:0">0</span><span style="left:50%">0.5</span><span class="thr" id="fp-thr-lbl" style="left:94%">0.94</span><span id="fp-one" style="left:100%">1</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="metric-row" id="zl-metric-row" style="display:none">
+          <div class="metric zl-warn">
+            <div class="m-label am">ΔU en la carga</div>
+            <div class="m-val am" id="mv-udrop">—</div>
+            <div class="m-sub" id="ms-udrop">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">U<sub>carga</sub> (fase)</div>
+            <div class="m-val ac" id="mv-uload">—</div>
+            <div class="m-sub" id="ms-uload">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">P<sub>pérdidas</sub> línea</div>
+            <div class="m-val" id="mv-pline">—</div>
+            <div class="m-sub" id="ms-pline">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">fp<sub>carga</sub></div>
+            <div class="m-val" id="mv-fpload">—</div>
+            <div class="m-sub" id="ms-fpload">—</div>
+          </div>
+        </div>
+
+        <div class="tab-bar">
+          <button class="tab active" onclick="showTab('diagram',this)">Esquema eléctrico realista</button>
+          <button class="tab" onclick="showTab('phasor',this)">Fasorial + Osciloscopio 3~</button>
+          <button class="tab" onclick="showTab('table',this)">Tabla de fases y Triángulo S-P-Q</button>
+          <button class="tab" onclick="showTab('steps',this)">Desarrollo paso a paso</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-diagram">
+          <div class="diag-lbl">
+            <span>Planta y topología del sistema trifásico</span>
+            <span class="diag-sub">Generador 3~, embarrado, elementos R-L-C por rama y motores M 3~</span>
+          </div>
+          <div class="diag-scroll-hint">← desliza para ver el esquema completo →</div>
+          <div class="diag-box" id="circuit-diagram"></div>
+          <div class="diag-lbl" style="margin-top:16px">
+            <span>Circuito monofásico equivalente (Fase A — Neutro)</span>
+            <span class="diag-sub">Reducción al equivalente estrella (Patrón 5 · Fraile Mora)</span>
+          </div>
+          <div class="diag-box" id="equiv-diagram"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-phasor">
+          <div class="wt-ctrl">
+            <button class="btn-icon" id="wt-play" onclick="toggleWtAnim()">▶ Animar</button>
+            <input type="range" id="wt-range" min="0" max="360" step="1" value="0" oninput="stopWtAnim();setWt(+this.value)" aria-label="Ángulo ωt">
+            <span class="wt-val" id="wt-val">ωt = 0°</span>
+            <button class="btn-icon" onclick="resetWt()" title="Volver a los fasores estáticos (t = 0)">↺ t = 0</button>
+          </div>
+          <div class="phasor-grid">
+            <div>
+              <div class="diag-lbl">
+                <span>Diagrama fasorial polar (transportador)</span>
+                <span class="diag-sub">Los fasores giran con ωt; su proyección vertical es el valor instantáneo</span>
+              </div>
+              <div class="canvas-wrap"><canvas id="phasorCanvas"></canvas></div>
+            </div>
+            <div>
+              <div class="diag-lbl">
+                <span>Osciloscopio trifásico instantáneo u(ωt) e i(ωt)</span>
+                <span class="diag-sub" id="wave-hover-lbl">Pasa el cursor (o desliza) para fijar ωt</span>
+              </div>
+              <div class="canvas-wrap"><canvas id="waveCanvas"></canvas></div>
+            </div>
+          </div>
+          <div class="phasor-legend">
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pa)"></div>Fase A (Terracota)</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pb)"></div>Fase B (Ocre)</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pc)"></div>Fase C (Pizarra)</div>
+            <div class="leg-item">— Tensión u(ωt) / Ū &nbsp;&nbsp;--- Corriente i(ωt) / Ī</div>
+          </div>
+          <div class="scale-note">Tensiones y corrientes a escalas independientes: compara ángulos, no longitudes. La altura de cada punta en el fasorial es proporcional al valor instantáneo en el osciloscopio.</div>
+          <div class="wt-readout" id="wt-readout"></div>
+          <div id="phasor-note" style="text-align:center;font-size:11px;color:var(--fg2);margin-top:6px;font-family:var(--mono)"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-table">
+          <div style="overflow-x:auto"><table class="phase-tbl">
+            <thead><tr><th>Fase</th><th id="tbl-ufn-hdr">Ū fase-neutro (V)</th><th>Ū línea-línea (V)</th><th>Ī línea (A)</th></tr></thead>
+            <tbody id="phase-tbody"></tbody>
+          </table></div>
+          <div id="table-load-note" style="display:none;font-size:11px;color:var(--am);font-family:var(--mono);margin-top:8px;padding:7px 11px;background:var(--am-bg);border-radius:7px;border:1px solid var(--am)"></div>
+          <div class="power-row">
+            <div class="metric"><div class="m-label">P activa total</div><div class="m-val" id="mv-p">—</div><div class="m-sub" id="ms-p">—</div></div>
+            <div class="metric"><div class="m-label">Q reactiva total</div><div class="m-val" id="mv-q">—</div><div class="m-sub" id="ms-q">—</div></div>
+            <div class="metric"><div class="m-label">S aparente total</div><div class="m-val" id="mv-s">—</div><div class="m-sub" id="ms-s">—</div></div>
+            <div class="metric"><div class="m-label">Desfase φ eq.</div><div class="m-val" id="mv-phi">—</div><div class="m-sub" id="ms-phi">—</div></div>
+          </div>
+          <div class="tri-wrap">
+            <div class="diag-lbl">
+              <span>Triángulo vectorial de potencias (P, Q, S)</span>
+              <span class="diag-sub">Con superposición del efecto de compensación reactiva</span>
+            </div>
+            <div class="diag-box" id="power-triangle"></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tab-steps">
+          <div class="steps" id="steps-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="bot-section" style="display:none">
+  <div id="breakdown-row">
+    <div class="card">
+      <div class="card-hdr"><h2>Desglose detallado por carga en el punto de operación</h2></div>
+      <div class="card-body" style="padding:0;overflow-x:auto">
+        <table class="bk-tbl">
+          <thead><tr><th>Carga</th><th>Tipo</th><th>|Z| (Ω)</th><th>I_L (A)</th><th>I_f (A)</th><th>P (W)</th><th>Q (var)</th><th>S (VA)</th><th>fp</th></tr></thead>
+          <tbody id="breakdown-tbody"></tbody>
+        </table>
+      </div>
+      <div class="bk-notes" id="bk-notes"></div>
+    </div>
+  </div>
+  <div class="bot-row">
+    <div class="card">
+      <div class="card-hdr"><h2>Comprobación de leyes (Boucherot / Kirchhoff)</h2><span class="badge" id="check-badge">—</span></div>
+      <div class="card-body"><div class="check-list" id="check-list"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><h2>Banco de compensación de factor de potencia</h2></div>
+      <div class="card-body" id="fp-corr-body"><div style="font-size:12px;color:var(--fg3)">Introduce un fp objetivo arriba.</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><h2>Diagnóstico de cumplimiento normativo (ARCONEL / ARCERNNR)</h2><span class="badge" id="norm-badge">—</span></div>
+    <div class="card-body"><div class="norm-list" id="norm-list"></div></div>
+  </div>
+</div>
+
+<!-- Print Modal -->
+<div id="print-modal" style="display:none" role="dialog" aria-modal="true" aria-label="Vista previa para imprimir">
+  <div class="print-wrap">
+    <div class="print-toolbar">
+      <span class="pt-title">Informe técnico de cálculo</span>
+      <span class="pt-hint">Usa Ctrl+P (Cmd+P) para imprimir o guardar como PDF</span>
+      <button class="btn-pt" onclick="window.print()">Imprimir / PDF</button>
+      <button class="btn-pt" onclick="closePrint()">Cerrar</button>
+    </div>
+    <div class="print-doc" id="print-content"></div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

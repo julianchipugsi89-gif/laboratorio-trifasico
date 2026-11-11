@@ -1,0 +1,81 @@
+:root{
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --serif:"Fraunces",Georgia,serif;
+  --mono:"IBM Plex Mono",monospace;
+  /* Paleta natural orgánica — Papel técnico, piedra caliza, bosque, terracota y ocre */
+  --bg:#f3efe6;
+  --bg-card:#faf8f3;
+  --bg-tint:#efeae0;
+  --bg-in:#e6e0d3;
+  --fg:#232824;
+  --fg2:#4e5650;
+  --fg3:#646c65;
+  --bd:#d3cbbd;
+  --bd-sub:#e3ddd0;
+  --ac:#2d6a4f;
+  --ac-bg:#e3f0ea;
+  --ac-dk:#1f4d38;
+  /* Fases naturales armónicas */
+  --pa:#c85a32; /* Fase A: Terracota / Cobre */
+  --pb:#c4821a; /* Fase B: Ocre dorado / Ámbar */
+  --pc:#2e6f95; /* Fase C: Azul pizarra / Río */
+  --pn:#7a756c; /* Neutro: Piedra cálida */
+  /* Variantes de TEXTO de fase (contraste ≥ 4,5:1 sobre papel) */
+  --pa-t:#a64a26;--pb-t:#8a5c0e;--pc-t:#2e6f95;
+  /* Semáforo orgánico */
+  --gn:#2b7a52;--gn-bg:#e3f2ea;
+  --am:#8f5f0e;--am-bg:#faeedb;
+  --rd:#b84233;--rd-bg:#fae6e3;
+  --sh:0 3px 14px rgba(35,40,36,.06),0 1px 3px rgba(35,40,36,.04),0 0 0 1px rgba(35,40,36,.04);
+  --grid-line:rgba(122,117,108,.11);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#151917;
+  --bg-card:#1e2420;
+  --bg-tint:#191e1b;
+  --bg-in:#272f2a;
+  --fg:#e7ece8;
+  --fg2:#a5b0a8;
+  --fg3:#8a958d;
+  --bd:#313b35;
+  --bd-sub:#252d28;
+  --ac:#52b788;
+  --ac-bg:#1b3328;
+  --ac-dk:#74c69d;
+  --pa:#e07a5f;
+  --pb:#e9a94b;
+  --pc:#5aa3c8;
+  --pn:#8a857c;
+  --pa-t:#e07a5f;--pb-t:#e9a94b;--pc-t:#5aa3c8;
+  --gn:#52b788;--gn-bg:#162d22;
+  --am:#e9a94b;--am-bg:#2e2412;
+  --rd:#e06d5f;--rd-bg:#2e1715;
+  --sh:0 4px 16px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.04);
+  --grid-line:rgba(255,255,255,.06);
+  color-scheme:dark;
+}}
+:root[data-theme=dark]{
+  --bg:#151917;
+  --bg-card:#1e2420;
+  --bg-tint:#191e1b;
+  --bg-in:#272f2a;
+  --fg:#e7ece8;
+  --fg2:#a5b0a8;
+  --fg3:#8a958d;
+  --bd:#313b35;
+  --bd-sub:#252d28;
+  --ac:#52b788;
+  --ac-bg:#1b3328;
+  --ac-dk:#74c69d;
+  --pa:#e07a5f;
+  --pb:#e9a94b;
+  --pc:#5aa3c8;
+  --pn:#8a857c;
+  --pa-t:#e07a5f;--pb-t:#e9a94b;--pc-t:#5aa3c8;
+  --gn:#52b788;--gn-bg:#162d22;
+  --am:#e9a94b;--am-bg:#2e2412;
+  --rd:#e06d5f;--rd-bg:#2e1715;
+  --sh:0 4px 16px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.04);
+  --grid-line:rgba(255,255,255,.06);
+  color-scheme:dark;
+}
