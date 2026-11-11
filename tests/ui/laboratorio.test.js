@@ -294,7 +294,7 @@ describe('Escala mínima de la escena por legibilidad', () => {
     const clases = new Set([...$('lab-scene').querySelectorAll('text')].flatMap(t => t.getAttribute('class').split(' ')));
     const tam = [];
     for (const c of clases) {
-      const m = css.match(new RegExp(`^\.${c}\{[^}]*font-size:([\d.]+)px`, 'm'));
+      const m = css.match(new RegExp(String.raw`^\.${c}\{[^}]*font-size:([\d.]+)px`, 'm'));
       if (m) tam.push([c, +m[1]]);
     }
     expect(tam.length).toBeGreaterThanOrEqual(5);              // lab-t, lab-cap, lab-val, lab-sym, lab-big, lab-flag
