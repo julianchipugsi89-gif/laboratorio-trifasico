@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config';
 
-// Las pruebas corren en node puro: el motor no depende del DOM (sin jsdom).
+// Entorno node por defecto: el motor (tests/engine) no depende del DOM y corre sin jsdom.
+// Solo tests/ui/escenarios.test.js pide jsdom, con su propia cabecera @vitest-environment.
 export default defineConfig({
   test: {
     environment: 'node',
