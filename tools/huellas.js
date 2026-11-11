@@ -102,6 +102,7 @@ export async function huellas(w = window) {
   await w.document.fonts.ready;
   const out = {};
   for (const [nombre, preparar] of ESCENARIOS) {
+    w.resetWt();   // la animación del laboratorio puede haber arrancado sola
     const limpiar = preparar(w);
     const h = {};
     for (const [region, texto] of Object.entries(capturar(w))) h[region] = await hash(texto);

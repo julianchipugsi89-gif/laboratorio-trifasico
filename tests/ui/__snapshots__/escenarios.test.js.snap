@@ -694,7 +694,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`colapso-alerta > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0° (estático)
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
 3~
 FUENTE
@@ -739,7 +743,7 @@ Z3 · Δ · 10.34 A
 7.692 kW · fp 1.00
 K
 Banco C · 5.666 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 440.0 V
@@ -1598,7 +1602,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej1 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -1638,7 +1646,7 @@ Z2 · Δ · 8.256 A
 2.454 kW · fp 0.80
 K
 Banco C · 2.097 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 220.0 V
@@ -2477,7 +2485,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej1-receptor > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -2517,7 +2529,7 @@ Z2 · Δ · 8.468 A
 2.581 kW · fp 0.80
 K
 Banco C · 2.175 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 225.6 V
@@ -3444,7 +3456,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej2 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
 3~
 FUENTE
@@ -3489,7 +3505,7 @@ Z3 · Δ · 10.34 A
 7.692 kW · fp 1.00
 K
 Banco C · 5.666 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 440.0 V
@@ -4457,7 +4473,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej2-receptor > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
 3~
 FUENTE
@@ -4502,7 +4522,7 @@ Z3 · Δ · 10.58 A
 8.067 kW · fp 1.00
 K
 Banco C · 5.578 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 450.2 V
@@ -5363,7 +5383,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -5404,7 +5428,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 400.0 V
@@ -6200,7 +6224,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3-acb > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0° (estático)
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -6241,7 +6269,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 400.0 V
@@ -7037,7 +7065,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3-wt75 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 75°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -7078,7 +7110,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 400.0 V
@@ -7795,7 +7827,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej4 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0°
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -7832,7 +7868,7 @@ Z2 · Δ · 6.612 A
 1.967 kW · fp 0.78
 K
 Banco L · 2.210 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 220.0 V
@@ -8526,7 +8562,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`informe > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0° (estático)
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -8563,7 +8603,7 @@ Z2 · Δ · 6.612 A
 1.967 kW · fp 0.78
 K
 Banco L · 2.210 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 220.0 V
@@ -9343,7 +9383,12 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`mt-fase-delta > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0° (estático)
+Conectar banco
 ⛶ Pantalla completa
+Contactor deshabilitado: no hay fp objetivo, así que no hay banco dimensionado.
+Cámara lenta: un ciclo de la red (1/60 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 G
 3~
 FUENTE
@@ -9378,6 +9423,9 @@ V
 13370 V
 Z1 · Δ · 61.76 A
 1.144 MW · fp 0.80
+K
+Banco sin dimensionar
+sin fp objetivo
 V
 Voltímetro · fuente
 13800 V
@@ -10178,7 +10226,11 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`tema-alt > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+▶ Animar
+ωt = 0° (estático)
+Conectar banco
 ⛶ Pantalla completa
+Cámara lenta: un ciclo de la red (1/50 s) se muestra en 6 s. Las partículas van y vienen porque la corriente es alterna; su velocidad sigue al valor instantáneo i(ωt) de cada fase.
 N
 G
 3~
@@ -10219,7 +10271,7 @@ M3 · Δ · 18.87 A
 11.11 kW · fp 0.85
 K
 Banco C · 9.788 kvar
-contactor K abierto
+K abierto · pulsa para conectar
 V
 Voltímetro · fuente
 400.0 V

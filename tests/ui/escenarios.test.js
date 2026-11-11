@@ -3,20 +3,10 @@
 // Carga el index.html real y la aplicación completa sobre un DOM simulado (jsdom).
 // Los lienzos (fasorial y osciloscopio) no se cubren aquí: se comparan a mano con tools/huellas.js.
 import { describe, it, expect, beforeAll } from 'vitest';
-import fs from 'node:fs';
 import { ESCENARIOS, REGIONES, capturar } from '../../tools/huellas.js';
+import { arrancarApp } from './arrancarApp.js';
 
-beforeAll(async () => {
-  const html = fs.readFileSync('index.html', 'utf8');   // la raíz de Vitest es la del proyecto
-  document.body.innerHTML = html.slice(html.indexOf('<body>') + 6, html.indexOf('</body>')).replace(/<script[\s\S]*?<\/script>/g, '');
-  // jsdom no implementa canvas: contexto 2D que acepta cualquier llamada de dibujo
-  const ctx = new Proxy({}, {
-    get: (estado, p) => p in estado ? estado[p] : p === 'measureText' ? () => ({ width: 10 }) : () => {},
-    set: (estado, p, v) => { estado[p] = v; return true; },
-  });
-  window.HTMLCanvasElement.prototype.getContext = () => ctx;
-  await import('../../src/main.js');
-});
+beforeAll(arrancarApp);
 
 describe.each(ESCENARIOS)('%s', (nombre, preparar) => {
   let texto;

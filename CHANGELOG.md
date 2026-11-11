@@ -70,6 +70,11 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
   cargas Y/Δ, motores y banco de compensación; voltímetros de fuente y receptor, amperímetros de
   línea, dos vatímetros por el método de Aron (W1, W2 y su suma = P), cosfímetro y pilotos de alarma
   según el diagnóstico normativo. Las lecturas las calcula `computeInstruments` en `src/engine`.
+- Laboratorio, entrega 3b: partículas de corriente cuya velocidad sigue a i(ωt) de cada fase (cámara
+  lenta, ligadas al mismo ωt y al control Animar/deslizador), motores que giran e invierten el sentido
+  con la secuencia ACB, y contactor del banco que alterna las lecturas entre el estado sin compensar y
+  el compensado sin recalcular, con el antes → después de I_L, fp, pérdidas y ΔU (o U_L,fuente en modo
+  receptor). Botón de pantalla completa para la escena y el panel de instrumentos.
 - Instantáneas de Vitest del texto visible de 13 escenarios (pantalla e informe) y
   `tools/huellas.js` para comparar los lienzos contra `legacy/` en el navegador.
 - Proyecto Vite con JavaScript modular: `src/engine` (cálculo puro), `src/core` (DOM y estado), `src/ui`, `src/graphics`,

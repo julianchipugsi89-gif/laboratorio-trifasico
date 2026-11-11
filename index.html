@@ -254,11 +254,18 @@
             <span class="diag-sub">Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo</span>
           </div>
           <div class="lab-stage" id="lab-stage">
-            <div class="lab-bar">
+            <div class="wt-ctrl lab-ctrl">
+              <button class="btn-icon" id="lab-wt-play" onclick="toggleWtAnim()">▶ Animar</button>
+              <input type="range" id="lab-wt-range" min="0" max="360" step="1" value="0" oninput="stopWtAnim();setWt(+this.value)" aria-label="Ángulo ωt">
+              <span class="wt-val" id="lab-wt-val">ωt = 0°</span>
+              <button class="btn-icon lab-k-btn" id="lab-k-btn" onclick="toggleLabContactor()" aria-pressed="false">Conectar banco</button>
               <button class="btn-icon" id="lab-fs-btn" onclick="toggleLabFullscreen()">⛶ Pantalla completa</button>
             </div>
+            <div class="lab-note lab-why" id="lab-k-why" style="display:none"></div>
+            <div class="lab-note" id="lab-slow-note"></div>
             <div class="diag-scroll-hint lab-hint" id="lab-hint" style="display:none">← desliza para ver el banco completo →</div>
             <div class="diag-box" id="lab-scene"></div>
+            <div class="lab-compare" id="lab-compare" style="display:none"></div>
             <div class="lab-meters" id="lab-meters"></div>
             <div class="lab-note" id="lab-aron-note"></div>
           </div>

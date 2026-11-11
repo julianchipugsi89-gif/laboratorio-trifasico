@@ -1,6 +1,7 @@
 // Estado compartido ωt: animación, lectura instantánea y eventos
 import { fN } from '../engine/format.js';
 import { d2r } from '../engine/math.js';
+import { updateLabAnim } from './labAnim.js';
 import { drawPhasors } from './phasors.js';
 import { drawWaveforms } from './waveforms.js';
 import { $ } from '../core/dom.js';
@@ -9,30 +10,57 @@ import { setWaveHoverDeg, waveHoverDeg, lastResult } from '../core/state.js';
 // Eventos del osciloscopio
 // Estado compartido ωt: null = fasores estáticos (t = 0, sin proyecciones)
 let wtAnim=null,wtLastTs=0;
+let wtAuto=false;   // true mientras la animación la arrancó la app y no el usuario
 export const WT_SPEED=60; // grados por segundo → un ciclo en 6 s
-export function setWt(v){
+const reducedMotion=()=>!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// El control Animar/deslizador está duplicado en la pestaña del laboratorio: ambos reflejan el mismo ωt
+const playBtns=t=>['wt-play','lab-wt-play'].forEach(id=>{const b=$(id);if(b)b.textContent=t;});
+function applyWt(v){
   setWaveHoverDeg(v===null?null:((v%360)+360)%360);
+  const txt=waveHoverDeg===null?'ωt = 0° (estático)':`ωt = ${fN(waveHoverDeg,0)}°`;
   $('wt-range').value=waveHoverDeg??0;
-  $('wt-val').textContent=waveHoverDeg===null?'ωt = 0° (estático)':`ωt = ${fN(waveHoverDeg,0)}°`;
-  if(lastResult){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
+  $('wt-val').textContent=txt;
+  const lr=$('lab-wt-range');
+  if(lr){lr.value=waveHoverDeg??0;$('lab-wt-val').textContent=txt;}
+  if(lastResult){
+    drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);updateLabAnim(lastResult);
+  }
 }
+export function setWt(v){wtAuto=false;applyWt(v);}
 export function wtStep(ts){
   if(!wtAnim)return;
   const dt=wtLastTs?Math.min(ts-wtLastTs,100):0;wtLastTs=ts;
-  setWt((waveHoverDeg??0)+dt*WT_SPEED/1000);
+  applyWt((waveHoverDeg??0)+dt*WT_SPEED/1000);
   wtAnim=requestAnimationFrame(wtStep);
 }
+function startWt(){
+  wtLastTs=0;wtAnim=requestAnimationFrame(wtStep);
+  playBtns('⏸ Pausar');
+}
 export function toggleWtAnim(){
+  wtAuto=false;
   if(wtAnim){stopWtAnim();return;}
   if(!lastResult)return;
-  wtLastTs=0;wtAnim=requestAnimationFrame(wtStep);
-  $('wt-play').textContent='⏸ Pausar';
+  startWt();
 }
 export function stopWtAnim(){
   if(wtAnim)cancelAnimationFrame(wtAnim);
-  wtAnim=null;const b=$('wt-play');if(b)b.textContent='▶ Animar';
+  wtAnim=null;playBtns('▶ Animar');
 }
 export function resetWt(){stopWtAnim();setWt(null);}
+// Arranque automático del laboratorio: nunca con prefers-reduced-motion ni con la página oculta
+export function autoStartWt(){
+  if(wtAnim||!lastResult||reducedMotion()||document.hidden)return;
+  wtAuto=true;startWt();
+}
+// Al cambiar de pestaña la animación se pausa. Si la había arrancado la app, además se vuelve a los
+// fasores estáticos, para que la pestaña del fasorial se encuentre como siempre.
+export function pauseWtOnTabChange(){
+  const auto=wtAuto;
+  stopWtAnim();
+  if(auto){wtAuto=false;applyWt(null);}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopWtAnim();});
 // Lectura instantánea: u_k = √2·U_f·sen(ωt+θ_k), i_k = √2·I_L·sen(ωt+θ_Ik)
 export function renderWtReadout(r){
   const el=$('wt-readout');if(!el)return;

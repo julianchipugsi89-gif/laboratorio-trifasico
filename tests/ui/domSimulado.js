@@ -20,6 +20,7 @@ export function instalarDomSimulado({ anchoLienzo = 400 } = {}) {
     classList: { add() {}, remove() {}, toggle() {}, contains: () => false },
     parentElement: { clientWidth: anchoLienzo },
     addEventListener() {},
+    setAttribute() {},
     getContext: () => ctx,
     get previousElementSibling() { return this.hermanoAnterior ??= crear(); },
   });

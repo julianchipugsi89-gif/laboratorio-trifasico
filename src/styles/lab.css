@@ -56,10 +56,35 @@
 .lp-txt{font-size:12px;font-weight:600;color:var(--fg);line-height:1.35}
 
 /* Pantalla completa: solo escena + panel de instrumentos */
-.lab-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .lab-stage:fullscreen{background:var(--bg);padding:20px max(20px,env(safe-area-inset-right,0px)) 20px max(20px,env(safe-area-inset-left,0px));overflow:auto}
 .lab-stage:fullscreen .lab-svg{min-width:0!important;max-height:62vh}
 .lab-stage:fullscreen .lab-meters{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .lab-stage:fullscreen .lm-val{font-size:26px}
 .lab-stage:fullscreen .lm-name{font-size:12px}
 .lab-stage:fullscreen .lm-sub{font-size:13px}
+
+/* ── 3b: partículas de corriente, contactor y comparación ────────── */
+.lab-flow{fill:none;stroke:var(--fg);stroke-width:5.5;stroke-linecap:round;stroke-dasharray:.1 36;opacity:.82;pointer-events:none}
+.lab-flag{fill:var(--am);font-size:12px;font-weight:600}
+.lab-k-hit{fill:transparent;stroke:transparent;stroke-width:2}
+.lab-k-on{cursor:pointer}
+.lab-k-on:hover .lab-k-hit{fill:var(--ac-bg);stroke:var(--ac)}
+.lab-k-on:focus{outline:none}
+.lab-k-on:focus-visible .lab-k-hit{stroke:var(--ac);fill:var(--ac-bg)}
+.lab-k.cerrado .lab-k-blade{stroke:var(--gn);stroke-width:2.8}
+.lab-dis{opacity:.5}
+.lab-ctrl{margin-bottom:8px}
+.lab-ctrl input[type=range]{min-width:110px}
+.lab-k-btn[aria-pressed=true]{background:var(--gn-bg);border-color:var(--gn);color:var(--gn)}
+.lab-k-btn:disabled{opacity:.5;cursor:not-allowed}
+.lab-k-btn:disabled:hover{background:var(--bg-tint);border-color:var(--bd);color:var(--fg2)}
+.lab-note.lab-why{color:var(--am);margin-top:0;margin-bottom:6px}
+#lab-slow-note{margin-top:0;margin-bottom:8px}
+.lab-compare{margin-top:12px;padding:11px 13px;border:1px solid var(--gn);border-radius:9px;background:var(--gn-bg)}
+.lab-cmp-title{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gn);margin-bottom:8px}
+.lab-cmp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.lab-cmp{min-width:0}
+.lab-cmp-v{font-family:var(--mono);font-size:14px;color:var(--fg2);line-height:1.35}
+.lab-cmp-v b{color:var(--fg);font-size:16px}
+.lab-stage:fullscreen .lab-cmp-v{font-size:18px}
+.lab-stage:fullscreen .lab-cmp-v b{font-size:22px}
