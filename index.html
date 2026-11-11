@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/src/styles/tokens.css">
 <link rel="stylesheet" href="/src/styles/app.css">
 <link rel="stylesheet" href="/src/styles/print.css">
+<link rel="stylesheet" href="/src/styles/lab.css">
 </head>
 <body>
 
@@ -240,13 +241,30 @@
         </div>
 
         <div class="tab-bar">
-          <button class="tab active" onclick="showTab('diagram',this)">Esquema eléctrico realista</button>
+          <button class="tab active" onclick="showTab('lab',this)">Laboratorio virtual</button>
+          <button class="tab" onclick="showTab('diagram',this)">Esquema eléctrico realista</button>
           <button class="tab" onclick="showTab('phasor',this)">Fasorial + Osciloscopio 3~</button>
           <button class="tab" onclick="showTab('table',this)">Tabla de fases y Triángulo S-P-Q</button>
           <button class="tab" onclick="showTab('steps',this)">Desarrollo paso a paso</button>
         </div>
 
-        <div class="tab-panel active" id="tab-diagram">
+        <div class="tab-panel active" id="tab-lab">
+          <div class="diag-lbl">
+            <span>Banco de laboratorio</span>
+            <span class="diag-sub">Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo</span>
+          </div>
+          <div class="diag-scroll-hint lab-hint">← desliza para ver el banco completo →</div>
+          <div class="diag-box" id="lab-scene"></div>
+          <div class="lab-meters" id="lab-meters"></div>
+          <div class="lab-note" id="lab-aron-note"></div>
+          <div class="diag-lbl" style="margin-top:16px">
+            <span>Pilotos de alarma</span>
+            <span class="diag-sub">Según el diagnóstico de cumplimiento normativo</span>
+          </div>
+          <div class="lab-pilots" id="lab-pilots"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-diagram">
           <div class="diag-lbl">
             <span>Planta y topología del sistema trifásico</span>
             <span class="diag-sub">Generador 3~, embarrado, elementos R-L-C por rama y motores M 3~</span>

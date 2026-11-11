@@ -10,6 +10,7 @@ import { drawWaveforms } from '../graphics/waveforms.js';
 import { renderWtReadout } from '../graphics/wt.js';
 import { fpCorrHTML, compTableHTML } from '../core/compHtml.js';
 import { $ } from '../core/dom.js';
+import { renderLab } from './lab.js';
 import { renderSteps } from './steps.js';
 
 export function renderResults(r){
@@ -83,6 +84,7 @@ export function renderResults(r){
   $('mv-phi').textContent=`${fA(r.φd)}`;
   $('ms-phi').textContent=r.zLineEnabled?'ángulo total (Z_L+Z_eq)':`carga ${r.φd>=0?'inductiva':'capacitiva'}`;
 
+  renderLab(r);
   renderSteps(r);renderChecks(r);renderFP(r);renderNorm(r);
   renderDiagrams(r);renderBreakdown(r);drawPhasors(r);drawWaveforms(r);renderWtReadout(r);renderTriangle(r);
 }

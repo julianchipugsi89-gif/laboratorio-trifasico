@@ -1,0 +1,56 @@
+/* ── Laboratorio virtual ─────────────────────────────────────────── */
+.lab-svg{display:block}
+.lab-svg text{font-family:var(--mono)}
+.lab-w{fill:none;stroke-width:2.2;stroke-linecap:round}
+.lab-A{stroke:var(--pa)}.lab-B{stroke:var(--pb)}.lab-C{stroke:var(--pc)}
+.lab-N{stroke:var(--pn);stroke-width:1.5;stroke-dasharray:6 4}
+.lab-bus{stroke-width:5}
+.lab-tap{stroke-width:1.8}
+.lab-off{stroke:var(--fg3);stroke-width:1.6;stroke-dasharray:3 3}
+.lab-lead{fill:none;stroke:var(--fg3);stroke-width:1.3;stroke-dasharray:3 3}
+.lab-lead.lab-solid{stroke-dasharray:none}
+.lab-el{fill:var(--bg-card);stroke:var(--fg2);stroke-width:1.7}
+.lab-inst{stroke:var(--fg)}
+.lab-term{fill:var(--bg-card);stroke-width:2.2}
+.lab-d{stroke:var(--bg-card);stroke-width:1}
+.lab-dA{fill:var(--pa)}.lab-dB{fill:var(--pb)}.lab-dC{fill:var(--pc)}.lab-dN{fill:var(--pn)}
+.lab-glyph{fill:none;stroke:var(--ac);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.lab-rotor-ring{fill:none;stroke:var(--bd);stroke-width:1.4;stroke-dasharray:4 4}
+.lab-rotor-mark{fill:none;stroke:var(--ac);stroke-width:2.6;stroke-linecap:round}
+.lab-k-blade{fill:none;stroke:var(--fg);stroke-width:2.2;stroke-linecap:round}
+.lab-k-pin{fill:var(--fg)}
+.lab-t{fill:var(--fg2);font-size:11px}
+.lab-cap{fill:var(--fg3);font-size:9.5px;font-weight:700;letter-spacing:.08em}
+.lab-val{fill:var(--fg);font-size:12px;font-weight:600}
+.lab-sym{fill:var(--fg);font-size:11px;font-weight:700;font-family:var(--sans)}
+.lab-big{fill:var(--fg);font-size:21px;font-weight:700;font-family:var(--serif)}
+.lab-tA{fill:var(--pa-t)}.lab-tB{fill:var(--pb-t)}.lab-tC{fill:var(--pc-t)}
+
+.lab-meters{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.lab-meter{background:var(--bg-tint);border:1px solid var(--bd-sub);border-radius:9px;padding:10px 12px;min-width:0}
+.lm-head{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.lm-sym{
+  min-width:24px;height:24px;padding:0 4px;border-radius:12px;border:1.6px solid var(--fg2);background:var(--bg-card);
+  display:inline-grid;place-items:center;font-size:10.5px;font-weight:700;color:var(--fg);flex-shrink:0;
+}
+.lm-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--fg3);line-height:1.25}
+.lm-val{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--fg);line-height:1.2}
+.lm-val.neg{color:var(--rd)}
+.lm-sub{font-family:var(--mono);font-size:10.5px;color:var(--fg3);margin-top:3px;line-height:1.4}
+.lab-note{font-size:11px;color:var(--fg2);font-family:var(--mono);margin-top:8px;line-height:1.5}
+
+.lab-pilots{display:flex;flex-wrap:wrap;gap:8px}
+.lab-pilot{
+  display:flex;align-items:center;gap:10px;flex:1 1 250px;min-width:0;
+  padding:8px 12px;border:1px solid var(--bd-sub);border-radius:9px;background:var(--bg-tint);
+}
+.lab-lamp{width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--fg3);border:2px solid var(--bg-card);box-shadow:0 0 0 1px var(--bd)}
+.lab-pilot.ok .lab-lamp{background:var(--gn);box-shadow:0 0 0 1px var(--gn),0 0 0 4px var(--gn-bg)}
+.lab-pilot.warn .lab-lamp{background:var(--am);box-shadow:0 0 0 1px var(--am),0 0 0 4px var(--am-bg)}
+.lab-pilot.bad .lab-lamp{background:var(--rd);box-shadow:0 0 0 1px var(--rd),0 0 0 5px var(--rd-bg)}
+.lab-pilot.bad{border-color:var(--rd)}
+.lab-pilot.warn{border-color:var(--am)}
+.lp-state{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg3)}
+.lab-pilot.ok .lp-state{color:var(--gn)}.lab-pilot.warn .lp-state{color:var(--am)}.lab-pilot.bad .lp-state{color:var(--rd)}
+.lp-txt{font-size:12px;font-weight:600;color:var(--fg);line-height:1.35}
+@media(max-width:1180px){.diag-scroll-hint.lab-hint{display:block}}

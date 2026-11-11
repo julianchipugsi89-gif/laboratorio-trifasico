@@ -66,6 +66,12 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
 
 ### Añadido
 
+- Pestaña «Laboratorio virtual» (entrega 3a, escena estática): banco con fuente, línea Z_L, embarrado,
+  cargas Y/Δ, motores y banco de compensación; voltímetros de fuente y receptor, amperímetros de
+  línea, dos vatímetros por el método de Aron (W1, W2 y su suma = P), cosfímetro y pilotos de alarma
+  según el diagnóstico normativo. Las lecturas las calcula `computeInstruments` en `src/engine`.
+- Instantáneas de Vitest del texto visible de 13 escenarios (pantalla e informe) y
+  `tools/huellas.js` para comparar los lienzos contra `legacy/` en el navegador.
 - Proyecto Vite con JavaScript modular: `src/engine` (cálculo puro), `src/core` (DOM y estado), `src/ui`, `src/graphics`,
   `src/print`, `src/styles`.
 - Pruebas con Vitest en entorno node (`npm test`).

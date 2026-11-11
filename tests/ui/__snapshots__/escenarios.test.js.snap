@@ -691,6 +691,101 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`colapso-alerta > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+G
+3~
+FUENTE
+A
+B
+C
+254.0 V/fase · 60 Hz
+sec. ABC · 3 hilos
+V
+440.0 V
+W1
+18.94 kW
+W2
+10.32 kW
+A
+43.10 A
+A
+43.10 A
+A
+43.10 A
+cos
+φ
+cos φ = 0.891 ind.
+Z_L
+Z_L
+Z_L
+0.080+j0.150 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+429.7 V
+M
+3~
+M1 · Δ · 19.99 A
+12.50 kW · fp 0.84
+M
+3~
+M2 · Y · 14.13 A
+8.621 kW · fp 0.82
+Z3 · Δ · 10.34 A
+7.692 kW · fp 1.00
+K
+Banco C · 5.666 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+440.0 V
+línea-línea A–B · dato
+V
+Voltímetro · receptor
+429.7 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+43.10 A
+I_A = I_B = I_C · ∠−27.03°
+W1
+Vatímetro 1
+18.94 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+10.32 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+29.26 kW
+Q = √3·(W1 − W2) = 14.93 kvar
+φ
+Cosfímetro
+0.8908 ind.
+φ = +27.03° · en la fuente
+Δ
+ΔU en la carga
+−2.35 %
+pérdidas 445.7 W
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+Normal
+Variación de tensión en la carga: dentro del límite
+Normal
+M1: tensión en bornes frente a la placa
+Normal
+M2: tensión en bornes frente a la placa"
+`;
+
 exports[`colapso-alerta > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -1501,6 +1596,92 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej1 > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+127.0 V/fase · 60 Hz
+sec. ABC · 4 hilos
+V
+220.0 V
+W1
+3.603 kW
+W2
+1.403 kW
+A
+16.51 A
+A
+16.51 A
+A
+16.51 A
+cos
+φ
+cos φ = 0.796 ind.
+Z_L
+Z_L
+Z_L
+0.120+j0.160 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+214.5 V
+Z1 · Y · 8.256 A
+2.454 kW · fp 0.80
+Z2 · Δ · 8.256 A
+2.454 kW · fp 0.80
+K
+Banco C · 2.097 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+220.0 V
+línea-línea A–B · dato
+V
+Voltímetro · receptor
+214.5 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+16.51 A
+I_A = I_B = I_C · ∠−37.29°
+W1
+Vatímetro 1
+3.603 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+1.403 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+5.006 kW
+Q = √3·(W1 − W2) = 3.812 kvar
+φ
+Cosfímetro
+0.7956 ind.
+φ = +37.29° · en la fuente
+Δ
+ΔU en la carga
+−2.50 %
+pérdidas 98.16 W
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+Normal
+Variación de tensión en la carga: dentro del límite"
+`;
+
 exports[`ej1 > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -2293,6 +2474,92 @@ Verificación
 ✓ LKC: Σ Ī_A,k = 16.936 ∠−36.87° A ≈ Ī_A = 16.936 ∠−36.87° A
 ✓ I_N = |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (neutro sin corriente)
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
+`;
+
+exports[`ej1-receptor > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+130.3 V/fase · 60 Hz
+sec. ABC · 4 hilos
+V
+225.6 V
+W1
+3.790 kW
+W2
+1.475 kW
+A
+16.94 A
+A
+16.94 A
+A
+16.94 A
+cos
+φ
+cos φ = 0.796 ind.
+Z_L
+Z_L
+Z_L
+0.120+j0.160 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+220.0 V
+Z1 · Y · 8.468 A
+2.581 kW · fp 0.80
+Z2 · Δ · 8.468 A
+2.581 kW · fp 0.80
+K
+Banco C · 2.175 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+225.6 V
+línea-línea A–B · calculada
+V
+Voltímetro · receptor
+220.0 V
+línea-línea A′–B′ · dato
+A
+Amperímetros de línea
+16.94 A
+I_A = I_B = I_C · ∠−36.87°
+W1
+Vatímetro 1
+3.790 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+1.475 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+5.266 kW
+Q = √3·(W1 − W2) = 4.010 kvar
+φ
+Cosfímetro
+0.7956 ind.
+φ = +37.29° · en la fuente
+Δ
+Caída en la línea
+−2.50 %
+pérdidas 103.3 W
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+Normal
+Caída de tensión en la línea (criterio de diseño): dentro del límite"
 `;
 
 exports[`ej1-receptor > pasos 1`] = `
@@ -3175,6 +3442,101 @@ Verificación
 ✓ LKC: Σ Ī_A,k = 43.096 ∠−27.03° A ≈ Ī_A = 43.096 ∠−27.03° A
 ✓ |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (3 hilos: LKC sin neutro)
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
+`;
+
+exports[`ej2 > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+G
+3~
+FUENTE
+A
+B
+C
+254.0 V/fase · 60 Hz
+sec. ABC · 3 hilos
+V
+440.0 V
+W1
+18.94 kW
+W2
+10.32 kW
+A
+43.10 A
+A
+43.10 A
+A
+43.10 A
+cos
+φ
+cos φ = 0.891 ind.
+Z_L
+Z_L
+Z_L
+0.080+j0.150 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+429.7 V
+M
+3~
+M1 · Δ · 19.99 A
+12.50 kW · fp 0.84
+M
+3~
+M2 · Y · 14.13 A
+8.621 kW · fp 0.82
+Z3 · Δ · 10.34 A
+7.692 kW · fp 1.00
+K
+Banco C · 5.666 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+440.0 V
+línea-línea A–B · dato
+V
+Voltímetro · receptor
+429.7 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+43.10 A
+I_A = I_B = I_C · ∠−27.03°
+W1
+Vatímetro 1
+18.94 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+10.32 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+29.26 kW
+Q = √3·(W1 − W2) = 14.93 kvar
+φ
+Cosfímetro
+0.8908 ind.
+φ = +27.03° · en la fuente
+Δ
+ΔU en la carga
+−2.35 %
+pérdidas 445.7 W
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+Normal
+Variación de tensión en la carga: dentro del límite
+Normal
+M1: tensión en bornes frente a la placa
+Normal
+M2: tensión en bornes frente a la placa"
 `;
 
 exports[`ej2 > pasos 1`] = `
@@ -4096,6 +4458,101 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej2-receptor > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+G
+3~
+FUENTE
+A
+B
+C
+259.9 V/fase · 60 Hz
+sec. ABC · 3 hilos
+V
+450.2 V
+W1
+19.11 kW
+W2
+10.51 kW
+A
+42.52 A
+A
+42.52 A
+A
+42.52 A
+cos
+φ
+cos φ = 0.893 ind.
+Z_L
+Z_L
+Z_L
+0.080+j0.150 Ω
+A′
+B′
+C′
+EMBARRADO
+V
+440.0 V
+M
+3~
+M1 · Δ · 19.52 A
+12.50 kW · fp 0.84
+M
+3~
+M2 · Y · 13.79 A
+8.621 kW · fp 0.82
+Z3 · Δ · 10.58 A
+8.067 kW · fp 1.00
+K
+Banco C · 5.578 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+450.2 V
+línea-línea A–B · calculada
+V
+Voltímetro · receptor
+440.0 V
+línea-línea A′–B′ · dato
+A
+Amperímetros de línea
+42.52 A
+I_A = I_B = I_C · ∠−25.77°
+W1
+Vatímetro 1
+19.11 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+10.51 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+29.62 kW
+Q = √3·(W1 − W2) = 14.90 kvar
+φ
+Cosfímetro
+0.8933 ind.
+φ = +26.71° · en la fuente
+Δ
+Caída en la línea
+−2.26 %
+pérdidas 434.0 W
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+Normal
+Caída de tensión en la línea (criterio de diseño): dentro del límite
+Normal
+M1: tensión en bornes frente a la placa
+Normal
+M2: tensión en bornes frente a la placa"
+`;
+
 exports[`ej2-receptor > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -4908,6 +5365,91 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej3 > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+230.9 V/fase · 50 Hz
+sec. ABC · 4 hilos
+V
+400.0 V
+W1
+15.53 kW
+W2
+5.824 kW
+A
+39.22 A
+A
+39.22 A
+A
+39.22 A
+cos
+φ
+cos φ = 0.786 ind.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+400.0 V
+Z1 · Y · 11.55 A
+6.400 kW · fp 0.80
+Z2 · Δ · 9.238 A
+3.840 kW · fp 0.60
+M
+3~
+M3 · Δ · 18.87 A
+11.11 kW · fp 0.85
+K
+Banco C · 9.788 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+400.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+400.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+39.22 A
+I_A = I_B = I_C · ∠−38.21°
+W1
+Vatímetro 1
+15.53 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+5.824 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+21.35 kW
+Q = √3·(W1 − W2) = 16.81 kvar
+φ
+Cosfímetro
+0.7858 ind.
+φ = +38.21° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica
+Normal
+M3: tensión en bornes frente a la placa"
+`;
+
 exports[`ej3 > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -5659,6 +6201,91 @@ Verificación
 ✓ LKC: Σ Ī_A,k = 39.219 ∠−38.21° A ≈ Ī_A = 39.219 ∠−38.21° A
 ✓ I_N = |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (neutro sin corriente)
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
+`;
+
+exports[`ej3-acb > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+230.9 V/fase · 50 Hz
+sec. ACB · 4 hilos
+V
+400.0 V
+W1
+5.824 kW
+W2
+15.53 kW
+A
+39.22 A
+A
+39.22 A
+A
+39.22 A
+cos
+φ
+cos φ = 0.786 ind.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+400.0 V
+Z1 · Y · 11.55 A
+6.400 kW · fp 0.80
+Z2 · Δ · 9.238 A
+3.840 kW · fp 0.60
+M
+3~
+M3 · Δ · 18.87 A
+11.11 kW · fp 0.85
+K
+Banco C · 9.788 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+400.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+400.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+39.22 A
+I_A = I_B = I_C · ∠−38.21°
+W1
+Vatímetro 1
+5.824 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+15.53 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+21.35 kW
+Q = √3·(W2 − W1) = 16.81 kvar
+φ
+Cosfímetro
+0.7858 ind.
+φ = +38.21° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica
+Normal
+M3: tensión en bornes frente a la placa"
 `;
 
 exports[`ej3-acb > pasos 1`] = `
@@ -6414,6 +7041,91 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej3-tabla > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+230.9 V/fase · 50 Hz
+sec. ACB · 4 hilos
+V
+400.0 V
+W1
+5.824 kW
+W2
+15.53 kW
+A
+39.22 A
+A
+39.22 A
+A
+39.22 A
+cos
+φ
+cos φ = 0.786 ind.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+400.0 V
+Z1 · Y · 11.55 A
+6.400 kW · fp 0.80
+Z2 · Δ · 9.238 A
+3.840 kW · fp 0.60
+M
+3~
+M3 · Δ · 18.87 A
+11.11 kW · fp 0.85
+K
+Banco C · 9.788 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+400.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+400.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+39.22 A
+I_A = I_B = I_C · ∠−38.21°
+W1
+Vatímetro 1
+5.824 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+15.53 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+21.35 kW
+Q = √3·(W2 − W1) = 16.81 kvar
+φ
+Cosfímetro
+0.7858 ind.
+φ = +38.21° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica
+Normal
+M3: tensión en bornes frente a la placa"
+`;
+
 exports[`ej3-tabla > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -7167,6 +7879,91 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej3-wt75 > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+230.9 V/fase · 50 Hz
+sec. ABC · 4 hilos
+V
+400.0 V
+W1
+15.53 kW
+W2
+5.824 kW
+A
+39.22 A
+A
+39.22 A
+A
+39.22 A
+cos
+φ
+cos φ = 0.786 ind.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+400.0 V
+Z1 · Y · 11.55 A
+6.400 kW · fp 0.80
+Z2 · Δ · 9.238 A
+3.840 kW · fp 0.60
+M
+3~
+M3 · Δ · 18.87 A
+11.11 kW · fp 0.85
+K
+Banco C · 9.788 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+400.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+400.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+39.22 A
+I_A = I_B = I_C · ∠−38.21°
+W1
+Vatímetro 1
+15.53 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+5.824 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+21.35 kW
+Q = √3·(W1 − W2) = 16.81 kvar
+φ
+Cosfímetro
+0.7858 ind.
+φ = +38.21° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica
+Normal
+M3: tensión en bornes frente a la placa"
+`;
+
 exports[`ej3-wt75 > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -7841,6 +8638,85 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`ej4 > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+127.0 V/fase · 60 Hz
+sec. ABC · 4 hilos
+V
+220.0 V
+W1
+663.1 W
+W2
+2.466 kW
+A
+11.60 A
+A
+11.60 A
+A
+11.60 A
+cos
+φ
+cos φ = 0.708 cap.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+220.0 V
+Z1 · Y · 5.081 A
+1.162 kW · fp 0.60
+Z2 · Δ · 6.612 A
+1.967 kW · fp 0.78
+K
+Banco L · 2.210 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+220.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+220.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+11.60 A
+I_A = I_B = I_C · ∠+44.94°
+W1
+Vatímetro 1
+663.1 W
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+2.466 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+3.129 kW
+Q = √3·(W1 − W2) = -3.123 kvar
+φ
+Cosfímetro
+0.7078 cap.
+φ = −44.94° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica"
+`;
+
 exports[`ej4 > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -8494,6 +9370,85 @@ Verificación
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
 `;
 
+exports[`informe > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+127.0 V/fase · 60 Hz
+sec. ABC · 4 hilos
+V
+220.0 V
+W1
+663.1 W
+W2
+2.466 kW
+A
+11.60 A
+A
+11.60 A
+A
+11.60 A
+cos
+φ
+cos φ = 0.708 cap.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+220.0 V
+Z1 · Y · 5.081 A
+1.162 kW · fp 0.60
+Z2 · Δ · 6.612 A
+1.967 kW · fp 0.78
+K
+Banco L · 2.210 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+220.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+220.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+11.60 A
+I_A = I_B = I_C · ∠+44.94°
+W1
+Vatímetro 1
+663.1 W
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+2.466 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+3.129 kW
+Q = √3·(W1 − W2) = -3.123 kvar
+φ
+Cosfímetro
+0.7078 cap.
+φ = −44.94° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica"
+`;
+
 exports[`informe > pasos 1`] = `
 "Paso 1
 Sistema trifásico
@@ -8786,6 +9741,8 @@ exports[`limpio > fasorial 1`] = `""`;
 exports[`limpio > inferior 1`] = `""`;
 
 exports[`limpio > informe 1`] = `""`;
+
+exports[`limpio > laboratorio 1`] = `""`;
 
 exports[`limpio > pasos 1`] = `""`;
 
@@ -9389,6 +10346,91 @@ Verificación
 ✓ LKC: Σ Ī_A,k = 39.219 ∠−38.21° A ≈ Ī_A = 39.219 ∠−38.21° A
 ✓ I_N = |Ī_A + Ī_B + Ī_C| = 0 A ≈ 0 (neutro sin corriente)
 Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado"
+`;
+
+exports[`tema-alt > laboratorio 1`] = `
+"Banco de laboratorio
+Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
+← desliza para ver el banco completo →
+N
+G
+3~
+FUENTE
+A
+B
+C
+230.9 V/fase · 50 Hz
+sec. ACB · 4 hilos
+V
+400.0 V
+W1
+5.824 kW
+W2
+15.53 kW
+A
+39.22 A
+A
+39.22 A
+A
+39.22 A
+cos
+φ
+cos φ = 0.786 ind.
+línea ideal
+A′
+B′
+C′
+EMBARRADO
+V
+400.0 V
+Z1 · Y · 11.55 A
+6.400 kW · fp 0.80
+Z2 · Δ · 9.238 A
+3.840 kW · fp 0.60
+M
+3~
+M3 · Δ · 18.87 A
+11.11 kW · fp 0.85
+K
+Banco C · 9.788 kvar
+contactor K abierto
+V
+Voltímetro · fuente
+400.0 V
+línea-línea A–B
+V
+Voltímetro · receptor
+400.0 V
+línea-línea A′–B′
+A
+Amperímetros de línea
+39.22 A
+I_A = I_B = I_C · ∠−38.21°
+W1
+Vatímetro 1
+5.824 kW
+Ī_A con Ū_AC
+W2
+Vatímetro 2
+15.53 kW
+Ī_B con Ū_BC
+Σ
+W1 + W2 = P
+21.35 kW
+Q = √3·(W2 − W1) = 16.81 kvar
+φ
+Cosfímetro
+0.7858 ind.
+φ = +38.21° · en la fuente
+Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.
+Pilotos de alarma
+Según el diagnóstico de cumplimiento normativo
+Aviso
+Factor de potencia: cumple solo con la compensación propuesta
+No aplica
+Variación de tensión: no aplica
+Normal
+M3: tensión en bornes frente a la placa"
 `;
 
 exports[`tema-alt > pasos 1`] = `
