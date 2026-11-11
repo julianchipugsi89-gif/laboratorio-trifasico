@@ -1,6 +1,6 @@
 // Triángulo de potencias
 import { fN, fPow } from '../engine/format.js';
-import { getCSS, $ } from '../ui/dom.js';
+import { getCSS, $ } from '../core/dom.js';
 
 // ── Triángulo vectorial de potencias realista ─────────────────────────
 export function genTriangleSVG(r,print){

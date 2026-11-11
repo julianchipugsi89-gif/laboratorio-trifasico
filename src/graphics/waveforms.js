@@ -1,8 +1,8 @@
 // Osciloscopio trifásico
 import { fN } from '../engine/format.js';
 import { π, d2r } from '../engine/math.js';
-import { $, getCSS } from '../ui/dom.js';
-import { waveHoverDeg } from '../ui/state.js';
+import { $, getCSS } from '../core/dom.js';
+import { waveHoverDeg } from '../core/state.js';
 
 // ── Osciloscopio trifásico instantáneo u(ωt) e i(ωt) ──────────────────
 export function drawWaveforms(r){

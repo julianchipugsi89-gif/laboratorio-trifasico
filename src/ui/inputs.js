@@ -2,8 +2,8 @@
 import { PRESETS, voltLevel } from '../engine/constants.js';
 import { fN, fA } from '../engine/format.js';
 import { SQ3, bad, r2d } from '../engine/math.js';
-import { $ } from './dom.js';
-import { voltageType, setVoltageType, setWiresSel, loads, wiresSel, setVRefState, vRef, zLineEnabled, setZLineEnabled } from './state.js';
+import { $ } from '../core/dom.js';
+import { voltageType, setVoltageType, setWiresSel, loads, wiresSel, setVRefState, vRef, zLineEnabled, setZLineEnabled } from '../core/state.js';
 
 export function renderPresets(){
   $('preset-row').innerHTML=PRESETS.map((p,i)=>`<button class="preset" id="pr-${i}" onclick="applyPreset(${i})">${p.lbl}</button>`).join('');

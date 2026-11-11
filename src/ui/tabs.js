@@ -4,8 +4,8 @@ import { drawPhasors } from '../graphics/phasors.js';
 import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
 import { stopWtAnim, renderWtReadout } from '../graphics/wt.js';
-import { $ } from './dom.js';
-import { lastResult } from './state.js';
+import { $ } from '../core/dom.js';
+import { lastResult } from '../core/state.js';
 
 export function showTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));

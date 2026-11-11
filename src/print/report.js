@@ -4,9 +4,9 @@ import { Cx } from '../engine/complex.js';
 import { fN, rstr, fS, cstr, pStr, fA, sgn, fpTag, fPow } from '../engine/format.js';
 import { normItems } from '../engine/norms.js';
 import { genTriangleSVG } from '../graphics/triangle.js';
-import { $ } from '../ui/dom.js';
+import { $ } from '../core/dom.js';
 import { fpCorrHTML, compTableHTML } from '../ui/results.js';
-import { lastResult } from '../ui/state.js';
+import { lastResult } from '../core/state.js';
 
 export function showPrintView(){
   if(!lastResult)return;

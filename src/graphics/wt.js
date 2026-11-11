@@ -3,8 +3,8 @@ import { fN } from '../engine/format.js';
 import { d2r } from '../engine/math.js';
 import { drawPhasors } from './phasors.js';
 import { drawWaveforms } from './waveforms.js';
-import { $ } from '../ui/dom.js';
-import { setWaveHoverDeg, waveHoverDeg, lastResult } from '../ui/state.js';
+import { $ } from '../core/dom.js';
+import { setWaveHoverDeg, waveHoverDeg, lastResult } from '../core/state.js';
 
 // Eventos del osciloscopio
 // Estado compartido ωt: null = fasores estáticos (t = 0, sin proyecciones)

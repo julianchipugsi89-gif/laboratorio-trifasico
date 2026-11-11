@@ -1,7 +1,7 @@
 // Desarrollo paso a paso
 import { Cx, cscale, cconj, cang, cadd, cpol } from '../engine/complex.js';
 import { fN, fPow, rstr, cstr, pStr, fpTag, fA, sgn } from '../engine/format.js';
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 
 // ── Paso a paso ───────────────────────────────────────────────────────
 export function renderSteps(r){

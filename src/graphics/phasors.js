@@ -1,8 +1,8 @@
 // Diagrama fasorial
 import { fN, fA, fpTag } from '../engine/format.js';
 import { d2r, π } from '../engine/math.js';
-import { $, getCSS, textCol } from '../ui/dom.js';
-import { waveHoverDeg } from '../ui/state.js';
+import { $, getCSS, textCol } from '../core/dom.js';
+import { waveHoverDeg } from '../core/state.js';
 
 // ── Diagrama Fasorial Polar con Transportador Graduado ────────────────
 export function drawPhasors(r){

@@ -60,6 +60,6 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
 
 ### Añadido
 
-- Proyecto Vite con JavaScript modular: `src/engine` (cálculo puro), `src/ui`, `src/graphics`,
+- Proyecto Vite con JavaScript modular: `src/engine` (cálculo puro), `src/core` (DOM y estado), `src/ui`, `src/graphics`,
   `src/print`, `src/styles`.
 - Pruebas con Vitest en entorno node (`npm test`).

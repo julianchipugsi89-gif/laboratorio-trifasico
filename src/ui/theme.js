@@ -3,8 +3,8 @@ import { renderDiagrams } from '../graphics/diagrams.js';
 import { drawPhasors } from '../graphics/phasors.js';
 import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
-import { $ } from './dom.js';
-import { theme, setTheme, lastResult } from './state.js';
+import { $ } from '../core/dom.js';
+import { theme, setTheme, lastResult } from '../core/state.js';
 
 export const prefersDark=()=>!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
 export const effTheme=()=>theme||(prefersDark()?'dark':'light');

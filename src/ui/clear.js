@@ -1,10 +1,10 @@
 // Limpiar todo
 import { stopWtAnim } from '../graphics/wt.js';
 import { hideAlert } from './alerts.js';
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 import { setVT, setVRef, setZL, setWires, onSourceChange } from './inputs.js';
 import { addLoad } from './loads.js';
-import { setWaveHoverDeg, zLineEnabled, resetLoads, setLastResult } from './state.js';
+import { setWaveHoverDeg, zLineEnabled, resetLoads, setLastResult } from '../core/state.js';
 
 export function clearAll(){
   stopWtAnim();setWaveHoverDeg(null);

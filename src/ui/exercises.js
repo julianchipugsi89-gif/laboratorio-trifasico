@@ -1,9 +1,9 @@
 // Ejercicios prácticos reales
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 import { setVRef, setVT, setZL, updateZLHint, setWires, onSourceChange } from './inputs.js';
 import { addLoad } from './loads.js';
 import { solve } from './solve.js';
-import { resetLoads } from './state.js';
+import { resetLoads } from '../core/state.js';
 
 // Selector de ejercicios prácticos reales
 export function loadExercise(n){

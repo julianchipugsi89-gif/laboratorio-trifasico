@@ -2,11 +2,11 @@
 import { computeCircuit } from '../engine/circuit.js';
 import { bad } from '../engine/math.js';
 import { hideAlert, showAlert } from './alerts.js';
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 import { currentUL } from './inputs.js';
 import { motorError, loadTag } from './loads.js';
 import { renderResults } from './results.js';
-import { loads, voltageType, zLineEnabled, vRef, wiresSel, setLastResult } from './state.js';
+import { loads, voltageType, zLineEnabled, vRef, wiresSel, setLastResult } from '../core/state.js';
 
 export function solve(){
   hideAlert();

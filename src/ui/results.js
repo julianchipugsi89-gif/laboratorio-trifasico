@@ -8,7 +8,7 @@ import { drawPhasors } from '../graphics/phasors.js';
 import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
 import { renderWtReadout } from '../graphics/wt.js';
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 import { renderSteps } from './steps.js';
 
 export function renderResults(r){

@@ -1,6 +1,6 @@
 // Kit gráfico SVG de símbolos eléctricos
 import { r2d } from '../engine/math.js';
-import { getCSS } from '../ui/dom.js';
+import { getCSS } from '../core/dom.js';
 
 export function svgKit(){
   const c={

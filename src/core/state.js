@@ -1,4 +1,4 @@
-// Estado de la interfaz
+// Estado de la aplicación (compartido por ui, graphics y print)
 
 export let voltageType='line',zLineEnabled=false,wiresSel='auto',vRef='source',loads=[],loadId=0,lastResult=null,theme=null,waveHoverDeg=null;
 

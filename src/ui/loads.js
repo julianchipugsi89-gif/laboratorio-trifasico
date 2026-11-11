@@ -2,9 +2,9 @@
 import { motorData } from '../engine/circuit.js';
 import { fN, fA, fpTag, fPow, fS } from '../engine/format.js';
 import { bad, r2d } from '../engine/math.js';
-import { $ } from './dom.js';
+import { $ } from '../core/dom.js';
 import { currentUL, updateWiresHint } from './inputs.js';
-import { nextLoadId, loads, setLoads } from './state.js';
+import { nextLoadId, loads, setLoads } from '../core/state.js';
 
 export const loadTag=(l,k)=>(l.kind==='motor'?'M':'Z')+(k+1);
 export function addLoad(p={}){
