@@ -4,7 +4,7 @@
 import { fS, fN, fPow, fpTag, rstr } from '../engine/format.js';
 
 const Y={A:70,B:130,C:190,N:250};
-const X={src:98,v1:140,w1:215,w2:265,amp:335,cos:425,zl:485,term:575,v2:615,load0:705,pitch:152};
+const X={src:98,v1:140,w1:215,w2:265,amp:335,cos:425,zl:500,term:575,v2:615,load0:705,pitch:152};
 const FASES=['A','B','C'];
 
 const tx=(x,y,t,cls='lab-t',anchor='start')=>`<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`;
@@ -54,7 +54,7 @@ export function genLabSVG(r,m){
   const n=r.bkd.length,banco=!!r.compType,cuatro=r.wires===4;
   const W=Math.max(880,X.load0+(n+(banco?1:0)-1)*X.pitch+72),H=420,xFin=W-18;
   const yCaja=cuatro?Y.N+20:Y.C+24;
-  let s=`<svg class="lab-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banco de laboratorio trifásico con instrumentos" style="width:100%;min-width:${Math.round(W*0.7)}px;height:auto">`;
+  let s=`<svg class="lab-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banco de laboratorio trifásico con instrumentos" style="width:100%;min-width:${Math.round(W*0.25)}px;height:auto">`;
 
   // Conductores de fase: tramo fuente → bornes del receptor y embarrado
   FASES.forEach(f=>{
@@ -85,10 +85,10 @@ export function genLabSVG(r,m){
   FASES.forEach(f=>{s+=meter(X.amp,Y[f],13,'A')+tx(X.amp+18,Y[f]-9,`${fS(m.amp.IL)} A`,`lab-val lab-t${f}`);});
   s+=`</g>`;
 
-  // Cosfímetro trifásico
-  s+=`<g id="lab-cos"><rect x="${X.cos}" y="52" width="36" height="156" rx="9" class="lab-el lab-inst"/>`;
-  s+=tx(X.cos+18,126,'cos','lab-sym','middle')+tx(X.cos+18,141,'φ','lab-sym','middle');
-  s+=tx(X.cos+18,226,`cos φ = ${fN(m.fp,3)} ${fpTag(m.φ)}`,'lab-val','middle')+`</g>`;
+  // Cosfímetro: bobina de corriente en la línea A y tomas de tensión a B y C
+  s+=`<g id="lab-cos"><path class="lab-lead" d="M${X.cos-7} ${Y.A+14} V${Y.B}"/>${dot(X.cos-7,Y.B,'B')}<path class="lab-lead" d="M${X.cos+7} ${Y.A+14} V${Y.C}"/>${dot(X.cos+7,Y.C,'C')}`;
+  s+=`<circle cx="${X.cos}" cy="${Y.A}" r="17" class="lab-el lab-inst"/>`+tx(X.cos,Y.A+3,'cos φ','lab-sym lab-sym-s','middle');
+  s+=tx(X.cos,Y.A-24,`${fN(m.fp,3)} ${fpTag(m.φ)}`,'lab-val','middle')+`</g>`;
 
   // Línea
   s+=`<g id="lab-zl">`;

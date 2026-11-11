@@ -253,10 +253,15 @@
             <span>Banco de laboratorio</span>
             <span class="diag-sub">Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo</span>
           </div>
-          <div class="diag-scroll-hint lab-hint">← desliza para ver el banco completo →</div>
-          <div class="diag-box" id="lab-scene"></div>
-          <div class="lab-meters" id="lab-meters"></div>
-          <div class="lab-note" id="lab-aron-note"></div>
+          <div class="lab-stage" id="lab-stage">
+            <div class="lab-bar">
+              <button class="btn-icon" id="lab-fs-btn" onclick="toggleLabFullscreen()">⛶ Pantalla completa</button>
+            </div>
+            <div class="diag-scroll-hint lab-hint" id="lab-hint" style="display:none">← desliza para ver el banco completo →</div>
+            <div class="diag-box" id="lab-scene"></div>
+            <div class="lab-meters" id="lab-meters"></div>
+            <div class="lab-note" id="lab-aron-note"></div>
+          </div>
           <div class="diag-lbl" style="margin-top:16px">
             <span>Pilotos de alarma</span>
             <span class="diag-sub">Según el diagnóstico de cumplimiento normativo</span>

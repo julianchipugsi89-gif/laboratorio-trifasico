@@ -694,7 +694,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`colapso-alerta > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 G
 3~
 FUENTE
@@ -715,9 +715,8 @@ A
 43.10 A
 A
 43.10 A
-cos
-φ
-cos φ = 0.891 ind.
+cos φ
+0.891 ind.
 Z_L
 Z_L
 Z_L
@@ -1599,7 +1598,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej1 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -1621,9 +1620,8 @@ A
 16.51 A
 A
 16.51 A
-cos
-φ
-cos φ = 0.796 ind.
+cos φ
+0.796 ind.
 Z_L
 Z_L
 Z_L
@@ -2479,7 +2477,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej1-receptor > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -2501,9 +2499,8 @@ A
 16.94 A
 A
 16.94 A
-cos
-φ
-cos φ = 0.796 ind.
+cos φ
+0.796 ind.
 Z_L
 Z_L
 Z_L
@@ -3447,7 +3444,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej2 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 G
 3~
 FUENTE
@@ -3468,9 +3465,8 @@ A
 43.10 A
 A
 43.10 A
-cos
-φ
-cos φ = 0.891 ind.
+cos φ
+0.891 ind.
 Z_L
 Z_L
 Z_L
@@ -4461,7 +4457,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej2-receptor > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 G
 3~
 FUENTE
@@ -4482,9 +4478,8 @@ A
 42.52 A
 A
 42.52 A
-cos
-φ
-cos φ = 0.893 ind.
+cos φ
+0.893 ind.
 Z_L
 Z_L
 Z_L
@@ -5368,7 +5363,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -5390,9 +5385,8 @@ A
 39.22 A
 A
 39.22 A
-cos
-φ
-cos φ = 0.786 ind.
+cos φ
+0.786 ind.
 línea ideal
 A′
 B′
@@ -6206,7 +6200,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3-acb > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -6228,9 +6222,8 @@ A
 39.22 A
 A
 39.22 A
-cos
-φ
-cos φ = 0.786 ind.
+cos φ
+0.786 ind.
 línea ideal
 A′
 B′
@@ -7044,7 +7037,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej3-wt75 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -7066,9 +7059,8 @@ A
 39.22 A
 A
 39.22 A
-cos
-φ
-cos φ = 0.786 ind.
+cos φ
+0.786 ind.
 línea ideal
 A′
 B′
@@ -7803,7 +7795,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`ej4 > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -7825,9 +7817,8 @@ A
 11.60 A
 A
 11.60 A
-cos
-φ
-cos φ = 0.708 cap.
+cos φ
+0.708 cap.
 línea ideal
 A′
 B′
@@ -8535,7 +8526,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`informe > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -8557,9 +8548,8 @@ A
 11.60 A
 A
 11.60 A
-cos
-φ
-cos φ = 0.708 cap.
+cos φ
+0.708 cap.
 línea ideal
 A′
 B′
@@ -9353,7 +9343,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`mt-fase-delta > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 G
 3~
 FUENTE
@@ -9374,9 +9364,8 @@ A
 61.76 A
 A
 61.76 A
-cos
-φ
-cos φ = 0.791 ind.
+cos φ
+0.791 ind.
 Z_L
 Z_L
 Z_L
@@ -10189,7 +10178,7 @@ Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equili
 exports[`tema-alt > laboratorio 1`] = `
 "Banco de laboratorio
 Fuente, instrumentos, línea, embarrado y cargas con lectura en vivo
-← desliza para ver el banco completo →
+⛶ Pantalla completa
 N
 G
 3~
@@ -10211,9 +10200,8 @@ A
 39.22 A
 A
 39.22 A
-cos
-φ
-cos φ = 0.786 ind.
+cos φ
+0.786 ind.
 línea ideal
 A′
 B′

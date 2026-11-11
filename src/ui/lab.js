@@ -35,6 +35,27 @@ export function renderLab(r){
     ?`Un vatímetro marca negativo porque fp < 0,5 (|φ| > 60°): la suma algebraica W1 + W2 sigue siendo P.`
     :`Método de Aron: bobinas de corriente en A y B, tensiones U_AC y U_BC. La suma W1 + W2 es la potencia activa total.`;
 
+  updateLabHint();
+
   $('lab-pilots').innerHTML=normItems(r).map(i=>
     `<div class="lab-pilot ${i.s}"><span class="lab-lamp"></span><div><div class="lp-state">${ESTADO[i.s]}</div><div class="lp-txt">${i.t}</div></div></div>`).join('');
 }
+
+// El aviso «desliza» solo aparece si la escena, ya escalada al mínimo, no cabe en su caja
+export function updateLabHint(){
+  const box=$('lab-scene'),hint=$('lab-hint');
+  if(box&&hint)hint.style.display=box.scrollWidth>box.clientWidth+1?'block':'none';
+}
+
+// Pantalla completa: solo la escena y el panel de instrumentos (Esc o el mismo botón para salir)
+export function toggleLabFullscreen(){
+  if(document.fullscreenElement){document.exitFullscreen();return;}
+  const el=$('lab-stage');
+  if(el.requestFullscreen)el.requestFullscreen().catch(()=>{});
+}
+document.addEventListener('fullscreenchange',()=>{
+  const on=document.fullscreenElement===$('lab-stage');
+  $('lab-fs-btn').textContent=on?'✕ Salir de pantalla completa':'⛶ Pantalla completa';
+  updateLabHint();
+});
+window.addEventListener('resize',updateLabHint);

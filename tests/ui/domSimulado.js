@@ -29,7 +29,7 @@ export function instalarDomSimulado({ anchoLienzo = 400 } = {}) {
     return elementos.get(id);
   };
 
-  vi.stubGlobal('document', { getElementById: el, documentElement: {}, querySelectorAll: () => [], body: { style: {} } });
+  vi.stubGlobal('document', { addEventListener() {}, getElementById: el, documentElement: {}, querySelectorAll: () => [], body: { style: {} } });
   vi.stubGlobal('window', { devicePixelRatio: 1, addEventListener() {}, matchMedia: () => ({ matches: false }) });
   vi.stubGlobal('getComputedStyle', () => ({ getPropertyValue: () => '' }));
 

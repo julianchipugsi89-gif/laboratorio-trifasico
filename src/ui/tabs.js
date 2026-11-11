@@ -5,6 +5,7 @@ import { renderTriangle } from '../graphics/triangle.js';
 import { drawWaveforms } from '../graphics/waveforms.js';
 import { stopWtAnim, renderWtReadout } from '../graphics/wt.js';
 import { $ } from '../core/dom.js';
+import { updateLabHint } from './lab.js';
 import { lastResult } from '../core/state.js';
 
 export function showTab(id,btn){
@@ -14,6 +15,7 @@ export function showTab(id,btn){
   if(id!=='phasor')stopWtAnim();
   if(lastResult){
     if(id==='phasor'){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
+    if(id==='lab')updateLabHint();
     if(id==='diagram')renderDiagrams(lastResult);
     if(id==='table')renderTriangle(lastResult);
   }

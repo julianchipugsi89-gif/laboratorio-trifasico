@@ -23,6 +23,7 @@
 .lab-cap{fill:var(--fg3);font-size:9.5px;font-weight:700;letter-spacing:.08em}
 .lab-val{fill:var(--fg);font-size:12px;font-weight:600}
 .lab-sym{fill:var(--fg);font-size:11px;font-weight:700;font-family:var(--sans)}
+.lab-sym-s{font-size:9px}
 .lab-big{fill:var(--fg);font-size:21px;font-weight:700;font-family:var(--serif)}
 .lab-tA{fill:var(--pa-t)}.lab-tB{fill:var(--pb-t)}.lab-tC{fill:var(--pc-t)}
 
@@ -35,7 +36,7 @@
 }
 .lm-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--fg3);line-height:1.25}
 .lm-val{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--fg);line-height:1.2}
-.lm-val.neg{color:var(--rd)}
+.lm-val.neg{color:var(--am)}
 .lm-sub{font-family:var(--mono);font-size:10.5px;color:var(--fg3);margin-top:3px;line-height:1.4}
 .lab-note{font-size:11px;color:var(--fg2);font-family:var(--mono);margin-top:8px;line-height:1.5}
 
@@ -53,4 +54,12 @@
 .lp-state{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg3)}
 .lab-pilot.ok .lp-state{color:var(--gn)}.lab-pilot.warn .lp-state{color:var(--am)}.lab-pilot.bad .lp-state{color:var(--rd)}
 .lp-txt{font-size:12px;font-weight:600;color:var(--fg);line-height:1.35}
-@media(max-width:1180px){.diag-scroll-hint.lab-hint{display:block}}
+
+/* Pantalla completa: solo escena + panel de instrumentos */
+.lab-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.lab-stage:fullscreen{background:var(--bg);padding:20px max(20px,env(safe-area-inset-right,0px)) 20px max(20px,env(safe-area-inset-left,0px));overflow:auto}
+.lab-stage:fullscreen .lab-svg{min-width:0!important;max-height:62vh}
+.lab-stage:fullscreen .lab-meters{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.lab-stage:fullscreen .lm-val{font-size:26px}
+.lab-stage:fullscreen .lm-name{font-size:12px}
+.lab-stage:fullscreen .lm-sub{font-size:13px}
