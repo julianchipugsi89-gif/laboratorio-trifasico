@@ -1,0 +1,15 @@
+/* ── Pie con la versión y aviso de actualización ─────────────────── */
+.app-footer{margin-top:18px;padding:10px 4px 2px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--fg3)}
+.update-banner{
+  position:fixed;z-index:1000;left:50%;transform:translateX(-50%);
+  bottom:max(14px,env(safe-area-inset-bottom,0px));
+  width:max-content;max-width:calc(100vw - 28px);
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
+  padding:10px 14px;border-radius:11px;border:1px solid var(--ac);
+  background:var(--bg-card);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.28);font-size:13px;
+}
+.update-txt{flex:1 1 200px;min-width:0}
+.update-go{background:var(--ac);border-color:var(--ac);color:#faf8f3}
+.update-go:hover{background:var(--ac-dk);border-color:var(--ac-dk);color:#faf8f3}
+:root[data-theme=dark] .update-go{color:#151917}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .update-go{color:#151917}}

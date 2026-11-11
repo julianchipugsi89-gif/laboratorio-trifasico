@@ -1,6 +1,6 @@
 {
-  "name": "trifasico-equilibrado",
-  "version": "2.1.0",
+  "name": "laboratorio-trifasico",
+  "version": "3.0.0",
   "private": true,
   "description": "Simulador docente de circuitos trifásicos equilibrados (Fraile Mora, Patrón 5)",
   "type": "module",
@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint src",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "iconos": "node tools/generar-iconos.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

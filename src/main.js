@@ -10,6 +10,7 @@ import { addLoad, removeLoad, setConn, setKind, updLoad } from './ui/loads.js';
 import { solve } from './ui/solve.js';
 import { showTab } from './ui/tabs.js';
 import { syncThemeBtn, toggleTheme } from './ui/theme.js';
+import { initPwa } from './pwa.js';
 
 // El HTML usa atributos onclick/oninput; los módulos ES no crean globales, así que se exponen aquí.
 Object.assign(window, {
@@ -18,6 +19,7 @@ Object.assign(window, {
 });
 
 renderPresets();
+initPwa();
 syncThemeBtn();
 // Carga inicial con un ejercicio completo y realista para mostrar de inmediato las gráficas
 loadExercise(1);

@@ -4,11 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trifásico Equilibrado · Ingeniería Eléctrica</title>
+<meta name="description" content="Simulador docente de circuitos trifásicos equilibrados con laboratorio virtual: cargas Y/Δ, línea, motores y compensación.">
+<meta name="theme-color" content="#2d6a4f">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="/src/styles/fonts.css">
 <link rel="stylesheet" href="/src/styles/tokens.css">
 <link rel="stylesheet" href="/src/styles/app.css">
 <link rel="stylesheet" href="/src/styles/print.css">
 <link rel="stylesheet" href="/src/styles/lab.css">
+<link rel="stylesheet" href="/src/styles/pwa.css">
 </head>
 <body>
 
@@ -405,6 +411,14 @@
     </div>
     <div class="print-doc" id="print-content"></div>
   </div>
+</div>
+
+<footer class="app-footer"><span id="app-version"></span></footer>
+
+<div class="update-banner" id="update-banner" role="status" aria-live="polite" style="display:none">
+  <span class="update-txt"><strong>Hay una actualización.</strong> Recarga para usar la versión nueva.</span>
+  <button class="btn-icon update-go" id="update-reload">Recargar</button>
+  <button class="btn-icon" id="update-later">Más tarde</button>
 </div>
 
 <script type="module" src="/src/main.js"></script>
