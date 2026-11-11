@@ -1,5 +1,5 @@
 // Lecturas de los instrumentos del banco de laboratorio (puro, sin DOM)
-import { Cx, cpol, csub, cmul, cdiv, cconj, cabs, cang } from './complex.js';
+import { Cx, cpol, cadd, csub, cmul, cdiv, cconj, cabs, cang } from './complex.js';
 import { SQ3 } from './math.js';
 
 // computeInstruments(r) → lecturas con el banco de compensación desconectado.
@@ -23,6 +23,21 @@ export function computeInstruments(r,{compensado=false}={}){
   // P = W1 + W2 siempre; Q = √3·(W1 − W2) en secuencia ABC y con el signo cambiado en ACB
   const P=W1+W2,Q=SQ3*r.dir*(W1-W2),φ=Math.atan2(Q,P);
 
+  // Corriente de línea de cada carga (fase A). Al conectar el banco la tensión en bornes pasa de U a U′:
+  // una impedancia absorbe I·(U′/U) y un motor a potencia constante I·(U/U′); el ángulo respecto a la
+  // tensión no cambia, así que basta girar lo que gira Ū_carga.
+  const kU=c?c.UloadF/r.UloadF:1,giroU=c?c.UloadAng-r.UloadAng:0;
+  const cargas=r.bkd.map(b=>{
+    const motor=b.kind==='motor';
+    return{tag:b.tag,kind:b.kind,conn:b.conn,I:motor?b.Ik/kU:b.Ik*kU,ang:b.IkAng+giroU,P:motor?b.Pk:b.Pk*kU*kU,fp:b.fpk};
+  });
+  // Corriente del banco: lo que falta para cerrar la LKC en el embarrado
+  let banco=null;
+  if(c){
+    const Ib=csub(IA,cadd(...cargas.map(x=>cpol(x.I,x.ang))));
+    banco={tipo:r.compType,I:cabs(Ib),ang:cang(Ib),Q:r.compType==='C'?r.QC:r.QLr};
+  }
+
   return{
     compensado:!!c,
     vFuente:{UL:c?c.UL_src:r.UL_src,Uf:cabs(UA)},
@@ -32,5 +47,6 @@ export function computeInstruments(r,{compensado=false}={}){
     fp:P/Math.hypot(P,Q),φ,
     fpCarga:c?c.fpL:r.fpLoad,φCarga:c?c.φL:r.φLoad,
     Pline:c?c.Pline:r.Pline,dUpct:c?c.dUpct:r.dUpct,
+    cargas,banco,
   };
 }

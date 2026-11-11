@@ -139,7 +139,7 @@ export function computeCircuit(inp){
       const U2m=cabs(U2),IL2=cabs(I2),UL_src2=cabs(UAN2)*SQ3;
       const Ssrc=cscale(cmul(UAN2,cconj(I2)),3),Sld=cscale(cmul(U2,cconj(I2)),3);
       comp={IL:IL2,IAang:cang(I2),fpS:Ssrc.re/cabs(Ssrc),φS:Math.atan2(Ssrc.im,Ssrc.re),
-        fpL:Sld.re/cabs(Sld),φL:Math.atan2(Sld.im,Sld.re),UloadF:U2m,UloadL:U2m*SQ3,
+        fpL:Sld.re/cabs(Sld),φL:Math.atan2(Sld.im,Sld.re),UloadF:U2m,UloadL:U2m*SQ3,UloadAng:cang(U2),
         Pline:3*IL2*IL2*ZL.R,Ptot:Ssrc.re,Qtot:Ssrc.im,Stot:cabs(Ssrc),
         UL_src:UL_src2,dUpct:recMode?(UL-UL_src2)/UL_src2*100:(U2m*SQ3-UL)/UL*100};
       UcapF=U2m;

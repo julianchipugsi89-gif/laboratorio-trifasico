@@ -129,3 +129,62 @@ describe('Banco de compensación conectado (usa r.comp, sin recalcular)', () => 
     expect(b.vReceptor.UL).toBeCloseTo(400, 9);
   });
 });
+
+describe('Contactor cerrado: lecturas por carga y corriente del banco', () => {
+  const casos = [
+    ['Ej. 1', () => ejercicios[1]()],
+    ['Ej. 2', () => ejercicios[2]()],
+    ['Ej. 3', () => ejercicios[3]()],
+    ['Ej. 4', () => ejercicios[4]()],
+    ['Ej. 1 en modo receptor', () => ({ ...ejercicios[1](), vRef: 'load' })],
+    ['Ej. 2 en modo receptor', () => ({ ...ejercicios[2](), vRef: 'load' })],
+  ];
+
+  describe.each(casos)('%s', (_, inp) => {
+    const r = computeCircuit(inp()), a = computeInstruments(r), b = computeInstruments(r, { compensado: true });
+
+    it('W1 + W2 = P de fuente tras compensar y el cosfímetro marca r.comp.fpS', () => {
+      cerca(b.W1 + b.W2, r.comp.Ptot);
+      cerca(b.fp, r.comp.fpS);
+      cerca(b.amp.IL, r.comp.IL);
+    });
+
+    it('con el contactor abierto las lecturas por carga son las del desglose', () => {
+      expect(a.banco).toBeNull();
+      r.bkd.forEach((x, k) => { expect(a.cargas[k].I).toBe(x.Ik); expect(a.cargas[k].P).toBe(x.Pk); });
+    });
+
+    it('balance de potencias: Σ P_cargas + pérdidas de línea = P de fuente', () => {
+      cerca(b.cargas.reduce((s, x) => s + x.P, 0) + b.Pline, r.comp.Ptot, 1e-8);
+    });
+
+    it('el banco no consume potencia activa: su corriente está a ±90° de la tensión en bornes', () => {
+      const d = ((b.banco.ang - r.comp.UloadAng) % 360 + 540) % 360 - 180;
+      expect(d).toBeCloseTo(r.compType === 'C' ? 90 : -90, 5);
+    });
+
+    it('I del banco = Q / (√3·U_L en bornes)', () => {
+      cerca(b.banco.I, b.banco.Q / (SQ3 * b.vReceptor.UL), 1e-8);
+    });
+
+    it('los motores mantienen su potencia; las impedancias siguen a U²', () => {
+      const k = r.comp.UloadF / r.UloadF;
+      b.cargas.forEach((x, i) => cerca(x.P, x.kind === 'motor' ? r.bkd[i].Pk : r.bkd[i].Pk * k * k));
+    });
+  });
+
+  it('Ej. 1 (fuente): I_L baja desde 16,51 A y la tensión en el receptor sube', () => {
+    const r = computeCircuit(ejercicios[1]()), a = computeInstruments(r), b = computeInstruments(r, { compensado: true });
+    expect(a.amp.IL).toBeCloseTo(16.512, 2);
+    expect(b.amp.IL).toBeLessThan(a.amp.IL);
+    expect(b.vReceptor.UL).toBeGreaterThan(a.vReceptor.UL);
+    expect(b.cargas[0].I).toBeGreaterThan(a.cargas[0].I);      // impedancia: sube con la tensión
+  });
+
+  it('modo receptor: el receptor sigue en su dato y las cargas no cambian', () => {
+    const r = computeCircuit({ ...ejercicios[1](), vRef: 'load' }), a = computeInstruments(r), b = computeInstruments(r, { compensado: true });
+    expect(b.vReceptor.UL).toBe(a.vReceptor.UL);
+    b.cargas.forEach((x, k) => { cerca(x.I, a.cargas[k].I); cerca(x.ang, a.cargas[k].ang); });
+    expect(b.vFuente.UL).toBeLessThan(a.vFuente.UL);
+  });
+});
