@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Trifásico Equilibrado · Ingeniería Eléctrica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --serif:"Fraunces",Georgia,serif;
+  --mono:"IBM Plex Mono",monospace;
+  /* Paleta natural orgánica — Papel técnico, piedra caliza, bosque, terracota y ocre */
+  --bg:#f3efe6;
+  --bg-card:#faf8f3;
+  --bg-tint:#efeae0;
+  --bg-in:#e6e0d3;
+  --fg:#232824;
+  --fg2:#4e5650;
+  --fg3:#646c65;
+  --bd:#d3cbbd;
+  --bd-sub:#e3ddd0;
+  --ac:#2d6a4f;
+  --ac-bg:#e3f0ea;
+  --ac-dk:#1f4d38;
+  /* Fases naturales armónicas */
+  --pa:#c85a32; /* Fase A: Terracota / Cobre */
+  --pb:#c4821a; /* Fase B: Ocre dorado / Ámbar */
+  --pc:#2e6f95; /* Fase C: Azul pizarra / Río */
+  --pn:#7a756c; /* Neutro: Piedra cálida */
+  /* Variantes de TEXTO de fase (contraste ≥ 4,5:1 sobre papel) */
+  --pa-t:#a64a26;--pb-t:#8a5c0e;--pc-t:#2e6f95;
+  /* Semáforo orgánico */
+  --gn:#2b7a52;--gn-bg:#e3f2ea;
+  --am:#8f5f0e;--am-bg:#faeedb;
+  --rd:#b84233;--rd-bg:#fae6e3;
+  --sh:0 3px 14px rgba(35,40,36,.06),0 1px 3px rgba(35,40,36,.04),0 0 0 1px rgba(35,40,36,.04);
+  --grid-line:rgba(122,117,108,.11);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#151917;
+  --bg-card:#1e2420;
+  --bg-tint:#191e1b;
+  --bg-in:#272f2a;
+  --fg:#e7ece8;
+  --fg2:#a5b0a8;
+  --fg3:#8a958d;
+  --bd:#313b35;
+  --bd-sub:#252d28;
+  --ac:#52b788;
+  --ac-bg:#1b3328;
+  --ac-dk:#74c69d;
+  --pa:#e07a5f;
+  --pb:#e9a94b;
+  --pc:#5aa3c8;
+  --pn:#8a857c;
+  --pa-t:#e07a5f;--pb-t:#e9a94b;--pc-t:#5aa3c8;
+  --gn:#52b788;--gn-bg:#162d22;
+  --am:#e9a94b;--am-bg:#2e2412;
+  --rd:#e06d5f;--rd-bg:#2e1715;
+  --sh:0 4px 16px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.04);
+  --grid-line:rgba(255,255,255,.06);
+  color-scheme:dark;
+}}
+:root[data-theme=dark]{
+  --bg:#151917;
+  --bg-card:#1e2420;
+  --bg-tint:#191e1b;
+  --bg-in:#272f2a;
+  --fg:#e7ece8;
+  --fg2:#a5b0a8;
+  --fg3:#8a958d;
+  --bd:#313b35;
+  --bd-sub:#252d28;
+  --ac:#52b788;
+  --ac-bg:#1b3328;
+  --ac-dk:#74c69d;
+  --pa:#e07a5f;
+  --pb:#e9a94b;
+  --pc:#5aa3c8;
+  --pn:#8a857c;
+  --pa-t:#e07a5f;--pb-t:#e9a94b;--pc-t:#5aa3c8;
+  --gn:#52b788;--gn-bg:#162d22;
+  --am:#e9a94b;--am-bg:#2e2412;
+  --rd:#e06d5f;--rd-bg:#2e1715;
+  --sh:0 4px 16px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.04);
+  --grid-line:rgba(255,255,255,.06);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--sans);font-size:14px;color:var(--fg);background:var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(45,106,79,.05), transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(200,90,50,.04), transparent 45%);
+  padding-left:max(18px,env(safe-area-inset-left,0px));
+  padding-right:max(18px,env(safe-area-inset-right,0px));
+  padding-block:18px;
+  max-width:1460px;margin:0 auto;
+}
+/* Encabezado */
+.hdr{
+  display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;
+  padding:12px 16px;background:var(--bg-card);border:1px solid var(--bd);
+  border-radius:12px;box-shadow:var(--sh);
+}
+.hdr-logo{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--ac),var(--ac-dk));
+  display:grid;place-items:center;flex-shrink:0;
+  box-shadow:0 2px 6px rgba(45,106,79,.28);
+}
+.hdr-logo svg{width:22px;height:22px;fill:none;stroke:#faf8f3;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hdr-title{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+.hdr-sub{font-size:11.5px;color:var(--fg3);font-family:var(--mono);margin-top:2px}
+.hdr-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn-icon{
+  background:var(--bg-tint);border:1px solid var(--bd);border-radius:8px;padding:6px 12px;
+  font-family:var(--sans);font-size:12px;font-weight:600;color:var(--fg2);cursor:pointer;
+  transition:all .15s ease;display:inline-flex;align-items:center;gap:5px;
+}
+.btn-icon:hover{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
+/* Barra de ejercicios reales */
+.demos-bar{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin-bottom:16px;padding:9px 14px;background:var(--bg-card);
+  border:1px solid var(--bd);border-radius:10px;box-shadow:var(--sh);
+}
+.demos-lbl{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ac);display:flex;align-items:center;gap:5px;margin-right:4px;
+}
+.demo-chip{
+  padding:5px 11px;border-radius:7px;border:1px solid var(--bd);
+  background:var(--bg-tint);color:var(--fg2);font-family:var(--sans);
+  font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;
+}
+.demo-chip:hover{border-color:var(--ac);background:var(--ac-bg);color:var(--ac)}
+.demo-chip strong{font-family:var(--mono);font-size:11px;color:var(--ac)}
+
+.layout{display:grid;grid-template-columns:345px 1fr;gap:16px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr}}
+.layout>*,.phasor-grid>*,.bot-row>*{min-width:0} /* evita que un SVG ancho estire la página */
+.card{
+  background:var(--bg-card);border:1px solid var(--bd);border-radius:12px;
+  box-shadow:var(--sh);overflow:hidden;
+}
+.card-hdr{
+  display:flex;align-items:center;gap:8px;padding:11px 15px;
+  border-bottom:1px solid var(--bd-sub);background:var(--bg-tint);
+}
+.card-hdr h2{
+  font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.07em;color:var(--fg2);
+}
+.card-body{padding:15px}
+.badge{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;padding:2px 8px;
+  border-radius:20px;background:var(--bg-in);color:var(--fg2);border:1px solid var(--bd);
+}
+.badge.gn{background:var(--gn-bg);color:var(--gn);border-color:var(--gn)}
+.badge.am{background:var(--am-bg);color:var(--am);border-color:var(--am)}
+.seg-ctrl{
+  display:flex;background:var(--bg-in);border:1px solid var(--bd);
+  border-radius:8px;padding:2px;gap:2px;
+}
+.seg{
+  flex:1;padding:5px 8px;border:none;border-radius:6px;background:none;
+  font-family:var(--sans);font-size:12px;font-weight:600;color:var(--fg2);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.seg.active{background:var(--ac);color:#faf8f3;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.seg-ctrl.sm .seg{padding:4px 6px;font-size:11px}
+.fg{margin-bottom:10px}
+.fl{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
+.fl label{font-size:11.5px;font-weight:600;color:var(--fg2)}
+.fl .u{font-size:10px;color:var(--fg3);font-family:var(--mono)}
+input[type=number],select{
+  width:100%;padding:6px 9px;border:1px solid var(--bd);border-radius:7px;
+  background:var(--bg-in);color:var(--fg);font-family:var(--mono);font-size:13px;
+  outline:none;transition:border-color .15s,background .15s;
+}
+input[type=number]:focus,select:focus{border-color:var(--ac);background:var(--bg-card)}
+.hint{font-size:10.5px;color:var(--fg3);font-family:var(--mono);margin-top:3px;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.alert{
+  font-size:12px;padding:9px 11px;border-radius:8px;margin-bottom:10px;
+  background:var(--am-bg);color:var(--am);border:1px solid var(--am);display:none;
+}
+.alert.vis{display:block}
+.zl-box{border:1px solid var(--am);border-radius:8px;padding:10px 12px;margin-top:8px;background:var(--am-bg)}
+/* Cargas */
+.load-card{border-top:1px solid var(--bd-sub);padding:13px 15px;transition:background .15s}
+.load-card:first-child{border-top:none}
+.load-card:hover{background:rgba(45,106,79,.02)}
+.load-card-hdr{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.load-num{
+  font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--ac);
+  background:var(--ac-bg);border:1px solid var(--ac);border-radius:5px;
+  padding:1px 7px;margin-left:auto;
+}
+.rm-btn{
+  background:none;border:none;color:var(--fg3);cursor:pointer;font-size:13px;
+  padding:2px 6px;border-radius:5px;transition:background .15s,color .15s;line-height:1;
+}
+.rm-btn:hover:not(:disabled){background:var(--rd-bg);color:var(--rd)}
+.rm-btn:disabled{opacity:.3;cursor:not-allowed}
+.add-btn{
+  margin-left:auto;background:var(--bg-card);border:1px solid var(--bd);
+  border-radius:6px;padding:3px 10px;color:var(--ac);font-family:var(--sans);
+  font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;
+}
+.add-btn:hover{background:var(--ac-bg);border-color:var(--ac)}
+.imp-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.lp{font-family:var(--mono);font-size:11.5px;color:var(--ac);margin-top:7px;font-weight:500}
+.lh{font-size:10.5px;color:var(--fg3);font-family:var(--mono);margin-top:2px}
+.btn-solve{
+  width:100%;padding:11px;background:linear-gradient(135deg,var(--ac),var(--ac-dk));
+  color:#faf8f3;border:none;border-radius:9px;font-family:var(--sans);
+  font-size:14px;font-weight:700;cursor:pointer;transition:transform .12s,box-shadow .15s;
+  box-shadow:0 3px 10px rgba(45,106,79,.25);
+}
+.btn-solve:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(45,106,79,.32)}
+.ref-tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+.ref-tbl th{color:var(--fg3);font-weight:600;padding:5px 10px;border-bottom:1px solid var(--bd-sub);text-align:left}
+.ref-tbl td{padding:5px 10px;border-bottom:1px solid var(--bd-sub);color:var(--fg2)}
+.ref-tbl tr:last-child td{border-bottom:none}
+/* Resultados */
+.empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:42px 16px;text-align:center;color:var(--fg3)}
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:650px){.metric-row{grid-template-columns:1fr 1fr}}
+.metric{
+  background:var(--bg-tint);border:1px solid var(--bd-sub);border-radius:9px;
+  padding:11px 13px;position:relative;
+}
+.metric.zl-warn{border-color:var(--am);background:var(--am-bg)}
+.m-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg3);margin-bottom:4px}
+.m-label.am{color:var(--am)}
+.m-val{font-family:var(--mono);font-size:15.5px;font-weight:600;color:var(--fg);line-height:1.2}
+.m-val.ac{color:var(--ac)}
+.m-val.am{color:var(--am)}
+.m-sub{font-family:var(--mono);font-size:10px;color:var(--fg3);margin-top:3px}
+.fp-bar-wrap{margin-top:6px}
+.fp-bar-track{height:5px;background:var(--bd);border-radius:3px;overflow:hidden}
+.fp-bar-fill{height:100%;background:var(--gn);border-radius:3px;transition:width .4s}
+.fp-bar-track{position:relative}
+.fp-bar-ticks{position:relative;height:12px;font-size:9px;color:var(--fg3);font-family:var(--mono);margin-top:2px}
+.fp-bar-ticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.fp-bar-ticks span:first-child{transform:none}
+.fp-bar-ticks span:last-child{transform:translateX(-100%)}
+.fp-bar-ticks .thr{color:var(--fg2);font-weight:600}
+.fp-thr{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--fg2);border-radius:1px}
+.tab-bar{display:flex;gap:4px;margin-bottom:14px;border-bottom:2px solid var(--bd-sub);flex-wrap:wrap}
+.tab{
+  background:none;border:none;padding:8px 14px;font-family:var(--sans);font-size:12.5px;
+  font-weight:600;color:var(--fg3);cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-2px;border-radius:7px 7px 0 0;transition:color .15s,background .15s;
+}
+.tab:hover{color:var(--fg2);background:var(--bg-tint)}
+.tab.active{color:var(--ac);border-bottom-color:var(--ac);background:var(--ac-bg)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.phase-tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px}
+.phase-tbl th{
+  padding:7px 10px;text-align:left;color:var(--fg3);font-size:10px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--bd);
+  background:var(--bg-tint);
+}
+.phase-tbl td{padding:7px 10px;border-bottom:1px solid var(--bd-sub);color:var(--fg2)}
+.phase-tbl .a{color:var(--pa-t);font-weight:600}
+.phase-tbl .b{color:var(--pb-t);font-weight:600}
+.phase-tbl .c{color:var(--pc-t);font-weight:600}
+.phase-tbl tr:last-child td{border-bottom:none}
+.power-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:500px){.power-row{grid-template-columns:1fr 1fr}}
+.canvas-wrap{
+  position:relative;border-radius:10px;overflow:hidden;
+  background:var(--bg-tint);border:1px solid var(--bd);
+}
+.canvas-wrap canvas{display:block;width:100%}
+.phasor-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media(max-width:980px){.phasor-grid{grid-template-columns:1fr}}
+.phasor-legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--fg2);font-family:var(--mono)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{padding:11px 4px;border-bottom:1px solid var(--bd-sub)}.step:last-child{border-bottom:none}
+.step-hdr{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
+.step-n{
+  font-family:var(--mono);font-size:10px;font-weight:700;background:var(--ac-bg);
+  color:var(--ac);border:1px solid var(--ac);border-radius:5px;padding:1px 7px;flex-shrink:0;
+}
+.step-n.am{background:var(--am-bg);color:var(--am);border-color:var(--am)}
+.step-title{font-size:12.5px;font-weight:700;color:var(--fg)}
+.step-body{font-family:var(--mono);font-size:12px;color:var(--fg2);line-height:1.65}
+.step-body .hl{color:var(--ac);font-weight:600}
+.step-body .hlam{color:var(--am);font-weight:600}
+.step-body .sub{color:var(--fg3);font-size:11px}
+.check-list{display:flex;flex-direction:column;gap:7px}
+.ck{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-family:var(--mono)}
+.ck-ic{font-size:14px;flex-shrink:0;line-height:1.3}
+.ck-ok{color:var(--gn)}.ck-er{color:var(--rd)}.ck-na{color:var(--fg3)}
+.fp-result{font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--fg2)}
+.fp-result .hl{color:var(--gn);font-weight:600}
+#bot-section{margin-top:16px;display:flex;flex-direction:column;gap:16px}
+.bot-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.bot-row{grid-template-columns:1fr}}
+.bk-tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px}
+.bk-tbl th{
+  padding:7px 10px;text-align:right;color:var(--fg3);font-size:10px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--bd);
+  background:var(--bg-tint);
+}
+.bk-tbl th:first-child,.bk-tbl td:first-child{text-align:left}
+.bk-tbl td{padding:7px 10px;border-bottom:1px solid var(--bd-sub);color:var(--fg2);text-align:right}
+.bk-tbl tr:last-child td{border-bottom:none}
+.bk-tbl .tot td{font-weight:700;color:var(--fg);border-top:2px solid var(--bd);border-bottom:none;background:var(--bg-tint)}
+.diag-lbl{
+  font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--fg2);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;
+}
+.diag-sub{font-family:var(--mono);font-size:10px;color:var(--fg3);font-weight:400;text-transform:none;letter-spacing:0}
+.diag-box{
+  border:1px solid var(--bd);border-radius:10px;background:var(--bg-tint);
+  padding:6px;overflow-x:auto;
+}
+.diag-scroll-hint{display:none;font-size:10px;color:var(--fg3);font-family:var(--mono);margin:-2px 0 4px}
+@media(max-width:700px){
+  #circuit-diagram svg,#equiv-diagram svg{max-width:none!important;width:auto!important;height:auto!important}
+  .diag-scroll-hint{display:block}
+}
+.wt-ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px;padding:8px 12px;background:var(--bg-tint);border:1px solid var(--bd);border-radius:9px}
+.wt-ctrl input[type=range]{flex:1;min-width:150px;accent-color:var(--ac);cursor:pointer}
+.wt-val{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--fg);min-width:96px}
+.wt-readout{margin-top:12px;overflow-x:auto}
+.wt-readout table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px}
+.wt-readout th,.wt-readout td{padding:5px 9px;border-bottom:1px solid var(--bd-sub);text-align:right;white-space:nowrap}
+.wt-readout th{font-size:10px;color:var(--fg3);font-weight:700;letter-spacing:.04em;background:var(--bg-tint)}
+.wt-readout th:first-child,.wt-readout td:first-child{text-align:left;color:var(--fg2)}
+.wt-readout .a{color:var(--pa-t)}.wt-readout .b{color:var(--pb-t)}.wt-readout .c{color:var(--pc-t)}
+.wt-readout .sum{font-weight:700;color:var(--gn)}
+.wt-readout .cap{font-size:10.5px;color:var(--fg3);margin-top:4px}
+#waveCanvas{touch-action:pan-y;cursor:crosshair}
+/* ── Print modal ─────────────────────────────────────────────────── */
+#print-modal{position:fixed;inset:0;z-index:999;background:rgba(21,25,23,.65);overflow-y:auto;padding:20px 16px;backdrop-filter:blur(3px)}
+.print-wrap{max-width:760px;margin:0 auto;background:#faf8f3;border-radius:12px;overflow:hidden;box-shadow:0 10px 36px rgba(0,0,0,.4)}
+.print-toolbar{display:flex;align-items:center;gap:8px;padding:12px 18px;background:#efeae0;border-bottom:1px solid #d3cbbd;flex-wrap:wrap}
+.print-toolbar .pt-title{font-size:13px;font-weight:700;color:#232824;flex:1}
+.print-toolbar .pt-hint{font-size:11px;color:#7d857e;font-family:monospace}
+.print-toolbar .btn-pt{
+  padding:5px 14px;border-radius:6px;border:1px solid #d3cbbd;background:#faf8f3;
+  font-family:sans-serif;font-size:12px;font-weight:600;color:#4e5650;cursor:pointer;
+}
+.print-toolbar .btn-pt:hover{background:#e6e0d3}
+.print-doc{padding:36px 44px;background:#faf8f3;color:#232824;font-family:sans-serif}
+@media(max-width:600px){.print-doc{padding:20px 18px}}
+.ph1{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#232824}
+.ph2{font-size:12px;color:#7d857e;font-family:monospace;margin-top:2px}
+.phr{border:none;border-top:2px solid #2d6a4f;margin:16px 0}
+.psec{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2d6a4f;margin:16px 0 8px}
+.ptbl{width:100%;border-collapse:collapse;font-family:monospace;font-size:12px;margin-bottom:12px}
+.ptbl .pl{padding:5px 12px 5px 0;color:#4e5650;width:50%}
+.ptbl .pv{padding:5px 0;font-weight:600;color:#232824}
+.ptbl tr.ptot td{font-weight:700;color:#232824;border-top:2px solid #d3cbbd;padding-top:8px}
+.ptbl2{width:100%;border-collapse:collapse;font-family:monospace;font-size:12px;margin-bottom:12px}
+.ptbl2 th{
+  padding:6px 10px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:#7d857e;border-bottom:2px solid #d3cbbd;
+}
+.ptbl2 td{padding:5px 10px;border-bottom:1px solid #e3ddd0;color:#4e5650}
+.ptbl2 tr:last-child td{border-bottom:none}
+.psteps .step{padding:10px 0;border-bottom:1px solid #e3ddd0}
+.psteps .step:last-child{border-bottom:none}
+.psteps .step-hdr{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.psteps .step-n{font-family:monospace;font-size:10px;font-weight:700;background:#e3f0ea;color:#2d6a4f;border-radius:4px;padding:1px 6px}
+.psteps .step-n.am{background:#faeedb;color:#b87314}
+.psteps .step-title{font-size:12px;font-weight:700;color:#232824}
+.psteps .step-body{font-family:monospace;font-size:12px;color:#4e5650;line-height:1.6}
+.psteps .hl{color:#2d6a4f;font-weight:600}
+.psteps .hlam{color:#b87314;font-weight:600}
+.psteps .sub{color:#7d857e;font-size:11px}
+.pfooter{font-size:10px;color:#7d857e;text-align:center;padding-top:8px;border-top:1px solid #e3ddd0;margin-top:16px}
+.btn-clear{
+  width:100%;padding:8px;background:none;color:var(--fg2);border:1px solid var(--bd);
+  border-radius:8px;font-family:var(--sans);font-size:12.5px;font-weight:600;
+  cursor:pointer;transition:all .15s;margin-top:8px;
+}
+.btn-clear:hover{background:var(--rd-bg);color:var(--rd);border-color:var(--rd)}
+@media print{
+  body>*:not(#print-modal){display:none!important}
+  #print-modal{position:static!important;background:none!important;padding:0!important;overflow:visible!important}
+  .print-toolbar{display:none!important}
+  .print-wrap{border-radius:0!important;box-shadow:none!important}
+  .print-doc{padding:16px!important}
+}
+/* ── Presets, motores, semáforo, triángulo ───────────────────────── */
+.preset-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.preset{
+  padding:4px 8px;border:1px solid var(--bd);border-radius:6px;background:var(--bg-card);
+  font-family:var(--mono);font-size:10.5px;color:var(--fg2);cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.preset:hover{border-color:var(--ac)}
+.preset.active{background:var(--ac-bg);border-color:var(--ac);color:var(--ac);font-weight:600}
+.kind-row{display:flex;gap:6px;margin-bottom:8px}
+.motor-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.inline{display:flex;gap:4px}
+.inline input{flex:1;min-width:0}
+.inline select{width:64px;flex-shrink:0;padding:6px 4px}
+.ftag{font-family:var(--mono);font-size:10px;color:var(--fg3);margin-left:3px;font-weight:500}
+.norm-list{display:flex;flex-direction:column}
+.sem{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--bd-sub)}
+.sem:last-child{border-bottom:none}
+.sem-dot{width:11px;height:11px;border-radius:50%;margin-top:4px;flex-shrink:0;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+.sem-dot.ok{background:var(--gn)}.sem-dot.warn{background:var(--am)}.sem-dot.bad{background:var(--rd)}.sem-dot.na{background:var(--fg3)}
+.sem-t{font-size:12.5px;font-weight:600;color:var(--fg)}
+.sem-s{font-family:var(--mono);font-size:11px;color:var(--fg2);margin-top:2px;line-height:1.5}
+.sem-src{font-size:10.5px;color:var(--fg3);margin-top:2px}
+.bk-notes{padding:9px 14px;font-family:var(--mono);font-size:11px;color:var(--fg2);border-top:1px solid var(--bd-sub);line-height:1.7;background:var(--bg-tint)}
+.bk-notes:empty{display:none}
+.tri-wrap{margin-top:16px}
+.scale-note{font-size:10.5px;color:var(--fg3);text-align:center;margin-top:5px;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-logo" title="Laboratorio de Sistemas Trifásicos">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 3v9l6.3 6.3M12 12L5.7 18.3"/>
+    </svg>
+  </div>
+  <div>
+    <div class="hdr-title">Trifásico Equilibrado · banco de ingeniería</div>
+    <div class="hdr-sub">Fraile Mora · Patrón 5 · Cargas Y/Δ, líneas Z_L, motores de inducción y compensación Q_C</div>
+  </div>
+  <div class="hdr-actions">
+    <button class="btn-icon" onclick="clearAll()" title="Limpiar y empezar nuevo ejercicio">↺ Reiniciar</button>
+    <button class="btn-icon" id="btn-export" onclick="showPrintView()" style="display:none">⬡ Informe / PDF</button>
+    <button class="btn-icon" id="themeBtn" onclick="toggleTheme()">Modo oscuro</button>
+  </div>
+</div>
+
+<!-- Barra de ejercicios prácticos reales -->
+<div class="demos-bar">
+  <span class="demos-lbl">✦ Ejercicios reales:</span>
+  <button class="demo-chip" onclick="loadExercise(1)"><strong>Ej. 1</strong> · Taller mixto Y + Δ con línea Z_L (220 V · 60 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(2)"><strong>Ej. 2</strong> · Planta con 2 motores + calefactor y banco Q_C (440 V · 60 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(3)"><strong>Ej. 3</strong> · Clásico Fraile Mora · Y + Δ + Motor (400 V · 50 Hz)</button>
+  <button class="demo-chip" onclick="loadExercise(4)"><strong>Ej. 4</strong> · Carga RLC capacitiva con compensación inductiva</button>
+</div>
+
+<div class="layout">
+<!-- COLUMNA IZQUIERDA: ENTRADA -->
+<aside>
+  <div class="card">
+    <div class="card-hdr"><h2>Fuente trifásica y línea</h2></div>
+    <div class="card-body">
+      <div id="alertBox" class="alert"></div>
+      <div class="fl"><label>Niveles normalizados</label></div>
+      <div class="preset-row" id="preset-row"></div>
+      <div class="fg">
+        <div class="fl"><label>Especificación de tensión</label></div>
+        <div class="seg-ctrl">
+          <button class="seg active" id="vt-line" onclick="setVT('line')">U<sub>L</sub> línea-línea</button>
+          <button class="seg" id="vt-phase" onclick="setVT('phase')">U<sub>f</sub> fase-neutro</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fl"><label id="v-lbl">Tensión U<sub>L</sub></label><span class="u" id="v-unit">V · línea-línea</span></div>
+        <input type="number" id="inp-v" value="220" min="1" step="1" oninput="onSourceChange()">
+        <div class="hint" id="v-hint"></div>
+      </div>
+      <div class="two-col">
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>Frecuencia f</label><span class="u">Hz</span></div>
+          <input type="number" id="inp-f" value="60" min="1" step="1" oninput="markPreset()">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>Secuencia</label></div>
+          <select id="inp-seq"><option value="abc">ABC directa (+)</option><option value="acb">ACB inversa (−)</option></select>
+        </div>
+      </div>
+      <!-- Hilos -->
+      <div style="margin-top:10px">
+        <div class="fl"><label>Conductores del sistema</label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="w-auto" onclick="setWires('auto')">Auto</button>
+          <button class="seg" id="w-3" onclick="setWires('3')">3 hilos</button>
+          <button class="seg" id="w-4" onclick="setWires('4')">4 hilos (con N)</button>
+        </div>
+        <div class="hint" id="w-hint"></div>
+      </div>
+      <!-- Punto de referencia de la tensión dato -->
+      <div style="margin-top:10px" id="vref-block">
+        <div class="fl"><label>Punto donde se conoce la tensión</label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="vref-src" onclick="setVRef('source')">En la fuente (A, B, C)</button>
+          <button class="seg" id="vref-load" onclick="setVRef('load')">En el receptor (A′, B′, C′)</button>
+        </div>
+        <div class="hint" id="vref-hint">La tensión es el dato en los bornes de la fuente; Z_L causa caída.</div>
+      </div>
+      <!-- Impedancia de línea -->
+      <div style="margin-top:10px">
+        <div class="fl"><label>Impedancia de línea Z<sub>L</sub></label></div>
+        <div class="seg-ctrl sm">
+          <button class="seg active" id="zl-off" onclick="setZL(false)">Línea ideal (Z<sub>L</sub>=0)</button>
+          <button class="seg" id="zl-on" onclick="setZL(true)">Con Z<sub>L</sub> (R<sub>L</sub>+jX<sub>L</sub>)</button>
+        </div>
+        <div id="zl-inputs" style="display:none;margin-top:8px" class="zl-box">
+          <div class="two-col">
+            <div class="fg" style="margin-bottom:0">
+              <div class="fl"><label>R<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <input type="number" id="inp-rl" value="0.15" min="0" step="0.01" oninput="updateZLHint()">
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <div class="fl"><label>X<sub>L</sub></label><span class="u">Ω/hilo</span></div>
+              <input type="number" id="inp-xl" value="0.20" min="0" step="0.01" oninput="updateZLHint()">
+            </div>
+          </div>
+          <div class="hint" style="margin-top:6px" id="zl-hint">Z_L en serie en cada conductor de fase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr">
+      <h2>Cargas en paralelo</h2>
+      <span class="badge" id="loads-badge">1 carga</span>
+      <button class="add-btn" onclick="addLoad({kind:'imp',R:24,XL:18,XC:0,conn:'delta'})">+ Z</button>
+      <button class="add-btn" style="margin-left:0" onclick="addLoad({kind:'motor'})">+ Motor</button>
+    </div>
+    <div id="loads-list"></div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Compensación de reactiva (opcional)</h2></div>
+    <div class="card-body">
+      <div class="fg" style="margin-bottom:0">
+        <div class="fl"><label>fp objetivo en bornes de carga</label><span class="u">0–1</span></div>
+        <input type="number" id="inp-fptgt" min="0.01" max="1" step="0.01" placeholder="p.ej. 0.96">
+        <div class="hint">Calcula el banco de condensadores C (Y/Δ) o reactores L</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Criterios normativos</h2></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>fp mínimo</label></div>
+          <input type="number" id="inp-fpmin" value="0.94" min="0.5" max="1" step="0.01">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <div class="fl"><label>ΔU máx</label><span class="u">%</span></div>
+          <input type="number" id="inp-dumax" min="0" max="50" step="0.5" placeholder="auto" oninput="updateLevelHint()">
+        </div>
+      </div>
+      <div class="hint" style="margin-top:6px">fp: Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25).</div>
+      <div class="hint" id="lvl-hint"></div>
+    </div>
+  </div>
+
+  <button class="btn-solve" style="margin-top:12px" onclick="solve()">⚡ Resolver circuito trifásico</button>
+  <button class="btn-clear" onclick="clearAll()">↺ Limpiar todo / nuevo ejercicio</button>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-hdr"><h2>Formulario de referencia (Patrón 5)</h2></div>
+    <div class="card-body" style="padding:0">
+      <table class="ref-tbl">
+        <thead><tr><th>Magnitud</th><th>Relación fundamental</th></tr></thead>
+        <tbody>
+          <tr><td>U<sub>f</sub></td><td>= U<sub>L</sub> / √3</td></tr>
+          <tr><td>Estrella (Y)</td><td>I<sub>L</sub> = I<sub>f</sub> = U<sub>f</sub> / |Z<sub>Y</sub>|</td></tr>
+          <tr><td>Triángulo (Δ)</td><td>I<sub>f</sub> = I<sub>L</sub> / √3 · U<sub>ff</sub> = U<sub>L</sub></td></tr>
+          <tr><td>Conversión Δ→Y</td><td>Z<sub>Y</sub> = Z<sub>Δ</sub> / 3</td></tr>
+          <tr><td>Paralelo</td><td>Y<sub>eq</sub> = Σ (1 / Z<sub>k,Y</sub>)</td></tr>
+          <tr><td>Motor 3~</td><td>P<sub>abs</sub> = P<sub>útil</sub> / η · Z<sub>Y</sub> = U<sub>f</sub>² / S*<sub>f</sub></td></tr>
+          <tr><td>Potencia 3~</td><td>P = √3·U<sub>L</sub>·I<sub>L</sub>·cosφ · Q = √3·U<sub>L</sub>·I<sub>L</sub>·senφ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</aside>
+
+<!-- COLUMNA DERECHA: RESULTADOS Y GRÁFICAS REALISTAS -->
+<div>
+  <div id="empty-state" class="card">
+    <div class="card-body">
+      <div class="empty">
+        <div style="font-size:36px;opacity:.55">⚡</div>
+        <div>Configura la fuente y las cargas o elige un <strong>Ejercicio real</strong> arriba<br>y pulsa <strong>Resolver circuito trifásico</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-section" style="display:none">
+    <div class="card">
+      <div class="card-hdr"><h2>Síntesis de resultados</h2><span class="badge gn" id="res-badge">—</span></div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric">
+            <div class="m-label" id="lbl-uf">U<sub>f</sub> (fase)</div>
+            <div class="m-val" id="mv-uf">—</div>
+            <div class="m-sub" id="ms-uf">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Z<sub>eq</sub> cargas (Y)</div>
+            <div class="m-val" id="mv-z">—</div>
+            <div class="m-sub" id="ms-z">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label" id="lbl-il">I<sub>L</sub></div>
+            <div class="m-val ac" id="mv-il">—</div>
+            <div class="m-sub" id="ms-il">—</div>
+            <div class="m-sub" id="ms-il2" style="display:none;color:var(--am)">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label" id="lbl-fp">fp (cosφ)</div>
+            <div class="m-val" id="mv-fp">—</div>
+            <div class="fp-bar-wrap">
+              <div class="fp-bar-track" style="overflow:visible"><div class="fp-bar-fill" id="fp-bar" style="width:0%"></div><div class="fp-thr" id="fp-thr" style="left:94%" title="Umbral de penalización"></div></div>
+              <div class="fp-bar-ticks"><span style="left:0">0</span><span style="left:50%">0.5</span><span class="thr" id="fp-thr-lbl" style="left:94%">0.94</span><span id="fp-one" style="left:100%">1</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="metric-row" id="zl-metric-row" style="display:none">
+          <div class="metric zl-warn">
+            <div class="m-label am">ΔU en la carga</div>
+            <div class="m-val am" id="mv-udrop">—</div>
+            <div class="m-sub" id="ms-udrop">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">U<sub>carga</sub> (fase)</div>
+            <div class="m-val ac" id="mv-uload">—</div>
+            <div class="m-sub" id="ms-uload">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">P<sub>pérdidas</sub> línea</div>
+            <div class="m-val" id="mv-pline">—</div>
+            <div class="m-sub" id="ms-pline">—</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">fp<sub>carga</sub></div>
+            <div class="m-val" id="mv-fpload">—</div>
+            <div class="m-sub" id="ms-fpload">—</div>
+          </div>
+        </div>
+
+        <div class="tab-bar">
+          <button class="tab active" onclick="showTab('diagram',this)">Esquema eléctrico realista</button>
+          <button class="tab" onclick="showTab('phasor',this)">Fasorial + Osciloscopio 3~</button>
+          <button class="tab" onclick="showTab('table',this)">Tabla de fases y Triángulo S-P-Q</button>
+          <button class="tab" onclick="showTab('steps',this)">Desarrollo paso a paso</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-diagram">
+          <div class="diag-lbl">
+            <span>Planta y topología del sistema trifásico</span>
+            <span class="diag-sub">Generador 3~, embarrado, elementos R-L-C por rama y motores M 3~</span>
+          </div>
+          <div class="diag-scroll-hint">← desliza para ver el esquema completo →</div>
+          <div class="diag-box" id="circuit-diagram"></div>
+          <div class="diag-lbl" style="margin-top:16px">
+            <span>Circuito monofásico equivalente (Fase A — Neutro)</span>
+            <span class="diag-sub">Reducción al equivalente estrella (Patrón 5 · Fraile Mora)</span>
+          </div>
+          <div class="diag-box" id="equiv-diagram"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-phasor">
+          <div class="wt-ctrl">
+            <button class="btn-icon" id="wt-play" onclick="toggleWtAnim()">▶ Animar</button>
+            <input type="range" id="wt-range" min="0" max="360" step="1" value="0" oninput="stopWtAnim();setWt(+this.value)" aria-label="Ángulo ωt">
+            <span class="wt-val" id="wt-val">ωt = 0°</span>
+            <button class="btn-icon" onclick="resetWt()" title="Volver a los fasores estáticos (t = 0)">↺ t = 0</button>
+          </div>
+          <div class="phasor-grid">
+            <div>
+              <div class="diag-lbl">
+                <span>Diagrama fasorial polar (transportador)</span>
+                <span class="diag-sub">Los fasores giran con ωt; su proyección vertical es el valor instantáneo</span>
+              </div>
+              <div class="canvas-wrap"><canvas id="phasorCanvas"></canvas></div>
+            </div>
+            <div>
+              <div class="diag-lbl">
+                <span>Osciloscopio trifásico instantáneo u(ωt) e i(ωt)</span>
+                <span class="diag-sub" id="wave-hover-lbl">Pasa el cursor (o desliza) para fijar ωt</span>
+              </div>
+              <div class="canvas-wrap"><canvas id="waveCanvas"></canvas></div>
+            </div>
+          </div>
+          <div class="phasor-legend">
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pa)"></div>Fase A (Terracota)</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pb)"></div>Fase B (Ocre)</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pc)"></div>Fase C (Pizarra)</div>
+            <div class="leg-item">— Tensión u(ωt) / Ū &nbsp;&nbsp;--- Corriente i(ωt) / Ī</div>
+          </div>
+          <div class="scale-note">Tensiones y corrientes a escalas independientes: compara ángulos, no longitudes. La altura de cada punta en el fasorial es proporcional al valor instantáneo en el osciloscopio.</div>
+          <div class="wt-readout" id="wt-readout"></div>
+          <div id="phasor-note" style="text-align:center;font-size:11px;color:var(--fg2);margin-top:6px;font-family:var(--mono)"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-table">
+          <div style="overflow-x:auto"><table class="phase-tbl">
+            <thead><tr><th>Fase</th><th id="tbl-ufn-hdr">Ū fase-neutro (V)</th><th>Ū línea-línea (V)</th><th>Ī línea (A)</th></tr></thead>
+            <tbody id="phase-tbody"></tbody>
+          </table></div>
+          <div id="table-load-note" style="display:none;font-size:11px;color:var(--am);font-family:var(--mono);margin-top:8px;padding:7px 11px;background:var(--am-bg);border-radius:7px;border:1px solid var(--am)"></div>
+          <div class="power-row">
+            <div class="metric"><div class="m-label">P activa total</div><div class="m-val" id="mv-p">—</div><div class="m-sub" id="ms-p">—</div></div>
+            <div class="metric"><div class="m-label">Q reactiva total</div><div class="m-val" id="mv-q">—</div><div class="m-sub" id="ms-q">—</div></div>
+            <div class="metric"><div class="m-label">S aparente total</div><div class="m-val" id="mv-s">—</div><div class="m-sub" id="ms-s">—</div></div>
+            <div class="metric"><div class="m-label">Desfase φ eq.</div><div class="m-val" id="mv-phi">—</div><div class="m-sub" id="ms-phi">—</div></div>
+          </div>
+          <div class="tri-wrap">
+            <div class="diag-lbl">
+              <span>Triángulo vectorial de potencias (P, Q, S)</span>
+              <span class="diag-sub">Con superposición del efecto de compensación reactiva</span>
+            </div>
+            <div class="diag-box" id="power-triangle"></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tab-steps">
+          <div class="steps" id="steps-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="bot-section" style="display:none">
+  <div id="breakdown-row">
+    <div class="card">
+      <div class="card-hdr"><h2>Desglose detallado por carga en el punto de operación</h2></div>
+      <div class="card-body" style="padding:0;overflow-x:auto">
+        <table class="bk-tbl">
+          <thead><tr><th>Carga</th><th>Tipo</th><th>|Z| (Ω)</th><th>I_L (A)</th><th>I_f (A)</th><th>P (W)</th><th>Q (var)</th><th>S (VA)</th><th>fp</th></tr></thead>
+          <tbody id="breakdown-tbody"></tbody>
+        </table>
+      </div>
+      <div class="bk-notes" id="bk-notes"></div>
+    </div>
+  </div>
+  <div class="bot-row">
+    <div class="card">
+      <div class="card-hdr"><h2>Comprobación de leyes (Boucherot / Kirchhoff)</h2><span class="badge" id="check-badge">—</span></div>
+      <div class="card-body"><div class="check-list" id="check-list"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><h2>Banco de compensación de factor de potencia</h2></div>
+      <div class="card-body" id="fp-corr-body"><div style="font-size:12px;color:var(--fg3)">Introduce un fp objetivo arriba.</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><h2>Diagnóstico de cumplimiento normativo (ARCONEL / ARCERNNR)</h2><span class="badge" id="norm-badge">—</span></div>
+    <div class="card-body"><div class="norm-list" id="norm-list"></div></div>
+  </div>
+</div>
+
+<!-- Print Modal -->
+<div id="print-modal" style="display:none" role="dialog" aria-modal="true" aria-label="Vista previa para imprimir">
+  <div class="print-wrap">
+    <div class="print-toolbar">
+      <span class="pt-title">Informe técnico de cálculo</span>
+      <span class="pt-hint">Usa Ctrl+P (Cmd+P) para imprimir o guardar como PDF</span>
+      <button class="btn-pt" onclick="window.print()">Imprimir / PDF</button>
+      <button class="btn-pt" onclick="closePrint()">Cerrar</button>
+    </div>
+    <div class="print-doc" id="print-content"></div>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════
+// 1. UTILIDADES MATEMÁTICAS Y COMPLEJAS
+// ═════════════════════════════════════════════════════════════════════
+const π=Math.PI,sq=x=>x*x,r2d=r=>r*180/π,d2r=d=>d*π/180,SQ3=Math.sqrt(3);
+const bad=n=>n===null||n===undefined||isNaN(n);
+const noNegZero=t=>/^-0(\.0*)?$/.test(t)?t.slice(1):t;
+const fN=(n,d=3)=>bad(n)?'—':noNegZero(Number(n).toFixed(d));
+const fS=(n,s=4)=>{if(bad(n))return'—';if(Math.abs(n)<1e-9)return'0';const d=Math.max(0,s-1-Math.floor(Math.log10(Math.abs(n))));return Number(n).toFixed(Math.min(d,6));};
+const fA=a=>(a>=0?'+':'−')+fN(Math.abs(a),2)+'°';
+const pStr=(m,a)=>`${fN(m,3)} ∠${fA(a)}`;
+const sgn=(n,d=2)=>(n>=0?'+':'−')+fN(Math.abs(n),d);
+const fPow=(n,u='')=>{if(bad(n))return'—';const a=Math.abs(n);return a>=1e6?`${fS(n/1e6)} M${u}`:a>=1e3?`${fS(n/1e3)} k${u}`:`${fS(n)} ${u}`;};
+const fpTag=φ=>φ>1e-9?'ind.':φ<-1e-9?'cap.':'';
+// Aritmética compleja
+const Cx=(re,im=0)=>({re,im});
+const cadd=(...z)=>z.reduce((s,v)=>Cx(s.re+v.re,s.im+v.im),Cx(0));
+const csub=(a,b)=>Cx(a.re-b.re,a.im-b.im);
+const cmul=(a,b)=>Cx(a.re*b.re-a.im*b.im,a.re*b.im+a.im*b.re);
+const cdiv=(a,b)=>{const d=b.re*b.re+b.im*b.im;return Cx((a.re*b.re+a.im*b.im)/d,(a.im*b.re-a.re*b.im)/d);};
+const cconj=a=>Cx(a.re,-a.im);
+const cscale=(a,k)=>Cx(a.re*k,a.im*k);
+const cabs=z=>Math.hypot(z.re,z.im),cang=z=>r2d(Math.atan2(z.im,z.re));
+const cpol=(m,a)=>Cx(m*Math.cos(d2r(a)),m*Math.sin(d2r(a)));
+const cstr=(z,d=3)=>`${fN(cabs(z),d)} ∠${fA(cang(z))}`;
+const rstr=(z,d=3)=>`${fN(z.re,d)}${z.im>=0?'+':'−'}j${fN(Math.abs(z.im),d)}`;
+
+// ═════════════════════════════════════════════════════════════════════
+// 2. DATOS DE REFERENCIA
+// ═════════════════════════════════════════════════════════════════════
+const HP_W=745.7;
+const PRESETS=[
+  {UL:220,f:60,lbl:'220 V · 60 Hz'},{UL:208,f:60,lbl:'208 V · 60 Hz'},
+  {UL:440,f:60,lbl:'440 V · 60 Hz'},{UL:480,f:60,lbl:'480 V · 60 Hz'},
+  {UL:13800,f:60,lbl:'13,8 kV · 60 Hz'},{UL:400,f:50,lbl:'400 V · 50 Hz (libro)'}];
+const KVAR_STEPS=[0.5,1,1.5,2,2.5,3,4,5,6,7.5,10,12.5,15,20,25,30,40,50,60,75,100,125,150,200,250,300,400,500,600,750,1000,1200,1500,2000];
+function voltLevel(UL){
+  return UL<=600?{name:'bajo voltaje',lim:8}:UL<=40000?{name:'medio voltaje',lim:6}:{name:'alto voltaje',lim:5};
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 3. CÁLCULO PURO (sin DOM) — computeCircuit(inp) → resultado
+// ═════════════════════════════════════════════════════════════════════
+function motorData(l){
+  const Pout=l.Pout*(l.Punit==='HP'?HP_W:1000);
+  const Pin=Pout/(l.eta/100);
+  const Q=Pin*Math.tan(Math.acos(l.cosphi));
+  return{Pout,Pin,Q,S:Math.hypot(Pin,Q),Inom:Pin/(SQ3*l.Unom*l.cosphi)};
+}
+function solveNode(Uf,ZL,Zimp,Sph,Yext){
+  const Us=Cx(Uf);
+  let Yp=Yext;for(const Z of Zimp)Yp=cadd(Yp,cdiv(Cx(1),Z));
+  let H,Zth;
+  if(cabs(Yp)<1e-15){H=Cx(1);Zth=ZL;}
+  else{const Zp=cdiv(Cx(1),Yp),den=cadd(ZL,Zp);H=cdiv(Zp,den);Zth=cdiv(cmul(ZL,Zp),den);}
+  const Ipq=U=>Sph.reduce((s,S)=>cadd(s,cconj(cdiv(S,U))),Cx(0));
+  let U=cmul(Us,H),it=0,ok=true;
+  if(Sph.length&&cabs(ZL)>0){
+    ok=false;
+    for(it=1;it<=500;it++){
+      const Un=csub(cmul(Us,H),cmul(Zth,Ipq(U)));
+      if(!isFinite(Un.re)||!isFinite(Un.im)||cabs(Un)<0.05*Uf)break;
+      const d=cabs(csub(Un,U));U=Un;
+      if(d<1e-11*Uf){ok=true;break;}
+    }
+  }
+  return{U,it,ok};
+}
+function nodeCurrent(U,Zimp,Sph,Yext){
+  let I=cmul(U,Yext);
+  for(const Z of Zimp)I=cadd(I,cdiv(U,Z));
+  for(const S of Sph)I=cadd(I,cconj(cdiv(S,U)));
+  return I;
+}
+
+function computeCircuit(inp){
+  const{UL,f,seq,loads,fpTgt,wiresSel,lim}=inp;
+  const vRef=inp.vRef||'source';
+  const recMode=vRef==='load'&&!!inp.zLineEnabled; // modo receptor activo solo con Z_L
+  const Uf=UL/SQ3,ω=2*π*f,dir=seq==='abc'?1:-1;
+  const zLineEnabled=!!inp.zLineEnabled;
+  const ZLc=zLineEnabled?Cx(inp.ZL.R,inp.ZL.X):Cx(0);
+  const ZL={R:ZLc.re,X:ZLc.im},ZLM=cabs(ZLc);
+  const tag=(l,k)=>(l.kind==='motor'?'M':'Z')+(k+1);
+
+  const items=loads.map((l,k)=>{
+    const it={...l,k:k+1,tag:tag(l,k)};
+    if(l.kind==='motor'){it.m=motorData(l);it.Sph=cscale(Cx(it.m.Pin,it.m.Q),1/3);}
+    else{const Z=Cx(l.R,l.XL-l.XC);it.ZY=l.conn==='delta'?cscale(Z,1/3):Z;}
+    return it;
+  });
+  for(const it of items)if(it.kind!=='motor'&&cabs(it.ZY)<1e-9)return{error:`${it.tag}: |Z| = 0 — cortocircuito.`};
+  const imp=items.filter(i=>i.kind!=='motor'),mot=items.filter(i=>i.kind==='motor');
+  const Zimp=imp.map(i=>i.ZY),Sph=mot.map(i=>i.Sph);
+
+  let UloadC,UloadF,UloadAng,UloadL,motorIter=0,IAc,delta=0,Uf_src=Uf,UL_src=UL;
+
+  if(recMode){
+    // === MODO RECEPTOR — cálculo directo hacia atrás ===
+    const UprN=Cx(Uf); // Ū_A′N = Uf∠0° (dato en bornes de carga)
+    mot.forEach(i=>{i.ZY=cdiv(Cx(Uf*Uf),cconj(i.Sph));}); // Z_M desde U en bornes
+    // Ī_A = Σ (Ū_A′N / Z_k,Y)
+    IAc=items.reduce((s,i)=>cadd(s,cdiv(UprN,i.ZY)),Cx(0));
+    // Ū_AN = Ū_A′N + Ī_A · Z_L
+    const UAN_rec=cadd(UprN,cmul(IAc,ZLc));
+    delta=cang(UAN_rec);Uf_src=cabs(UAN_rec);UL_src=Uf_src*SQ3;
+    UloadC=UprN;UloadF=Uf;UloadAng=0;UloadL=UL;
+  } else {
+    // === MODO FUENTE ===
+    const sol=solveNode(Uf,ZLc,Zimp,Sph,Cx(0));
+    if(!sol.ok)return{error:'No converge: la línea no puede alimentar la potencia de los motores (colapso de tensión). Reduce Z_L o la potencia.'};
+    motorIter=sol.it;
+    UloadC=sol.U;UloadF=cabs(UloadC);UloadAng=cang(UloadC);UloadL=UloadF*SQ3;
+    mot.forEach(i=>{i.ZY=cdiv(Cx(UloadF*UloadF),cconj(i.Sph));});
+    Uf_src=Uf;UL_src=UL;
+  }
+
+  const Yk=items.map(i=>cdiv(Cx(1),i.ZY));
+  const Yeq=cadd(...Yk),ZeqC=cdiv(Cx(1),Yeq);
+  const Zeq={R:ZeqC.re,X:ZeqC.im},Zm=cabs(ZeqC);
+  const ZtotC=cadd(ZLc,ZeqC),Ztot={R:ZtotC.re,X:ZtotC.im},ZtotM=cabs(ZtotC);
+  if(ZtotM<1e-9)return{error:'Impedancia total nula — cortocircuito.'};
+
+  if(!recMode) IAc=cdiv(Cx(Uf),ZtotC);
+  const IL=cabs(IAc);
+
+  // Potencia compleja desde la fuente (referencia = Ū_AN)
+  const UAN_ref=recMode?cadd(UloadC,cmul(IAc,ZLc)):Cx(Uf);
+  const S3c=cscale(cmul(UAN_ref,cconj(IAc)),3);
+  const P3=S3c.re,Q3=S3c.im,S3=cabs(S3c);
+  const φ=Math.atan2(Q3,P3),φd=r2d(φ),fp=P3/S3;
+  const UA=delta,UB=delta+dir*(-120),UC=delta+dir*120;
+  const IA=cang(IAc),IB=IA+dir*(-120),IC=IA+dir*120;
+  const dropC=cmul(IAc,ZLc),UlineDropF=cabs(dropC);
+  const dUpct=recMode?0:(UloadL-UL)/UL*100;
+  const φLoad=Math.atan2(Zeq.X,Zeq.R),fpLoad=Math.cos(φLoad);
+
+  const Pload=3*IL*IL*Zeq.R,Qload=3*IL*IL*Zeq.X,Pline=3*IL*IL*ZL.R,Qline=3*IL*IL*ZL.X;
+
+  const bkd=items.map((i,idx)=>{
+    const Ikc=cdiv(UloadC,i.ZY),Ik=cabs(Ikc),IkAng=cang(Ikc);
+    const Sk=cscale(cmul(UloadC,cconj(Ikc)),3),isD=i.conn==='delta';
+    const ZoC=isD?cscale(i.ZY,3):i.ZY;
+    return{k:i.k,tag:i.tag,kind:i.kind,conn:i.conn,src:loads[idx],ZY:i.ZY,Y:Yk[idx],
+      ZyMag:cabs(i.ZY),ZyPhi:cang(i.ZY),ZoMag:cabs(ZoC),ZoPhi:cang(ZoC),
+      Ik,IkAng,IkPhase:isD?Ik/SQ3:Ik,IkPhaseAng:isD?IkAng+dir*30:IkAng,
+      Pk:Sk.re,Qk:Sk.im,Sk:cabs(Sk),fpk:Sk.re/cabs(Sk),m:i.m||null,
+      dUmot:i.kind==='motor'?(UloadL-i.Unom)/i.Unom*100:null};
+  });
+
+  let compType=null,QC=NaN,CY=NaN,CD=NaN,QLr=NaN,LY=NaN,LD=NaN,Qneed0=NaN,Qnom=NaN,kvarStep=NaN,UcapF=UloadF,comp=null,compIter=0;
+  if(!bad(fpTgt)&&fpTgt>0&&fpTgt<=1&&fpTgt>fpLoad+1e-9&&Pload>0){
+    const φ2=Math.sign(φLoad)*Math.acos(fpTgt),t2=Math.tan(φ2);
+    Qneed0=Pload*(Math.tan(φLoad)-t2);
+    let B=Qneed0/(3*UloadF*UloadF),s2=null;
+    if(recMode){
+      compIter=1;s2={ok:true,U:UloadC}; // tensión en bornes fija → B directo, sin iteración
+    } else {
+      for(compIter=1;compIter<=60;compIter++){
+        s2=solveNode(Uf,ZLc,Zimp,Sph,Cx(0,B));
+        if(!s2.ok)break;
+        const U2=cabs(s2.U);let Pl=0,Ql=0;
+        Zimp.forEach(Z=>{const S=cmul(s2.U,cconj(cdiv(s2.U,Z)));Pl+=3*S.re;Ql+=3*S.im;});
+        Sph.forEach(S=>{Pl+=3*S.re;Ql+=3*S.im;});
+        const Bn=(Ql-Pl*t2)/(3*U2*U2),d=Math.abs(Bn-B);B=Bn;
+        if(d<=1e-12*Math.abs(B))break;
+      }
+    }
+    if(s2&&s2.ok){
+      let U2,I2,UAN2;
+      if(recMode){
+        U2=UloadC;I2=cadd(IAc,cmul(UloadC,Cx(0,B)));UAN2=cadd(U2,cmul(I2,ZLc));
+      } else {
+        s2=solveNode(Uf,ZLc,Zimp,Sph,Cx(0,B));
+        U2=s2.U;I2=nodeCurrent(U2,Zimp,Sph,Cx(0,B));UAN2=Cx(Uf);
+      }
+      const U2m=cabs(U2),IL2=cabs(I2);
+      const Ssrc=cscale(cmul(UAN2,cconj(I2)),3),Sld=cscale(cmul(U2,cconj(I2)),3);
+      comp={IL:IL2,IAang:cang(I2),fpS:Ssrc.re/cabs(Ssrc),φS:Math.atan2(Ssrc.im,Ssrc.re),
+        fpL:Sld.re/cabs(Sld),φL:Math.atan2(Sld.im,Sld.re),UloadF:U2m,UloadL:U2m*SQ3,
+        Pline:3*IL2*IL2*ZL.R,Ptot:Ssrc.re,Qtot:Ssrc.im,Stot:cabs(Ssrc),
+        dUpct:recMode?0:(U2m*SQ3-UL)/UL*100};
+      UcapF=U2m;
+      const Qbank=3*U2m*U2m*B;
+      if(B>0){
+        compType='C';QC=Qbank;CY=B/ω;CD=CY/3;
+        Qnom=3*(recMode?Uf_src:Uf)*(recMode?Uf_src:Uf)*B;
+        kvarStep=KVAR_STEPS.find(s=>s*1000>=Qnom*(1-1e-9))??NaN;
+      }else{compType='L';QLr=-Qbank;LY=-1/(ω*B);LD=3*LY;}
+    }
+  }
+
+  const wiresAuto=items.some(i=>i.kind!=='motor'&&i.conn==='star')?4:3;
+  const wires=wiresSel==='auto'?wiresAuto:+wiresSel;
+  const level=voltLevel(UL);
+  const L={fpMin:bad(lim?.fpMin)?0.94:lim.fpMin,dUmax:bad(lim?.dUmax)?level.lim:lim.dUmax};
+
+  return{UL,Uf,f,ω,seq,dir,voltageType:inp.voltageType,loads,zLineEnabled,vRef,recMode,
+    Zeq,ZeqC,Zm,ZL,ZLc,ZLM,Ztot,ZtotC,ZtotM,Yk,Yeq,
+    φ,φd,fp,φLoad,fpLoad,IL,IAc,
+    UloadC,UloadF,UloadL,UloadAng,UatLoad:UloadF,UlineDropF,dropC,dUpct,
+    UA,UB,UC,IA,IB,IC,P3,Q3,S3,Pload,Qload,Pline,Qline,
+    hasMotor:mot.length>0,motorIter,Uf_src,UL_src,delta,
+    fpTgt,compType,QC,CY,CD,QLr,LY,LD,Qneed0,Qnom,kvarStep,UcapF,comp,compIter,
+    wires,wiresAuto,wiresSel,level,lim:L,bkd};
+}
+
+function computeChecks(r){
+  const rel=1e-4,near=(a,b,ref)=>Math.abs(a-b)<=rel*Math.max(Math.abs(ref),1e-9);
+  const list=[];
+  list.push({ok:near(r.UL,r.Uf*SQ3,r.UL),txt:`U_L = √3·U_f: ${fN(r.UL,3)} ≈ ${fN(r.Uf*SQ3,3)} V`});
+  const Spq=Math.hypot(r.P3,r.Q3);
+  list.push({ok:near(r.S3,Spq,r.S3),txt:`S = √(P²+Q²): ${fPow(r.S3,'VA')} ≈ ${fPow(Spq,'VA')}`});
+  const Pf=3*r.Uf*r.IL*Math.cos(r.φ),Qf=3*r.Uf*r.IL*Math.sin(r.φ);
+  const Pq=r.bkd.reduce((s,b)=>s+b.Pk,0)+r.Pline,Qq=r.bkd.reduce((s,b)=>s+b.Qk,0)+r.Qline;
+  const lin=r.zLineEnabled?' + línea':'';
+  list.push({ok:near(Pq,Pf,r.S3),txt:`Boucherot P: ΣP_k${lin} = ${fPow(Pq,'W')} ≈ 3·U_f·I_L·cosφ = ${fPow(Pf,'W')}`});
+  list.push({ok:near(Qq,Qf,r.S3),txt:`Boucherot Q: ΣQ_k${lin} = ${fPow(Qq,'var')} ≈ 3·U_f·I_L·senφ = ${fPow(Qf,'var')}`});
+  if(r.zLineEnabled){
+    const lhs=cadd(cmul(cpol(r.IL,r.IA),r.ZLc),r.UloadC);
+    const UAN_exp=cpol(r.Uf_src,r.UA);
+    const err=cabs(csub(lhs,UAN_exp));
+    list.push({ok:err<=rel*r.Uf_src,txt:`LKT: Ī_A·Z_L + Ū_carga = ${cstr(lhs)} V ≈ Ū_AN = ${pStr(r.Uf_src,r.UA)} V`});
+  }
+  if(r.bkd.length>1){
+    const sum=cadd(...r.bkd.map(b=>cpol(b.Ik,b.IkAng))),err=cabs(csub(sum,cpol(r.IL,r.IA)));
+    list.push({ok:err<=rel*r.IL,txt:`LKC: Σ Ī_A,k = ${cstr(sum)} A ≈ Ī_A = ${pStr(r.IL,r.IA)} A`});
+  }
+  const In=cabs(cadd(cpol(r.IL,r.IA),cpol(r.IL,r.IB),cpol(r.IL,r.IC)));
+  const inTxt=In<1e-9*r.IL?'0':In.toExponential(2);
+  list.push({ok:In<=rel*r.IL,txt:r.wires===4
+    ?`I_N = |Ī_A + Ī_B + Ī_C| = ${inTxt} A ≈ 0 (neutro sin corriente)`
+    :`|Ī_A + Ī_B + Ī_C| = ${inTxt} A ≈ 0 (3 hilos: LKC sin neutro)`});
+  return list;
+}
+
+function normItems(r){
+  const items=[],okFp=x=>x>=r.lim.fpMin-1e-9;
+  let sub=`fp en la fuente (punto de medición) = ${fN(r.fp,4)} ${fpTag(r.φ)} · umbral ${fN(r.lim.fpMin,2)}`;
+  if(r.comp)sub+=` · tras compensar: ${fN(r.comp.fpS,4)} ${fpTag(r.comp.φS)} ${okFp(r.comp.fpS)?'✓':'✗'}`;
+  items.push({s:okFp(r.fp)?'ok':(r.comp&&okFp(r.comp.fpS)?'warn':'bad'),
+    t:okFp(r.fp)?'Factor de potencia: cumple':(r.comp&&okFp(r.comp.fpS)?'Factor de potencia: cumple solo con la compensación propuesta':'Factor de potencia: bajo el umbral de penalización'),
+    sub,src:'Pliego Tarifario SPEE 2026 (Res. ARCONEL-029/25). Verifica el umbral vigente al usar la herramienta.'});
+  if(r.zLineEnabled){
+    const ok=x=>Math.abs(x)<=r.lim.dUmax+1e-9;
+    let s=`U_carga = ${fS(r.UloadL)} V → ${sgn(r.dUpct)} % respecto a U_n = ${fS(r.UL)} V · límite ±${fN(r.lim.dUmax,1)} % (${r.level.name})`;
+    if(r.comp)s+=` · tras compensar: ${sgn(r.comp.dUpct)} % ${ok(r.comp.dUpct)?'✓':'✗'}`;
+    items.push({s:ok(r.dUpct)?'ok':'bad',t:ok(r.dUpct)?'Variación de tensión en la carga: dentro del límite':'Variación de tensión en la carga: fuera del límite',
+      sub:s,src:'Regulación ARCERNNR-002/20, Tabla 1 (BV 8 %, MV 6 %, AV 5 %). El límite es editable.'});
+  }else{
+    items.push({s:'na',t:'Variación de tensión: no aplica',sub:'Sin Z_L la carga recibe la tensión de la fuente (0 %).',src:''});
+  }
+  r.bkd.filter(b=>b.kind==='motor').forEach(b=>{
+    const a=Math.abs(b.dUmot);
+    items.push({s:a<=5?'ok':a<=10?'warn':'bad',t:`${b.tag}: tensión en bornes frente a la placa`,
+      sub:`${fS(r.UloadL)} V frente a U_n = ${fS(b.src.Unom)} V → ${sgn(b.dUmot)} %`,
+      src:'Referencia orientativa de diseño: ±10 % de U_n en motores. Fuera de ese rango el modelo de potencia constante deja de ser fiable.'});
+  });
+  return items;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 4. ESTADO E INTERFAZ DE ENTRADA
+// ═════════════════════════════════════════════════════════════════════
+const $=id=>document.getElementById(id);
+function textCol(c){const m={[getCSS('--pa')]:'--pa-t',[getCSS('--pb')]:'--pb-t',[getCSS('--pc')]:'--pc-t'};return m[c]?getCSS(m[c]):c;}
+function getCSS(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+let voltageType='line',zLineEnabled=false,wiresSel='auto',vRef='source',loads=[],loadId=0,lastResult=null,theme=null,waveHoverDeg=null;
+
+const prefersDark=()=>!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+const effTheme=()=>theme||(prefersDark()?'dark':'light');
+function syncThemeBtn(){$('themeBtn').textContent=effTheme()==='dark'?'☀ Modo claro':'☾ Modo oscuro';}
+function toggleTheme(){
+  theme=effTheme()==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',theme);
+  syncThemeBtn();
+  if(lastResult){drawPhasors(lastResult);drawWaveforms(lastResult);renderDiagrams(lastResult);renderTriangle(lastResult);}
+}
+
+function renderPresets(){
+  $('preset-row').innerHTML=PRESETS.map((p,i)=>`<button class="preset" id="pr-${i}" onclick="applyPreset(${i})">${p.lbl}</button>`).join('');
+}
+function applyPreset(i){
+  const p=PRESETS[i];
+  setVT('line');$('inp-v').value=p.UL;$('inp-f').value=p.f;
+  onSourceChange();
+}
+function currentUL(){
+  const v=parseFloat($('inp-v').value);if(!v||v<=0)return NaN;
+  return voltageType==='line'?v:v*SQ3;
+}
+function markPreset(){
+  const UL=currentUL(),f=parseFloat($('inp-f').value);
+  PRESETS.forEach((p,i)=>$(`pr-${i}`).classList.toggle('active',Math.abs(p.UL-UL)<1e-6&&p.f===f));
+}
+function onSourceChange(){updateVHint();markPreset();updateLevelHint();}
+
+function setVT(t){
+  voltageType=t;
+  $('vt-line').classList.toggle('active',t==='line');
+  $('vt-phase').classList.toggle('active',t==='phase');
+  $('v-lbl').innerHTML=t==='line'?'Tensión U<sub>L</sub>':'Tensión U<sub>f</sub>';
+  $('v-unit').textContent=t==='line'?'V · línea-línea':'V · fase-neutro';
+  onSourceChange();
+}
+function updateVHint(){
+  const v=parseFloat($('inp-v').value),h=$('v-hint');
+  if(!v||v<=0){h.textContent='';return;}
+  h.textContent=voltageType==='line'
+    ?`≡ U_f = ${v}/√3 = ${fN(v/SQ3,2)} V por fase`
+    :`≡ U_L = ${v}·√3 = ${fN(v*SQ3,2)} V línea`;
+}
+function updateLevelHint(){
+  const UL=currentUL(),h=$('lvl-hint');
+  const man=parseFloat($('inp-dumax').value);
+  if(bad(UL)){h.textContent='ΔU: Regulación ARCERNNR-002/20 (BV 8 % · MV 6 % · AV 5 %).';return;}
+  const lv=voltLevel(UL);
+  h.textContent=bad(man)
+    ?`ΔU auto: ${lv.name} → ±${lv.lim} % (ARCERNNR-002/20, Tabla 1).`
+    :`ΔU manual: ±${man} % (auto sería ±${lv.lim} %, ${lv.name}).`;
+}
+
+function setWires(w){
+  wiresSel=w;
+  ['auto','3','4'].forEach(k=>$(`w-${k}`).classList.toggle('active',k===w));
+  updateWiresHint();
+}
+function autoWires(){return loads.some(l=>l.kind!=='motor'&&l.conn==='star')?4:3;}
+function updateWiresHint(){
+  const a=autoWires(),w=wiresSel==='auto'?a:+wiresSel;
+  $('w-hint').textContent=(wiresSel==='auto'?`Auto → ${a} hilos (${a===4?'hay cargas Y con neutro':'solo Δ y motores'}). `:'')
+    +(w===4?'Neutro distribuido.':'Sin conductor de neutro: neutro ficticio en el monofásico.');
+}
+
+function setVRef(v){
+  vRef=v;
+  $('vref-src').classList.toggle('active',v==='source');
+  $('vref-load').classList.toggle('active',v==='load');
+  updateVRefHint();
+}
+function updateVRefHint(){
+  const h=$('vref-hint');if(!h)return;
+  if(vRef==='source'){
+    h.textContent=zLineEnabled?'La tensión es el dato en los bornes de la fuente; Z_L causa caída.':'Sin Z_L el receptor recibe la misma tensión que la fuente.';
+  }else{
+    h.textContent=zLineEnabled?'La tensión es el dato en los bornes del receptor; se calcula la tensión de fuente necesaria.':'Sin Z_L fuente y receptor son el mismo punto; modo equivalente a fuente.';
+  }
+}
+function setZL(enabled){
+  zLineEnabled=enabled;
+  $('zl-off').classList.toggle('active',!enabled);
+  $('zl-on').classList.toggle('active',enabled);
+  $('zl-inputs').style.display=enabled?'block':'none';
+  if(enabled)updateZLHint();
+  updateVRefHint();
+}
+function updateZLHint(){
+  const rl=parseFloat($('inp-rl').value)||0,xl=parseFloat($('inp-xl').value)||0,zm=Math.hypot(rl,xl);
+  $('zl-hint').textContent=zm>0?`|Z_L| = ${fN(zm,3)} Ω ∠${fA(r2d(Math.atan2(xl,rl)))} por conductor`:'Z_L en serie en cada conductor de fase';
+}
+
+const loadTag=(l,k)=>(l.kind==='motor'?'M':'Z')+(k+1);
+function addLoad(p={}){
+  const id=++loadId,UL=currentUL();
+  const l={id,kind:p.kind||'imp',conn:p.conn||(p.kind==='motor'?'delta':'star'),
+    R:p.R??0,XL:p.XL??0,XC:p.XC??0,
+    Pout:p.Pout??5.5,Punit:p.Punit||'kW',Unom:p.Unom??(bad(UL)?220:Math.round(UL)),cosphi:p.cosphi??0.85,eta:p.eta??88};
+  loads.push(l);
+  const el=document.createElement('div');
+  el.className='load-card';el.id=`lc-${id}`;
+  el.innerHTML=`
+    <div class="load-card-hdr">
+      <div class="seg-ctrl sm" style="flex:1;min-width:0">
+        <button class="seg${l.kind==='imp'?' active':''}" id="lc-${id}-ki" onclick="setKind(${id},'imp')">Impedancia RLC</button>
+        <button class="seg${l.kind==='motor'?' active':''}" id="lc-${id}-km" onclick="setKind(${id},'motor')">Motor 3~</button>
+      </div>
+      <span class="load-num" id="lc-${id}-num">Z?</span>
+      <button class="rm-btn" id="lc-${id}-rm" onclick="removeLoad(${id})" title="Eliminar">✕</button>
+    </div>
+    <div class="kind-row">
+      <div class="seg-ctrl sm" style="flex:1">
+        <button class="seg${l.conn==='star'?' active':''}" id="lc-${id}-yb" onclick="setConn(${id},'star')"><b>Y</b> Estrella</button>
+        <button class="seg${l.conn==='delta'?' active':''}" id="lc-${id}-db" onclick="setConn(${id},'delta')"><b>Δ</b> Triángulo</button>
+      </div>
+    </div>
+    <div id="lc-${id}-imp" class="imp-row" style="display:${l.kind==='imp'?'grid':'none'}">
+      <div><div class="fl"><label>R</label><span class="u">Ω</span></div>
+        <input type="number" id="lc-${id}-r" value="${l.R}" min="0" step="0.1" oninput="updLoad(${id})"></div>
+      <div><div class="fl"><label>X<sub>L</sub></label><span class="u">Ω</span></div>
+        <input type="number" id="lc-${id}-xl" value="${l.XL}" min="0" step="0.1" oninput="updLoad(${id})"></div>
+      <div><div class="fl"><label>X<sub>C</sub></label><span class="u">Ω</span></div>
+        <input type="number" id="lc-${id}-xc" value="${l.XC}" min="0" step="0.1" oninput="updLoad(${id})"></div>
+    </div>
+    <div id="lc-${id}-mot" class="motor-grid" style="display:${l.kind==='motor'?'grid':'none'}">
+      <div><div class="fl"><label>P útil (eje)</label></div>
+        <div class="inline"><input type="number" id="lc-${id}-p" value="${l.Pout}" min="0" step="0.1" oninput="updLoad(${id})">
+        <select id="lc-${id}-pu" onchange="updLoad(${id})"><option value="kW"${l.Punit==='kW'?' selected':''}>kW</option><option value="HP"${l.Punit==='HP'?' selected':''}>HP</option></select></div></div>
+      <div><div class="fl"><label>U<sub>n</sub> placa</label><span class="u">V línea</span></div>
+        <input type="number" id="lc-${id}-un" value="${l.Unom}" min="1" step="1" oninput="updLoad(${id})"></div>
+      <div><div class="fl"><label>cosφ</label><span class="u">ind.</span></div>
+        <input type="number" id="lc-${id}-cf" value="${l.cosphi}" min="0.05" max="1" step="0.01" oninput="updLoad(${id})"></div>
+      <div><div class="fl"><label>η</label><span class="u">%</span></div>
+        <input type="number" id="lc-${id}-eta" value="${l.eta}" min="1" max="100" step="0.5" oninput="updLoad(${id})"></div>
+    </div>
+    <div class="lp" id="lc-${id}-prev"></div>
+    <div class="lh" id="lc-${id}-hint"></div>`;
+  $('loads-list').appendChild(el);
+  relabel();updLoad(id);
+}
+function removeLoad(id){
+  if(loads.length<=1)return;
+  loads=loads.filter(l=>l.id!==id);
+  $(`lc-${id}`)?.remove();
+  relabel();updateWiresHint();
+}
+function relabel(){
+  loads.forEach((l,k)=>{
+    const n=$(`lc-${l.id}-num`);if(n)n.textContent=loadTag(l,k);
+    const r=$(`lc-${l.id}-rm`);if(r)r.disabled=loads.length<=1;
+  });
+  $('loads-badge').textContent=`${loads.length} carga${loads.length!==1?'s':''}`;
+}
+function setKind(id,kind){
+  const l=loads.find(x=>x.id===id);if(!l)return;
+  l.kind=kind;
+  $(`lc-${id}-ki`).classList.toggle('active',kind==='imp');
+  $(`lc-${id}-km`).classList.toggle('active',kind==='motor');
+  $(`lc-${id}-imp`).style.display=kind==='imp'?'grid':'none';
+  $(`lc-${id}-mot`).style.display=kind==='motor'?'grid':'none';
+  relabel();updLoad(id);
+}
+function setConn(id,conn){
+  const l=loads.find(x=>x.id===id);if(!l)return;
+  l.conn=conn;
+  $(`lc-${id}-yb`).classList.toggle('active',conn==='star');
+  $(`lc-${id}-db`).classList.toggle('active',conn==='delta');
+  updLoad(id);
+}
+function updLoad(id){
+  const l=loads.find(x=>x.id===id);if(!l)return;
+  const num=s=>parseFloat($(`lc-${id}-${s}`).value);
+  l.R=Math.max(0,num('r')||0);l.XL=Math.max(0,num('xl')||0);l.XC=Math.max(0,num('xc')||0);
+  l.Pout=num('p');l.Punit=$(`lc-${id}-pu`).value;l.Unom=num('un');l.cosphi=num('cf');l.eta=num('eta');
+  const prev=$(`lc-${id}-prev`),hint=$(`lc-${id}-hint`);
+  if(l.kind==='imp'){
+    const X=l.XL-l.XC,Zm=Math.hypot(l.R,X);
+    if(Zm<1e-9){prev.textContent='|Z| = 0 Ω — cortocircuito';prev.style.color='var(--rd)';}
+    else{prev.textContent=`|Z| = ${fN(Zm,3)} Ω ∠${fA(r2d(Math.atan2(X,l.R)))} ${fpTag(X)}`;prev.style.color='var(--ac)';}
+    hint.textContent=l.conn==='delta'?`Z_Y = Z_Δ/3 → |Z_Y| = ${fN(Zm/3,3)} Ω (equivalente estrella)`:'';
+  }else{
+    const err=motorError(l);
+    if(err){prev.textContent=err;prev.style.color='var(--rd)';hint.textContent='';}
+    else{
+      const m=motorData(l);
+      prev.textContent=`P_abs = ${fPow(m.Pin,'W')} · Q = ${fPow(m.Q,'var')} · I_n = ${fS(m.Inom)} A`;
+      prev.style.color='var(--ac)';
+      hint.textContent=`Potencia constante · devanados en ${l.conn==='delta'?'Δ: I_f = I_L/√3':'Y: I_f = I_L'}`;
+    }
+  }
+  hint.style.display=hint.textContent?'block':'none';
+  updateWiresHint();
+}
+function motorError(l){
+  if(!(l.Pout>0))return'P útil debe ser > 0';
+  if(!(l.eta>0&&l.eta<=100))return'η debe estar entre 0 y 100 %';
+  if(!(l.cosphi>0&&l.cosphi<=1))return'cosφ debe estar entre 0 y 1';
+  if(!(l.Unom>0))return'U_n debe ser > 0';
+  return null;
+}
+
+// Selector de ejercicios prácticos reales
+function loadExercise(n){
+  loads=[];loadId=0;$('loads-list').innerHTML='';
+  setVRef('source');
+  if(n===1){
+    // Ej. 1: Taller industrial mixto Y + Δ con impedancia de línea y compensación a 0.95
+    setVT('line');$('inp-v').value=220;$('inp-f').value=60;$('inp-seq').value='abc';
+    setZL(true);$('inp-rl').value=0.12;$('inp-xl').value=0.16;updateZLHint();
+    $('inp-fptgt').value=0.95;setWires('auto');
+    addLoad({kind:'imp',conn:'star',R:12,XL:9,XC:0});
+    addLoad({kind:'imp',conn:'delta',R:36,XL:27,XC:0});
+  }else if(n===2){
+    // Ej. 2: Planta industrial 440 V con 2 motores de inducción + banco calefactor en Δ
+    setVT('line');$('inp-v').value=440;$('inp-f').value=60;$('inp-seq').value='abc';
+    setZL(true);$('inp-rl').value=0.08;$('inp-xl').value=0.15;updateZLHint();
+    $('inp-fptgt').value=0.96;setWires('3');
+    addLoad({kind:'motor',conn:'delta',Pout:15,Punit:'HP',Unom:440,cosphi:0.84,eta:89.5});
+    addLoad({kind:'motor',conn:'star',Pout:7.5,Punit:'kW',Unom:440,cosphi:0.82,eta:87});
+    addLoad({kind:'imp',conn:'delta',R:72,XL:0,XC:0});
+  }else if(n===3){
+    // Ej. 3: Red de distribución 400 V / 50 Hz estilo Fraile Mora
+    setVT('line');$('inp-v').value=400;$('inp-f').value=50;$('inp-seq').value='abc';
+    setZL(false);$('inp-fptgt').value=0.95;setWires('4');
+    addLoad({kind:'imp',conn:'star',R:16,XL:12,XC:0});
+    addLoad({kind:'imp',conn:'delta',R:45,XL:60,XC:0});
+    addLoad({kind:'motor',conn:'delta',Pout:10,Punit:'kW',Unom:400,cosphi:0.85,eta:90});
+  }else if(n===4){
+    // Ej. 4: Carga RLC con predominio capacitivo y compensación mediante reactor inductivo
+    setVT('line');$('inp-v').value=220;$('inp-f').value=60;$('inp-seq').value='abc';
+    setZL(false);$('inp-fptgt').value=0.96;setWires('auto');
+    addLoad({kind:'imp',conn:'star',R:15,XL:8,XC:28});
+    addLoad({kind:'imp',conn:'delta',R:45,XL:12,XC:48});
+  }
+  onSourceChange();
+  solve();
+}
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');$('tab-'+id).classList.add('active');
+  if(id!=='phasor')stopWtAnim();
+  if(lastResult){
+    if(id==='phasor'){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
+    if(id==='diagram')renderDiagrams(lastResult);
+    if(id==='table')renderTriangle(lastResult);
+  }
+}
+function showAlert(m){const b=$('alertBox');b.textContent=m;b.classList.add('vis')}
+function hideAlert(){$('alertBox').classList.remove('vis')}
+
+// ═════════════════════════════════════════════════════════════════════
+// 5. RESOLVER
+// ═════════════════════════════════════════════════════════════════════
+function solve(){
+  hideAlert();
+  const UL=currentUL(),f=parseFloat($('inp-f').value);
+  if(bad(UL))return showAlert('Tensión inválida (> 0 V).');
+  if(!f||f<=0)return showAlert('Frecuencia inválida (> 0 Hz).');
+  for(const [k,l] of loads.entries()){
+    if(l.kind==='motor'){const e=motorError(l);if(e)return showAlert(`${loadTag(l,k)}: ${e}.`);}
+  }
+  const inp={UL,f,seq:$('inp-seq').value,voltageType,zLineEnabled,vRef,
+    ZL:{R:Math.max(0,parseFloat($('inp-rl').value)||0),X:Math.max(0,parseFloat($('inp-xl').value)||0)},
+    loads:loads.map(l=>({...l})),fpTgt:parseFloat($('inp-fptgt').value),wiresSel,
+    lim:{fpMin:parseFloat($('inp-fpmin').value),dUmax:parseFloat($('inp-dumax').value)}};
+  const r=computeCircuit(inp);
+  if(r.error)return showAlert(r.error);
+  lastResult=r;
+  renderResults(r);
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 6. RENDERIZADO DE RESULTADOS Y GRÁFICAS REALISTAS DE INGENIERÍA
+// ═════════════════════════════════════════════════════════════════════
+function renderResults(r){
+  $('empty-state').style.display='none';
+  $('results-section').style.display='block';
+  $('bot-section').style.display='flex';
+  $('btn-export').style.display='';
+
+  $('lbl-uf').innerHTML=r.recMode?'U<sub>f</sub> receptor (DATO)':r.zLineEnabled?'U<sub>AN</sub> fuente':'U<sub>f</sub> (fase)';
+  $('lbl-fp').textContent=r.zLineEnabled?'fp entrada':'fp (cosφ)';
+  $('mv-uf').textContent=`${fS(r.Uf)} V`;
+  $('ms-uf').textContent=r.recMode?`U_L,fuente = ${fN(r.UL_src,3)} V (calc.)  |  δ = ${fA(r.delta)}`:`U_L = ${fS(r.UL)} V${r.zLineEnabled?' (fuente)':''}`;
+  $('mv-z').textContent=`${fS(r.Zm)} Ω`;
+  $('ms-z').textContent=`∠${fA(r2d(r.φLoad))}${r.hasMotor?' · en operación':''}`;
+
+  const single=r.bkd.length===1,b0=r.bkd[0];
+  const singleY=single&&b0.conn==='star',singleD=single&&b0.conn==='delta';
+  $('lbl-il').innerHTML=singleY?'I<sub>L</sub> = I<sub>f</sub>':'I<sub>L</sub> total (línea)';
+  $('mv-il').textContent=`${fS(r.IL)} A`;
+  $('ms-il').textContent=`∠${fA(r.IA)}`;
+  const il2=$('ms-il2');
+  if(singleD){il2.style.display='';il2.textContent=`I_f(Δ) = I_L/√3 = ${fS(b0.IkPhase)} A`;}
+  else if(!single){il2.style.display='';il2.textContent='I_f por carga: ver desglose';}
+  else il2.style.display='none';
+
+  $('mv-fp').innerHTML=`${fN(r.fp,4)}<span class="ftag">${fpTag(r.φ)}</span>`;
+  const bar=$('fp-bar');
+  bar.style.width=`${r.fp*100}%`;
+  bar.style.background=r.fp>=r.lim.fpMin?'var(--gn)':r.fp>=0.8?'var(--am)':'var(--rd)';
+  $('fp-thr').style.left=`${r.lim.fpMin*100}%`;
+  const thl=$('fp-thr-lbl');thl.style.left=`${r.lim.fpMin*100}%`;thl.textContent=fN(r.lim.fpMin,2);
+  $('fp-one').style.display=r.lim.fpMin>0.88?'none':'';   // evita que el umbral se monte sobre el «1»
+
+  if(r.zLineEnabled){
+    $('zl-metric-row').style.display='';
+    $('mv-udrop').textContent=`${sgn(r.dUpct)} %`;
+    $('ms-udrop').textContent=`|Ī·Z_L| = ${fS(r.UlineDropF)} V/fase`;
+    $('mv-uload').textContent=`${fS(r.UloadF)} V`;
+    $('ms-uload').textContent=`U_L = ${fS(r.UloadL)} V carga`;
+    $('mv-pline').textContent=fPow(r.Pline,'W');
+    $('ms-pline').textContent=r.P3>0?`η = ${fN(r.Pload/r.P3*100,1)} %`:'3·I²·R_L';
+    $('mv-fpload').innerHTML=`${fN(r.fpLoad,4)}<span class="ftag">${fpTag(r.φLoad)}</span>`;
+    $('ms-fpload').textContent='solo cargas';
+  }else $('zl-metric-row').style.display='none';
+
+  const nM=r.bkd.filter(b=>b.kind==='motor').length;
+  const type=single?`${b0.kind==='motor'?'Motor ':''}${b0.conn==='star'?'Y':'Δ'}`:`${r.bkd.length} cargas paralelas${nM?` (${nM} motor${nM>1?'es':''})`:''}`;
+  $('res-badge').textContent=`${type} · ${r.wires} hilos${r.zLineEnabled?' · Z_L':''}${r.comp?' · Compensado':''}`;
+
+  const pairs=[['A','a','AN','AB',r.UA,r.IA],['B','b','BN','BC',r.UB,r.IB],['C','c','CN','CA',r.UC,r.IC]];
+  $('phase-tbody').innerHTML=pairs.map(([lbl,cls,fn,ll,uA,iA])=>`<tr><td class="${cls}">${lbl}</td>
+      <td class="${cls}"><span class="ftag">Ū_${fn}</span> ${pStr(r.Uf,uA)}</td>
+      <td class="${cls}"><span class="ftag">Ū_${ll}</span> ${pStr(r.UL,uA+r.dir*30)}</td>
+      <td class="${cls}"><span class="ftag">Ī_${lbl}</span> ${pStr(r.IL,iA)}</td></tr>`).join('');
+  $('tbl-ufn-hdr').textContent=r.recMode?'Ū fase-neutro fuente, calculada (V)':r.zLineEnabled?'Ū fase-neutro fuente (V)':'Ū fase-neutro (V)';
+  const tn=$('table-load-note');
+  if(r.recMode){
+    tn.style.display='block';
+    tn.textContent=`[RECEPTOR] Ū_A′N (dato) = ${pStr(r.UloadF,r.UloadAng)} V/fase  |  Ū_AN (calc.) = ${pStr(r.Uf_src,r.UA)} V/fase  |  U_L,fuente = ${fN(r.UL_src,3)} V  |  δ = ${fA(r.delta)}`;
+  } else if(r.zLineEnabled){
+    tn.style.display='block';tn.textContent=`Ū_carga = ${pStr(r.UloadF,r.UloadAng)} V/fase  |  U_carga,L = ${fS(r.UloadL)} V  |  ΔU = ${sgn(r.dUpct)} %`;
+  } else tn.style.display='none';
+
+  $('mv-p').textContent=fPow(r.P3,'W');
+  $('ms-p').textContent=r.zLineEnabled?'= P_carga + P_línea':'= √3·U_L·I_L·cosφ';
+  $('mv-q').textContent=fPow(r.Q3,'var');
+  $('ms-q').textContent=r.Q3>=0?'(inductiva)':'(capacitiva)';
+  $('mv-s').textContent=fPow(r.S3,'VA');
+  $('ms-s').textContent='= √(P²+Q²)';
+  $('mv-phi').textContent=`${fA(r.φd)}`;
+  $('ms-phi').textContent=r.zLineEnabled?'ángulo total (Z_L+Z_eq)':`carga ${r.φd>=0?'inductiva':'capacitiva'}`;
+
+  renderSteps(r);renderChecks(r);renderFP(r);renderNorm(r);
+  renderDiagrams(r);renderBreakdown(r);drawPhasors(r);drawWaveforms(r);renderWtReadout(r);renderTriangle(r);
+}
+
+// ── Kit gráfico de esquemas de ingeniería realistas ────────────────────
+function renderDiagrams(r){
+  $('circuit-diagram').innerHTML=genCircuitSVG(r);
+  $('equiv-diagram').innerHTML=genEquivSVG(r);
+}
+
+function svgKit(){
+  const c={
+    A:getCSS('--pa'),B:getCSS('--pb'),C:getCSS('--pc'),N:getCSS('--pn'),
+    fg:getCSS('--fg'),fg2:getCSS('--fg2'),fg3:getCSS('--fg3'),
+    bg:getCSS('--bg-tint'),card:getCSS('--bg-card'),bd:getCSS('--bd'),
+    ac:getCSS('--ac'),acbg:getCSS('--ac-bg'),am:getCSS('--am'),gn:getCSS('--gn'),
+    grid:getCSS('--grid-line')
+  };
+  // Texto de fase con su variante de alto contraste (las líneas mantienen el color vivo)
+  const tcol={[c.A]:getCSS('--pa-t'),[c.B]:getCSS('--pb-t'),[c.C]:getCSS('--pc-t')};
+  const mono='IBM Plex Mono,monospace',sans='IBM Plex Sans,sans-serif';
+  const line=(x1,y1,x2,y2,col,w=1.8,dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+  const txt=(x,y,t,{size=10,col=c.fg2,anchor='start',weight=500,font=mono,italic=false}={})=>
+    `<text x="${x}" y="${y}" font-size="${size}" fill="${tcol[col]||col}" text-anchor="${anchor}" font-weight="${weight}" font-family="${font}"${italic?' font-style="italic"':''}>${t}</text>`;
+  const term=(x,y,col)=>`<circle cx="${x}" cy="${y}" r="4.2" fill="${c.card}" stroke="${col}" stroke-width="2"/>`;
+  const dot=(x,y,col)=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${col}" stroke="${c.card}" stroke-width="1"/>`;
+  const vtx=(x,y)=>`<circle cx="${x}" cy="${y}" r="3.8" fill="${c.card}" stroke="${c.fg2}" stroke-width="1.6"/>`;
+  const arrowR=(x1,x2,y,col)=>`${line(x1,y,x2-6,y,col,1.8)}<polygon points="${x2},${y} ${x2-8},${y-3.8} ${x2-8},${y+3.8}" fill="${col}"/>`;
+
+  // Dibuja una rama RLC realista a lo largo del segmento (x1,y1)→(x2,y2)
+  // Muestra resistencia en zigzag, bobina con espiras y/o placas de condensador
+  const rlcBranch=(x1,y1,x2,y2,{hasR=true,hasL=false,hasC=false,col=c.fg2,len=44}={})=>{
+    const mx=(x1+x2)/2,my=(y1+y2)/2,ang=r2d(Math.atan2(y2-y1,x2-x1));
+    const parts=[];
+    if(hasR)parts.push('R');
+    if(hasL)parts.push('L');
+    if(hasC)parts.push('C');
+    if(!parts.length)parts.push('R');
+    const span=Math.min(len,Math.hypot(x2-x1,y2-y1)-14);
+    const pw=span/parts.length;
+    let g=`<g transform="translate(${mx} ${my}) rotate(${ang})">`;
+    // Fondo limpio para ocultar el hilo debajo del símbolo
+    g+=`<rect x="${-span/2-2}" y="-7" width="${span+4}" height="14" rx="3" fill="${c.bg}" opacity="0.92"/>`;
+    parts.forEach((p,idx)=>{
+      const sx=-span/2+idx*pw,ex=sx+pw,cx=(sx+ex)/2;
+      if(p==='R'){
+        // Zigzag IEEE de 5 picos
+        const pad=2,w=pw-2*pad,x0=sx+pad;
+        const pts=[[sx,0],[x0,0],[x0+w*0.12,-5],[x0+w*0.30,5],[x0+w*0.50,-5],[x0+w*0.70,5],[x0+w*0.88,-5],[x0+w,0],[ex,0]];
+        g+=`<polyline points="${pts.map(q=>q.join(',')).join(' ')}" fill="none" stroke="${col}" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"/>`;
+      }else if(p==='L'){
+        // Bobina helicoidal de 3 arcos
+        const pad=2,w=pw-2*pad,x0=sx+pad,step=w/3;
+        let d=`M ${sx} 0 L ${x0} 0 `;
+        for(let k=0;k<3;k++){
+          const ax=x0+k*step,bx=ax+step;
+          d+=`A ${step/2} 5.2 0 1 1 ${bx} 0 `;
+        }
+        d+=`L ${ex} 0`;
+        g+=`<path d="${d}" fill="none" stroke="${c.ac}" stroke-width="1.65" stroke-linecap="round"/>`;
+      }else if(p==='C'){
+        // Placas paralelas de condensador
+        const gap=3.2;
+        g+=`<line x1="${sx}" y1="0" x2="${cx-gap/2}" y2="0" stroke="${col}" stroke-width="1.6"/>`;
+        g+=`<line x1="${cx-gap/2}" y1="-6.5" x2="${cx-gap/2}" y2="6.5" stroke="${col}" stroke-width="2.2"/>`;
+        g+=`<line x1="${cx+gap/2}" y1="-6.5" x2="${cx+gap/2}" y2="6.5" stroke="${col}" stroke-width="2.2"/>`;
+        g+=`<line x1="${cx+gap/2}" y1="0" x2="${ex}" y2="0" stroke="${col}" stroke-width="1.6"/>`;
+      }
+    });
+    g+=`</g>`;
+    return g;
+  };
+
+  // Símbolo de puesta a tierra física
+  const ground=(x,y,col=c.N)=>`
+    <line x1="${x}" y1="${y}" x2="${x}" y2="${y+8}" stroke="${col}" stroke-width="1.6"/>
+    <line x1="${x-9}" y1="${y+8}" x2="${x+9}" y2="${y+8}" stroke="${col}" stroke-width="1.8"/>
+    <line x1="${x-6}" y1="${y+12}" x2="${x+6}" y2="${y+12}" stroke="${col}" stroke-width="1.6"/>
+    <line x1="${x-3}" y1="${y+16}" x2="${x+3}" y2="${y+16}" stroke="${col}" stroke-width="1.4"/>`;
+
+  // Símbolo de fuente senoidal AC circular
+  const acSource=(cx,cy,r,col)=>`
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="${c.card}" stroke="${col}" stroke-width="1.8"/>
+    <path d="M ${cx-r*0.55} ${cy} Q ${cx-r*0.275} ${cy-r*0.55} ${cx} ${cy} T ${cx+r*0.55} ${cy}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round"/>`;
+
+  return{c,mono,sans,line,txt,term,dot,vtx,arrowR,rlcBranch,ground,acSource};
+}
+
+function genCircuitSVG(r){
+  const K=svgKit(),{c,line,txt,term,dot,vtx,arrowR,rlcBranch,ground,acSource}=K;
+  const four=r.wires===4,ZLon=r.zLineEnabled,hasComp=!!r.comp;
+  const gap=36,yA=42,yB=yA+gap,yC=yB+gap,yN=yC+gap,lastBus=four?yN:yC;
+  const xGen=52,xT=96,xZ=132,zW=74,xArr=ZLon?xZ+zW+20:124,x0=xArr+96,LWc=222;
+  const nCols=r.bkd.length+(hasComp?1:0);
+  const W=Math.max(660,x0+nCols*LWc+28),yT0=lastBus+46,triH=112,H=yT0+triH+56;
+
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" viewBox="0 0 ${W} ${H}" style="display:block;max-width:100%;height:auto">`;
+  // Fondo técnico con cuadrícula sutil de ingeniería
+  s+=`<defs>
+    <pattern id="engGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="${c.grid}" stroke-width="0.7"/>
+    </pattern>
+  </defs>`;
+  s+=`<rect width="${W}" height="${H}" fill="${c.bg}" rx="8"/>`;
+  s+=`<rect width="${W}" height="${H}" fill="url(#engGrid)" rx="8"/>`;
+
+  // Bloque Generador / Fuente Trifásica realista a la izquierda
+  const genTop=yA-22,genBot=lastBus+22;
+  s+=`<rect x="14" y="${genTop}" width="72" height="${genBot-genTop}" rx="8" fill="${c.card}" stroke="${c.bd}" stroke-width="1.5"/>`;
+  s+=txt(50,genTop+13,'FUENTE 3~',{size:8.5,col:c.fg3,anchor:'middle',weight:700,font:K.sans});
+  // Neutro común del generador y puesta a tierra
+  s+=line(26,yA,26,lastBus,c.N,1.5);
+  s+=ground(26,lastBus+2,c.N);
+
+  // Conductores de fase (Busbars con grosor realista)
+  [['A',yA,c.A,r.UA,r.IA],['B',yB,c.B,r.UB,r.IB],['C',yC,c.C,r.UC,r.IC]].forEach(([l,y,col,uAng,iAng])=>{
+    s+=line(26,y,xGen-11,y,c.N,1.4);
+    s+=acSource(xGen,y,11,col);
+    s+=line(xGen+11,y,xT,y,col,2.2);
+    s+=txt(xT-2,y-8,l,{size:11.5,col,anchor:'middle',weight:700,font:K.sans});
+    if(ZLon){
+      s+=line(xT+4,y,xZ,y,col,2.4);
+      // Línea con R_L y X_L realistas en serie
+      s+=`<rect x="${xZ-3}" y="${y-11}" width="${zW+6}" height="22" rx="5" fill="${c.card}" stroke="${c.bd}" stroke-width="1"/>`;
+      s+=line(xZ,y,xZ+zW,y,col,1.8);
+      s+=rlcBranch(xZ,y,xZ+zW,y,{hasR:r.ZL.R>0,hasL:r.ZL.X>0,hasC:false,col,len:zW-8});
+      if(l==='A')s+=txt(xZ+zW/2,y-15,`Z_L = ${rstr(r.ZLc,2)} Ω`,{size:9,col:c.am,anchor:'middle',weight:600});
+      s+=line(xZ+zW,y,W-16,y,col,2.4);
+    }else{
+      s+=line(xT+4,y,W-16,y,col,2.4);
+    }
+    s+=term(xT,y,col);
+    s+=txt(xArr,y-7,`Ī<tspan font-size="8" dy="2">${l}</tspan><tspan dy="-2" font-size="9" font-style="normal"> ${fS(r.IL,3)}A</tspan>`,{size:10,col,italic:true,weight:600});
+    s+=arrowR(xArr+62,xArr+88,y-5,col);
+  });
+
+  // Conductor de neutro (4 hilos) o aviso de 3 hilos
+  if(four){
+    s+=txt(xT-2,yN-8,'N',{size:11,col:c.N,anchor:'middle',weight:700,font:K.sans});
+    s+=line(26,yN,W-16,yN,c.N,1.8,'6,3')+term(xT,yN,c.N);
+    s+=txt(xArr,yN-6,'I_N = 0 A (equilibrado)',{size:9,col:c.fg3});
+  }else{
+    s+=txt(xArr,lastBus+22,'Sistema a 3 hilos · sin conductor neutro',{size:9.5,col:c.fg3,italic:true});
+  }
+
+  // Cargas conectadas al bus
+  r.bkd.forEach((b,k)=>{
+    const cx=x0+k*LWc+LWc/2-10,xl=cx-64,xr=cx+64,yb=yT0+triH;
+    const isM=b.kind==='motor',isD=b.conn==='delta';
+    const hasR=b.src.R>0,hasL=b.src.XL>0,hasC=b.src.XC>0;
+
+    // Empalmes en las barras colectoras
+    [[cx,yA,c.A,'A′'],[xr,yB,c.B,'B′'],[xl,yC,c.C,'C′']].forEach(([x,y,col,l])=>{
+      s+=dot(x,y,col)+txt(x+6,y-5,l,{size:9,col,weight:600});
+    });
+
+    if(isM){
+      // Motor industrial trifásico realista con carcasa aletada, caja de bornes, patas y eje
+      const my=yT0+58,R=32;
+      // Bajadas a la caja de bornes superior del motor
+      const bxY=my-R-12;
+      s+=line(cx,yA,cx,bxY,c.A,1.8);
+      s+=line(xr,yB,xr,bxY-6,c.B,1.8)+line(xr,bxY-6,cx+12,bxY-6,c.B,1.8)+line(cx+12,bxY-6,cx+12,bxY,c.B,1.8);
+      s+=line(xl,yC,xl,bxY-12,c.C,1.8)+line(xl,bxY-12,cx-12,bxY-12,c.C,1.8)+line(cx-12,bxY-12,cx-12,bxY,c.C,1.8);
+      // Patas de anclaje / bancada
+      s+=`<path d="M ${cx-26} ${my+R-4} L ${cx-34} ${my+R+10} L ${cx-12} ${my+R+10} L ${cx-16} ${my+R-1} Z" fill="${c.bd}" stroke="${c.fg2}" stroke-width="1.3"/>`;
+      s+=`<path d="M ${cx+26} ${my+R-4} L ${cx+34} ${my+R+10} L ${cx+12} ${my+R+10} L ${cx+16} ${my+R-1} Z" fill="${c.bd}" stroke="${c.fg2}" stroke-width="1.3"/>`;
+      s+=line(cx-42,my+R+10,cx+42,my+R+10,c.fg3,2.2);
+      // Eje motriz lateral con chavetero
+      s+=`<rect x="${cx+R-2}" y="${my-5}" width="18" height="10" rx="1.5" fill="${c.bg}" stroke="${c.fg2}" stroke-width="1.4"/>`;
+      s+=`<line x1="${cx+R+3}" y1="${my-2}" x2="${cx+R+13}" y2="${my-2}" stroke="${c.fg3}" stroke-width="1.2"/>`;
+      // Caja de bornes superior (U1 V1 W1)
+      s+=`<rect x="${cx-18}" y="${bxY}" width="36" height="14" rx="2.5" fill="${c.card}" stroke="${c.fg2}" stroke-width="1.4"/>`;
+      s+= `<circle cx="${cx-12}" cy="${bxY+6}" r="2.2" fill="${c.C}"/><circle cx="${cx}" cy="${bxY+6}" r="2.2" fill="${c.A}"/><circle cx="${cx+12}" cy="${bxY+6}" r="2.2" fill="${c.B}"/>`;
+      // Carcasa estatórica con aletas de refrigeración
+      s+=`<circle cx="${cx}" cy="${my}" r="${R}" fill="${c.card}" stroke="${c.ac}" stroke-width="2.2"/>`;
+      s+=`<circle cx="${cx}" cy="${my}" r="${R-5}" fill="none" stroke="${c.bd}" stroke-width="1" stroke-dasharray="4,3"/>`;
+      [-14,-7,0,7,14].forEach(dy=>{
+        const dx=Math.sqrt(Math.max(0,R*R-dy*dy));
+        s+=line(cx-dx-4,my+dy,cx-dx+3,my+dy,c.ac,1.5);
+        s+=line(cx+dx-3,my+dy,cx+dx+4,my+dy,c.ac,1.5);
+      });
+      s+=txt(cx,my-3,'M',{size:15,col:c.fg,anchor:'middle',weight:700,font:K.sans});
+      s+=txt(cx,my+11,`3~ ${isD?'Δ':'Y'}`,{size:9.5,col:c.ac,anchor:'middle',weight:600});
+      s+=txt(cx,yb+22,`${b.tag}: Motor ${fS(b.src.Pout,3)} ${b.src.Punit} (${isD?'Δ':'Y'})`,{size:10,col:c.fg,anchor:'middle',weight:600});
+      s+=txt(cx,yb+36,`cosφ=${fN(b.src.cosphi,2)} · η=${fN(b.src.eta,0)}% · I_L=${fS(b.Ik,3)}A`,{size:9,col:c.fg2,anchor:'middle'});
+      return;
+    }
+
+    // Bajadas verticales hacia la carga RLC
+    s+=line(cx,yA,cx,yT0,c.A,1.7)+line(xr,yB,xr,yb,c.B,1.7)+line(xl,yC,xl,yb,c.C,1.7);
+    if(isD){
+      // Triángulo Δ con elementos R, L, C reales dibujados en cada lado
+      [[cx,yT0,xl,yb],[cx,yT0,xr,yb],[xl,yb,xr,yb]].forEach(([x1,y1,x2,y2])=>{
+        s+=line(x1,y1,x2,y2,c.fg2,1.6);
+        s+=rlcBranch(x1,y1,x2,y2,{hasR,hasL,hasC,len:54});
+      });
+    }else{
+      // Estrella Y con punto neutro N' y elementos R, L, C en cada brazo
+      const ny=yT0+triH*0.64;
+      [[cx,yT0],[xl,yb],[xr,yb]].forEach(([x,y])=>{
+        s+=line(x,y,cx,ny,c.fg2,1.6);
+        s+=rlcBranch(x,y,cx,ny,{hasR,hasL,hasC,len:42});
+      });
+      s+=dot(cx,ny,c.N)+txt(cx-8,ny-5,"N′",{size:9.5,col:c.fg2,anchor:'end',weight:600});
+      if(four){
+        const xn=cx+88;
+        s+=line(cx,ny,xn,ny,c.N,1.4,'4,2')+line(xn,ny,xn,yN,c.N,1.4,'4,2')+dot(xn,yN,c.N)+txt(xn+5,yN-5,'N',{size:9,col:c.N,weight:600});
+      }else s+=txt(cx+8,ny+14,'N′ flotante',{size:8.5,col:c.fg3});
+    }
+    s+=vtx(cx,yT0)+vtx(xl,yb)+vtx(xr,yb);
+    s+=txt(cx+8,yT0-3,'A′',{size:9,col:c.A,weight:600})+txt(xl-8,yb+4,'C′',{size:9,col:c.C,anchor:'end',weight:600})+txt(xr+8,yb+4,'B′',{size:9,col:c.B,weight:600});
+    const Zo=isD?cscale(b.ZY,3):b.ZY;
+    s+=txt(cx,yb+22,`${b.tag} (${isD?'Δ':'Y'}): Z = ${rstr(Zo,2)} Ω`,{size:10,col:c.fg,anchor:'middle',weight:600});
+    s+=txt(cx,yb+36,`|Z|=${fS(cabs(Zo),3)}Ω · I_L=${fS(b.Ik,3)}A`,{size:9,col:c.fg2,anchor:'middle'});
+  });
+
+  // Si hay compensación de factor de potencia activa, dibujar el banco trifásico Q_C / Q_L
+  if(hasComp){
+    const k=r.bkd.length,cx=x0+k*LWc+LWc/2-10,xl=cx-54,xr=cx+54,yb=yT0+triH;
+    const isCap=r.compType==='C';
+    [[cx,yA,c.A],[xr,yB,c.B],[xl,yC,c.C]].forEach(([x,y,col])=>{s+=dot(x,y,col);});
+    s+=line(cx,yA,cx,yT0,c.A,1.5,'4,2')+line(xr,yB,xr,yb,c.B,1.5,'4,2')+line(xl,yC,xl,yb,c.C,1.5,'4,2');
+    [[cx,yT0,xl,yb],[cx,yT0,xr,yb],[xl,yb,xr,yb]].forEach(([x1,y1,x2,y2])=>{
+      s+=line(x1,y1,x2,y2,c.gn,1.6);
+      s+=rlcBranch(x1,y1,x2,y2,{hasR:false,hasL:!isCap,hasC:isCap,col:c.gn,len:38});
+    });
+    s+=vtx(cx,yT0)+vtx(xl,yb)+vtx(xr,yb);
+    s+=txt(cx,yb+22,isCap?`Banco Q_C (Δ): ${fN(r.CD*1e6,2)} μF/fase`:`Banco Q_L (Δ): ${fN(r.LD*1e3,2)} mH/fase`,{size:10,col:c.gn,anchor:'middle',weight:700});
+    s+=txt(cx,yb+36,`Q = ${fPow(isCap?r.QC:r.QLr,'var')} → fp = ${fN(r.fpTgt,3)}`,{size:9,col:c.fg2,anchor:'middle'});
+  }
+
+  return s+'</svg>';
+}
+
+function genEquivSVG(r){
+  const K=svgKit(),{c,line,txt,term,dot,arrowR,rlcBranch,ground,acSource}=K;
+  const W=740,H=192,yT=50,yB=146,xS=54,xT=98,xLd=420,four=r.wires===4,ZLon=r.zLineEnabled;
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" viewBox="0 0 ${W} ${H}" style="display:block;max-width:100%;height:auto">`;
+  s+=`<rect width="${W}" height="${H}" fill="${c.bg}" rx="8"/>`;
+  s+=`<rect width="${W}" height="${H}" fill="url(#engGrid)" rx="8"/>`;
+
+  // Fuente monofásica ideal fase A
+  const ym=(yT+yB)/2;
+  s+=line(xS,yT,xS,ym-16,c.A,2)+acSource(xS,ym,16,c.A)+line(xS,ym+16,xS,yB,c.N,2);
+  s+=line(xS,yT,xT,yT,c.A,2.2)+line(xS,yB,xT,yB,c.N,1.8);
+  s+=ground(xS,yB,c.N);
+  s+=txt(xT,yT-9,'A',{size:11.5,col:c.A,anchor:'middle',weight:700,font:K.sans});
+  s+=txt(xT,yB+16,'N',{size:11.5,col:c.N,anchor:'middle',weight:700,font:K.sans});
+
+  // Cota de tensión fuente U_AN
+  s+=line(xT,yB-8,xT,yT+10,c.fg3,1.1,'3,2')+`<polygon points="${xT},${yT+6} ${xT-3.5},${yT+14} ${xT+3.5},${yT+14}" fill="${c.fg3}"/>`;
+  const ufSrcLbl=r.recMode?`Ū_AN = ${fN(r.Uf_src,2)}∠${fA(r.UA)} V (calculada)`:`Ū_AN = ${fN(r.Uf,2)}∠${fA(r.UA)} V (DATO)`;
+  s+=txt(xT+8,ym-3,ufSrcLbl,{size:9.5,col:r.recMode?c.am:c.fg,weight:600});
+  s+=txt(xT+8,ym+11,r.recMode?`U_L,fuente = ${fN(r.UL_src,2)} V`:`(U_L / √3)`,{size:8.5,col:c.fg3});
+
+  // Tramo de línea Z_L
+  let x=xT+4;
+  if(ZLon){
+    const xz=188,zw=92;
+    s+=line(x,yT,xz,yT,c.A,2.2);
+    s+=`<rect x="${xz-4}" y="${yT-12}" width="${zw+8}" height="24" rx="5" fill="${c.card}" stroke="${c.am}" stroke-width="1.2"/>`;
+    s+=line(xz,yT,xz+zw,yT,c.A,1.8);
+    s+=rlcBranch(xz,yT,xz+zw,yT,{hasR:r.ZL.R>0,hasL:r.ZL.X>0,hasC:false,col:c.A,len:zw-8});
+    s+=txt(xz+zw/2,yT-17,`Z_L = ${rstr(r.ZLc,2)} Ω`,{size:9.5,col:c.am,anchor:'middle',weight:600});
+    s+=txt(xz+zw/2,yT+23,`ΔŪ = ${fN(r.UlineDropF,2)} V`,{size:8.5,col:c.am,anchor:'middle'});
+    x=xz+zw;
+  }
+  s+=line(x,yT,xLd,yT,c.A,2.2);
+  const xa=ZLon?300:210;
+  s+=txt(xa,yT-18,`Ī_A = ${pStr(r.IL,r.IA)} A`,{size:10,col:c.A,weight:600});
+  s+=arrowR(xa,xa+48,yT-7,c.A);
+
+  // Rama de impedancia equivalente Z_eq (con R y L/C realistas verticales)
+  s+=dot(xLd,yT,c.A)+txt(xLd,yT-9,'A′',{size:10.5,col:c.A,anchor:'middle',weight:700});
+  const zy1=yT+14,zy2=yB-14;
+  s+=`<rect x="${xLd-16}" y="${zy1}" width="32" height="${zy2-zy1}" rx="6" fill="${c.card}" stroke="${c.ac}" stroke-width="1.5"/>`;
+  s+=line(xLd,yT,xLd,yB,c.fg2,1.6);
+  s+=rlcBranch(xLd,zy1+4,xLd,zy2-4,{hasR:r.Zeq.R>0,hasL:r.Zeq.X>1e-6,hasC:r.Zeq.X<-1e-6,len:zy2-zy1-10});
+  s+=txt(xLd+24,ym-10,`Z_eq,Y = ${rstr(r.ZeqC,3)} Ω`,{size:10,col:c.fg,weight:600});
+  s+=txt(xLd+24,ym+4,`|Z_eq| = ${cstr(r.ZeqC,3)} Ω`,{size:9.5,col:c.ac});
+  const uloadLbl=!ZLon?'Ū_A′N = Ū_AN (línea ideal)':r.recMode?`Ū_A′N = ${pStr(r.UloadF,r.UloadAng)} V (DATO)`:`Ū_A′N = ${pStr(r.UloadF,r.UloadAng)} V`;
+  s+=txt(xLd+24,ym+18,uloadLbl,{size:9,col:ZLon?(r.recMode?c.gn:c.am):c.fg3});
+
+  // Rama en paralelo de compensación C_Y / L_Y si está activa
+  if(r.comp){
+    const xC=705,isCap=r.compType==='C';
+    s+=line(xLd,yT,xC,yT,c.gn,1.6,'4,2')+line(xC,yT,xC,yB,c.gn,1.6)+line(xLd,yB,xC,yB,c.N,1.4,'4,2');
+    s+=rlcBranch(xC,zy1+10,xC,zy2-10,{hasR:false,hasL:!isCap,hasC:isCap,col:c.gn,len:36});
+    s+=dot(xC,yT,c.gn)+dot(xC,yB,c.N);
+    s+=txt(xC,yT-9,isCap?`C_Y=${fN(r.CY*1e6,1)}μF`:`L_Y=${fN(r.LY*1e3,1)}mH`,{size:9,col:c.gn,anchor:'middle',weight:600});
+  }
+
+  // Retorno por el neutro
+  s+=line(xT+4,yB,xLd,yB,c.N,1.8,four?'':'6,3')+dot(xLd,yB,c.N);
+  s+=txt(xLd,yB+16,"N′",{size:10,col:c.N,anchor:'middle',weight:600});
+  s+=term(xT,yT,c.A)+term(xT,yB,c.N);
+  s+=txt((xT+xLd)/2,yB+26,four?'Conductor neutro físico N (I_N = 0 A)':"Neutro ficticio de referencia (V_N′N = 0 V por simetría equilibrada)",{size:9,col:c.fg3,anchor:'middle'});
+  return s+'</svg>';
+}
+
+// ── Triángulo vectorial de potencias realista ─────────────────────────
+function genTriangleSVG(r,print){
+  const W=660,H=250,padL=58,padR=236,padY=42;
+  const c=r.comp,P1=r.P3,Q1=r.Q3,P2=c?c.Ptot:NaN,Q2=c?c.Qtot:NaN;
+  const maxP=Math.max(P1,c?P2:0,1e-9),maxQ=Math.max(Math.abs(Q1),c?Math.abs(Q2):0,P1*0.28,1e-9);
+  const k=Math.min((W-padL-padR)/maxP,(H-2*padY)/maxQ);
+  const up=Q1>=0,x0=padL,y0=up?H-padY:padY;
+  const X=p=>x0+p*k,Y=q=>up?y0-Math.abs(q)*k:y0+Math.abs(q)*k;
+  const col=v=>print?({fg:'#232824',f2:'#4e5650',f3:'#7d857e',ac:'#2d6a4f',gn:'#2b7a52',am:'#b87314',pa:'#c85a32',bd:'#d3cbbd',grid:'rgba(0,0,0,.06)'})[v]
+    :getCSS({fg:'--fg',f2:'--fg2',f3:'--fg3',ac:'--ac',gn:'--gn',am:'--am',pa:'--pa',bd:'--bd',grid:'--grid-line'}[v]);
+  const mono='IBM Plex Mono,monospace';
+
+  const vArrow=(x1,y1,x2,y2,stroke,w=2.2,dash='')=>{
+    const a=Math.atan2(y2-y1,x2-x1),hl=9;
+    const xe=x2-hl*0.7*Math.cos(a),ye=y2-hl*0.7*Math.sin(a);
+    const p1x=x2-hl*Math.cos(a-0.32),p1y=y2-hl*Math.sin(a-0.32);
+    const p2x=x2-hl*Math.cos(a+0.32),p2y=y2-hl*Math.sin(a+0.32);
+    return `<line x1="${x1}" y1="${y1}" x2="${xe}" y2="${ye}" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round"${dash?` stroke-dasharray="${dash}"`:''}/>`+
+           `<polygon points="${x2},${y2} ${p1x},${p1y} ${p2x},${p2y}" fill="${stroke}"/>`;
+  };
+
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" font-family="${mono}" style="display:block;width:100%;max-width:760px;margin:0 auto">`;
+  // Cuadrícula técnica de fondo
+  for(let gx=20;gx<W;gx+=25)s+=`<line x1="${gx}" y1="0" x2="${gx}" y2="${H}" stroke="${col('grid')}" stroke-width="0.7"/>`;
+  for(let gy=20;gy<H;gy+=25)s+=`<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="${col('grid')}" stroke-width="0.7"/>`;
+  s+=`<line x1="${x0-16}" y1="${y0}" x2="${W-24}" y2="${y0}" stroke="${col('bd')}" stroke-width="1.2"/>`;
+  s+=`<line x1="${x0}" y1="14" x2="${x0}" y2="${H-14}" stroke="${col('bd')}" stroke-width="1.2"/>`;
+
+  // Superficie del triángulo S-P-Q
+  s+=`<polygon points="${X(0)},${y0} ${X(P1)},${y0} ${X(P1)},${Y(Q1)}" fill="${col('ac')}" fill-opacity=".11"/>`;
+
+  // Arco del ángulo φ
+  const rArc=Math.min(44,P1*k*0.35),angRad=Math.atan2(Y(Q1)-y0,X(P1)-x0);
+  const ax=x0+rArc*Math.cos(angRad),ay=y0+rArc*Math.sin(angRad);
+  s+=`<path d="M ${x0+rArc} ${y0} A ${rArc} ${rArc} 0 0 ${up?0:1} ${ax} ${ay}" fill="none" stroke="${col('pa')}" stroke-width="1.5"/>`;
+  s+=`<text x="${x0+rArc+6}" y="${y0+(up?-8:14)}" font-size="9.5" fill="${col('pa')}" font-weight="600">φ=${fN(Math.abs(r.φd),1)}° (fp=${fN(r.fp,3)})</text>`;
+
+  // Vectores P, Q y S
+  s+=vArrow(X(0),y0,X(P1),y0,col('fg'),2.4);
+  if(Math.abs(Q1)>1e-6)s+=vArrow(X(P1),y0,X(P1),Y(Q1),col('am'),2.4);
+  s+=vArrow(X(0),y0,X(P1),Y(Q1),col('ac'),2.6);
+
+  // Etiquetas de P, Q y S
+  s+=`<text x="${X(P1/2)}" y="${y0+(up?18:-9)}" font-size="10.5" fill="${col('fg')}" font-weight="600" text-anchor="middle">P = ${fPow(P1,'W')}</text>`;
+  s+=`<text x="${X(P1)+10}" y="${(y0+Y(Q1))/2}" font-size="10.5" fill="${col('am')}" font-weight="600" dominant-baseline="middle">Q = ${fPow(Q1,'var')}</text>`;
+  s+=`<text x="${X(P1*0.46)-8}" y="${Y(Q1*0.46)+(up?-10:16)}" font-size="10.5" fill="${col('ac')}" font-weight="700" text-anchor="end">S = ${fPow(r.S3,'VA')}</text>`;
+
+  // Triángulo compensado superpuesto
+  if(c){
+    s+=`<polygon points="${X(0)},${y0} ${X(P2)},${y0} ${X(P2)},${Y(Q2)}" fill="${col('gn')}" fill-opacity=".10"/>`;
+    s+=vArrow(X(0),y0,X(P2),Y(Q2),col('gn'),2.2,'6,3');
+    // Vector de reducción Q_C / Q_L
+    const xQc=Math.max(X(P1),X(P2))+44;
+    s+=`<line x1="${X(P1)}" y1="${Y(Q1)}" x2="${xQc+4}" y2="${Y(Q1)}" stroke="${col('bd')}" stroke-dasharray="2,2"/>`;
+    s+=`<line x1="${X(P2)}" y1="${Y(Q2)}" x2="${xQc+4}" y2="${Y(Q2)}" stroke="${col('bd')}" stroke-dasharray="2,2"/>`;
+    s+=vArrow(xQc,Y(Q1),xQc,Y(Q2),col('gn'),2);
+    const qcLbl=r.compType==='C'?`Q_C = ${fPow(r.QC,'var')}`:`Q_L = ${fPow(r.QLr,'var')}`;
+    s+=`<text x="${xQc+7}" y="${(Y(Q1)+Y(Q2))/2-5}" font-size="9.5" fill="${col('gn')}" font-weight="700">${qcLbl}</text>`;
+    s+=`<text x="${xQc+7}" y="${(Y(Q1)+Y(Q2))/2+9}" font-size="9" fill="${col('f2')}">S' = ${fPow(c.Stot,'VA')} (fp'=${fN(c.fpS,3)})</text>`;
+  }
+  s+=`<text x="${W-10}" y="${up?16:H-8}" font-size="9" fill="${col('f3')}" text-anchor="end">${c?'— Estado inicial   - - - Compensado':'Potencia reactiva '+(up?'inductiva (+Q)':'capacitiva (−Q)')}</text>`;
+  return s+'</svg>';
+}
+function renderTriangle(r){$('power-triangle').innerHTML=genTriangleSVG(r,false);}
+
+// ── Diagrama Fasorial Polar con Transportador Graduado ────────────────
+function drawPhasors(r){
+  const canvas=$('phasorCanvas');if(!canvas)return;
+  const W=canvas.parentElement.clientWidth||380,H=Math.min(Math.max(W,310),360),dpr=window.devicePixelRatio||1;
+  canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  const cx=W/2,cy=H/2,R=Math.min(cx,cy)-38;
+  const mono=getCSS('--mono')||'monospace',sans=getCSS('--sans')||'sans-serif';
+  const live=waveHoverDeg!==null,wt=live?waveHoverDeg:0;   // los fasores giran e^{jωt}
+  ctx.clearRect(0,0,W,H);
+
+  // Rayos radiales cada 30° del transportador y etiquetas de grados
+  ctx.font=`9.5px ${mono}`;
+  for(let deg=0;deg<360;deg+=30){
+    const rad=d2r(deg),xEdge=cx+R*Math.cos(rad),yEdge=cy-R*Math.sin(rad);
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(xEdge,yEdge);
+    ctx.strokeStyle=deg%90===0?getCSS('--bd'):getCSS('--grid-line');
+    ctx.lineWidth=deg%90===0?1.1:0.8;ctx.stroke();
+    const lbl=deg<=180?`${deg}°`:`−${360-deg}°`;
+    const lx=cx+(R+16)*Math.cos(rad),ly=cy-(R+16)*Math.sin(rad);
+    ctx.fillStyle=getCSS('--fg3');ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(lbl,lx,ly);
+  }
+
+  // Círculos concéntricos graduados (25%, 50%, 75%, 100%)
+  [0.25,0.5,0.75,1].forEach((k,idx)=>{
+    ctx.beginPath();ctx.arc(cx,cy,R*k,0,2*π);
+    ctx.strokeStyle=idx===3?getCSS('--bd'):getCSS('--grid-line');
+    ctx.lineWidth=idx===3?1.3:0.9;
+    ctx.setLineDash(idx===2?[4,3]:[]);ctx.stroke();ctx.setLineDash([]);
+  });
+
+  // Sector sombreado del desfase φ entre U_AN (0°) e I_A
+  if(Math.abs(r.φd)>0.8){
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,R*0.34,d2r(-(r.UA+wt)),d2r(-(r.IA+wt)),r.IA>r.UA);
+    ctx.closePath();
+    ctx.fillStyle=getCSS('--ac-bg');ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx,cy,R*0.34,d2r(-(r.UA+wt)),d2r(-(r.IA+wt)),r.IA>r.UA);
+    ctx.strokeStyle=getCSS('--ac');ctx.lineWidth=1.4;ctx.stroke();
+    const am=d2r((r.IA+r.UA)/2+wt);
+    ctx.fillStyle=getCSS('--ac');ctx.font=`600 10.5px ${mono}`;
+    ctx.fillText(`φ=${fN(Math.abs(r.φd),1)}°`,cx+R*0.44*Math.cos(am),cy-R*0.44*Math.sin(am));
+  }
+
+  const cA=getCSS('--pa'),cB=getCSS('--pb'),cC=getCSS('--pc'),bgCard=getCSS('--bg-card');
+  function pill(x,y,text,col){
+    ctx.font=`600 10px ${sans}`;
+    const w=ctx.measureText(text).width+8,h=15;
+    ctx.fillStyle=bgCard;ctx.globalAlpha=0.88;
+    ctx.fillRect(x-w/2,y-h/2,w,h);ctx.globalAlpha=1;
+    ctx.fillStyle=textCol(col);ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(text,x,y);
+  }
+  function arrow(ang0,col,dash,scale,label,proj){
+    const ang=ang0+wt,len=R*scale,rad=d2r(ang),ex=cx+len*Math.cos(rad),ey=cy-len*Math.sin(rad);
+    if(live&&proj){
+      // Proyección sobre el eje vertical = valor instantáneo (u = Û·sen(ωt+θ))
+      ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(cx,ey);
+      ctx.strokeStyle=col;ctx.globalAlpha=0.5;ctx.lineWidth=1;ctx.setLineDash([2,3]);ctx.stroke();
+      ctx.setLineDash([]);ctx.globalAlpha=1;
+      ctx.beginPath();ctx.arc(cx,ey,dash?2.6:3.4,0,2*π);ctx.fillStyle=col;ctx.fill();
+    }
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(ex,ey);
+    ctx.strokeStyle=col;ctx.lineWidth=dash?1.9:2.6;ctx.setLineDash(dash?[6,3]:[]);ctx.stroke();ctx.setLineDash([]);
+    const a=Math.atan2(cy-ey,ex-cx),hl=9.5;
+    ctx.beginPath();ctx.moveTo(ex,ey);
+    ctx.lineTo(ex-hl*Math.cos(a-0.3),ey+hl*Math.sin(a-0.3));
+    ctx.lineTo(ex-hl*Math.cos(a+0.28),ey+hl*Math.sin(a+0.28));
+    ctx.closePath();ctx.fillStyle=col;ctx.fill();
+    if(label){
+      const px=cx+(len-18)*Math.cos(rad),py=cy-(len-18)*Math.sin(rad);
+      pill(px,py,label,col);
+    }
+  }
+
+  // Si hay Z_L, mostrar también Ū_carga
+  if(r.zLineEnabled&&!live){
+    const kU=Math.min(0.95,Math.max(0.5,r.UloadF/r.Uf));
+    [[r.UA+r.UloadAng,cA],[r.UB+r.UloadAng,cB],[r.UC+r.UloadAng,cC]].forEach(([a,c])=>arrow(a,c,true,kU*0.88,null));
+  }
+  // Fasores de tensión fuente (escala 0.92R) y corriente de línea (escala 0.68R)
+  if(live){
+    // Eje vertical de proyección resaltado
+    ctx.beginPath();ctx.moveTo(cx,cy-R);ctx.lineTo(cx,cy+R);
+    ctx.strokeStyle=getCSS('--fg2');ctx.lineWidth=1.3;ctx.stroke();
+  }
+  [[r.UA,cA,'Ū_AN'],[r.UB,cB,'Ū_BN'],[r.UC,cC,'Ū_CN']].forEach(([a,c,l])=>arrow(a,c,false,0.92,l,true));
+  [[r.IA,cA,'Ī_A'],[r.IB,cB,'Ī_B'],[r.IC,cC,'Ī_C']].forEach(([a,c,l])=>arrow(a,c,true,0.68,l,true));
+  if(live){
+    ctx.font=`600 11px ${mono}`;ctx.fillStyle=getCSS('--fg');ctx.textAlign='left';ctx.textBaseline='top';
+    ctx.fillText(`ωt = ${fN(wt,0)}°`,10,10);
+    ctx.font=`9.5px ${mono}`;ctx.fillStyle=getCSS('--fg3');
+    ctx.fillText('fasores girando',10,25);
+  }
+
+  ctx.beginPath();ctx.arc(cx,cy,3.5,0,2*π);ctx.fillStyle=getCSS('--fg');ctx.fill();
+  if(r.recMode&&r.zLineEnabled){
+    $('phasor-note').textContent=`Ū_A′N = ${fN(r.UloadF,2)} V ∠${fA(r.UloadAng)} (DATO)   |   Ū_AN = ${fN(r.Uf_src,2)} V ∠${fA(r.UA)} (calculada)   |   Ī_A = ${fN(r.IL,3)} A ∠${fA(r.IA)}   |   φ = ${fN(r.φd,2)}°`;
+  } else {
+    $('phasor-note').textContent=`Ū_AN = ${fN(r.Uf,2)} V ∠${fA(r.UA)}   |   Ī_A = ${fN(r.IL,3)} A ∠${fA(r.IA)}   |   Desfase φ = ${fN(r.φd,2)}° (${fpTag(r.φ)||'resistivo'})`;
+  }
+}
+
+// ── Osciloscopio trifásico instantáneo u(ωt) e i(ωt) ──────────────────
+function drawWaveforms(r){
+  const canvas=$('waveCanvas');if(!canvas)return;
+  const W=canvas.parentElement.clientWidth||380,H=Math.min(Math.max(W,310),360),dpr=window.devicePixelRatio||1;
+  canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  const padL=40,padR=16,padT=24,padB=32;
+  const pw=W-padL-padR,ph=H-padT-padB,cy=padT+ph/2;
+  const mono=getCSS('--mono')||'monospace';
+  ctx.clearRect(0,0,W,H);
+
+  // Rejilla del osciloscopio cada 60°
+  ctx.font=`9.5px ${mono}`;ctx.textAlign='center';
+  for(let deg=0;deg<=360;deg+=60){
+    const x=padL+(deg/360)*pw;
+    ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,padT+ph);
+    ctx.strokeStyle=deg%180===0?getCSS('--bd'):getCSS('--grid-line');
+    ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle=getCSS('--fg3');
+    ctx.fillText(`${deg}°`,x,H-11);
+  }
+  [-1,-0.5,0,0.5,1].forEach(v=>{
+    const y=cy-v*(ph*0.44);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(padL+pw,y);
+    ctx.strokeStyle=v===0?getCSS('--bd'):getCSS('--grid-line');
+    ctx.lineWidth=v===0?1.2:0.8;ctx.stroke();
+  });
+  ctx.fillStyle=getCSS('--fg3');ctx.textAlign='right';
+  ctx.fillText('+Û',padL-6,cy-ph*0.42);
+  ctx.fillText('0',padL-6,cy+3);
+  ctx.fillText('−Û',padL-6,cy+ph*0.45);
+
+  const cA=getCSS('--pa'),cB=getCSS('--pb'),cC=getCSS('--pc');
+  const ampU=ph*0.42,ampI=ph*0.29;
+  function plotSine(angShift,amp,col,dash){
+    ctx.beginPath();
+    for(let px=0;px<=pw;px+=2){
+      const wt=(px/pw)*2*π;
+      const y=cy-amp*Math.sin(wt+d2r(angShift));
+      if(px===0)ctx.moveTo(padL+px,y);else ctx.lineTo(padL+px,y);
+    }
+    ctx.strokeStyle=col;ctx.lineWidth=dash?1.6:2.2;
+    ctx.setLineDash(dash?[5,3]:[]);ctx.stroke();ctx.setLineDash([]);
+  }
+  // Ondas de tensión u_A, u_B, u_C (continuas) y corrientes i_A, i_B, i_C (discontinuas)
+  [[r.UA,cA],[r.UB,cB],[r.UC,cC]].forEach(([a,c])=>plotSine(a,ampU,c,false));
+  [[r.IA,cA],[r.IB,cB],[r.IC,cC]].forEach(([a,c])=>plotSine(a,ampI,c,true));
+
+  // Cota de desfase φ entre el paso por cero de u_A e i_A
+  if(Math.abs(r.φd)>2){
+    const xU=padL,xI=padL+(Math.max(0,Math.min(360,-r.IA))/360)*pw;
+    if(xI>xU+6){
+      ctx.beginPath();ctx.moveTo(xU,cy-12);ctx.lineTo(xI,cy-12);
+      ctx.strokeStyle=getCSS('--ac');ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle=getCSS('--ac');ctx.textAlign='center';
+      ctx.fillText(`Δθ = φ = ${fN(Math.abs(r.φd),1)}°`,(xU+xI)/2,cy-18);
+    }
+  }
+
+  // Cursor interactivo si el usuario pasa el ratón
+  if(waveHoverDeg!==null){
+    const x=padL+(waveHoverDeg/360)*pw;
+    ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,padT+ph);
+    ctx.strokeStyle=getCSS('--fg');ctx.lineWidth=1.1;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+    // Punto sobre cada curva en el instante ωt (mismo color que su fasor)
+    [[r.UA,cA,ampU,false],[r.UB,cB,ampU,false],[r.UC,cC,ampU,false],[r.IA,cA,ampI,true],[r.IB,cB,ampI,true],[r.IC,cC,ampI,true]].forEach(([a,col,amp,isI])=>{
+      const y=cy-amp*Math.sin(d2r(waveHoverDeg+a));
+      ctx.beginPath();ctx.arc(x,y,isI?2.8:3.6,0,2*π);ctx.fillStyle=col;ctx.fill();
+      ctx.strokeStyle=getCSS('--bg-card');ctx.lineWidth=1;ctx.stroke();
+    });
+    ctx.font=`600 10px ${mono}`;ctx.fillStyle=getCSS('--fg');ctx.textAlign=x>padL+pw-60?'right':'left';
+    ctx.fillText(`ωt=${fN(waveHoverDeg,0)}°`,x+(x>padL+pw-60?-5:5),padT+10);
+    $('wave-hover-lbl').textContent=`ωt = ${fN(waveHoverDeg,0)}° · valores en la tabla inferior`;
+  }else $('wave-hover-lbl').textContent='Pasa el cursor (o desliza) para fijar ωt';
+}
+
+// Eventos del osciloscopio
+// Estado compartido ωt: null = fasores estáticos (t = 0, sin proyecciones)
+let wtAnim=null,wtLastTs=0;
+const WT_SPEED=60; // grados por segundo → un ciclo en 6 s
+function setWt(v){
+  waveHoverDeg=v===null?null:((v%360)+360)%360;
+  $('wt-range').value=waveHoverDeg??0;
+  $('wt-val').textContent=waveHoverDeg===null?'ωt = 0° (estático)':`ωt = ${fN(waveHoverDeg,0)}°`;
+  if(lastResult){drawPhasors(lastResult);drawWaveforms(lastResult);renderWtReadout(lastResult);}
+}
+function wtStep(ts){
+  if(!wtAnim)return;
+  const dt=wtLastTs?Math.min(ts-wtLastTs,100):0;wtLastTs=ts;
+  setWt((waveHoverDeg??0)+dt*WT_SPEED/1000);
+  wtAnim=requestAnimationFrame(wtStep);
+}
+function toggleWtAnim(){
+  if(wtAnim){stopWtAnim();return;}
+  if(!lastResult)return;
+  wtLastTs=0;wtAnim=requestAnimationFrame(wtStep);
+  $('wt-play').textContent='⏸ Pausar';
+}
+function stopWtAnim(){
+  if(wtAnim)cancelAnimationFrame(wtAnim);
+  wtAnim=null;const b=$('wt-play');if(b)b.textContent='▶ Animar';
+}
+function resetWt(){stopWtAnim();setWt(null);}
+// Lectura instantánea: u_k = √2·U_f·sen(ωt+θ_k), i_k = √2·I_L·sen(ωt+θ_Ik)
+function renderWtReadout(r){
+  const el=$('wt-readout');if(!el)return;
+  const wt=waveHoverDeg??0,Up=r.Uf*Math.SQRT2,Ip=r.IL*Math.SQRT2;
+  const u=[r.UA,r.UB,r.UC].map(a=>Up*Math.sin(d2r(wt+a))),i=[r.IA,r.IB,r.IC].map(a=>Ip*Math.sin(d2r(wt+a)));
+  const su=u.reduce((x,y)=>x+y,0),si=i.reduce((x,y)=>x+y,0);
+  const cell=(v,d,cls)=>`<td class="${cls}">${fN(Math.abs(v)<1e-9?0:v,d)}</td>`;
+  el.innerHTML=`<table><thead><tr><th>Instante ωt = ${fN(wt,0)}°</th><th>Fase A</th><th>Fase B</th><th>Fase C</th><th>Suma</th><th>Pico</th></tr></thead><tbody>
+    <tr><td>u fase-neutro (V)</td>${u.map((v,k)=>cell(v,1,'abc'[k])).join('')}${cell(su,1,'sum')}<td>Û = ${fN(Up,1)}</td></tr>
+    <tr><td>i de línea (A)</td>${i.map((v,k)=>cell(v,2,'abc'[k])).join('')}${cell(si,2,'sum')}<td>Î = ${fN(Ip,2)}</td></tr>
+  </tbody></table><div class="cap">En un sistema equilibrado las tres tensiones y las tres corrientes suman cero en todo instante; por eso el neutro no transporta corriente.</div>`;
+}
+(function bindWaveEvents(){
+  const c=$('waveCanvas');if(!c)return;
+  const fromEvent=e=>{
+    const rect=c.getBoundingClientRect(),padL=40,padR=16,pw=rect.width-padL-padR;
+    return Math.max(0,Math.min(360,(e.clientX-rect.left-padL)/pw*360));
+  };
+  c.addEventListener('pointermove',e=>{
+    if(!lastResult)return;
+    if(e.pointerType!=='mouse'&&e.buttons===0)return;   // táctil: solo al arrastrar
+    stopWtAnim();setWt(fromEvent(e));
+  });
+  c.addEventListener('pointerdown',e=>{if(lastResult){stopWtAnim();setWt(fromEvent(e));}});
+})();
+
+window.addEventListener('resize',()=>{
+  if(lastResult&&$('tab-phasor').classList.contains('active')){
+    drawPhasors(lastResult);drawWaveforms(lastResult);
+  }
+});
+
+// ── Paso a paso ───────────────────────────────────────────────────────
+function renderSteps(r){
+  const sp=m=>`<span class="hl">${m}</span>`,spam=m=>`<span class="hlam">${m}</span>`,su=m=>`<span class="sub">${m}</span>`;
+  const steps=[],nL=r.bkd.length;
+  steps.push({t:'Sistema trifásico',b:
+    `U_L = ${sp(fN(r.UL,3)+' V')}  |  U_f = U_L/√3 = ${sp(fN(r.Uf,4)+' V')}\n`+
+    `f = ${fN(r.f,0)} Hz → ω = 2πf = ${fN(r.ω,3)} rad/s  |  Secuencia: ${r.seq==='abc'?'ABC directa':'ACB inversa'}\n`+
+    (r.wires===4?'Sistema de 4 hilos: el neutro N está distribuido hasta las cargas.'
+      :`Sistema de 3 hilos: ${su("no hay conductor de neutro; se usa un neutro ficticio. En equilibrio V_N'N = 0, por eso el monofásico equivalente sigue siendo válido.")}`)});
+
+  const lines=r.bkd.map(b=>{
+    const cn=b.conn==='star'?'Y':'Δ',l=b.src;
+    if(b.kind==='motor'){const m=b.m;
+      return `${b.tag} (motor, devanados en ${cn}): P_útil = ${fPow(m.Pout,'W')}, η = ${fN(l.eta,1)} %\n`+
+        `  P_abs = P_útil/η = ${fPow(m.Pout,'W')}/${fN(l.eta/100,3)} = ${sp(fPow(m.Pin,'W'))}\n`+
+        `  cosφ = ${fN(l.cosphi,3)} → Q = P_abs·tanφ = ${sp(fPow(m.Q,'var'))}  |  S = ${fPow(m.S,'VA')}  ${su('(potencia constante)')}`;}
+    const Zo=Cx(l.R,l.XL-l.XC);
+    let t=`${b.tag} (${cn}): Z = ${rstr(Zo)} Ω = ${sp(cstr(Zo)+' Ω')}`;
+    if(b.conn==='delta')t+=`\n  ${su('→ Z_Y = Z_Δ/3 = '+cstr(b.ZY)+' Ω  (equivalente estrella para el monofásico)')}`;
+    return t;});
+  steps.push({t:'Cargas'+(r.bkd.some(b=>b.conn==='delta'&&b.kind!=='motor')?' y conversión Δ→Y':''),b:lines.join('\n')});
+
+  if(r.hasMotor){
+    let t=r.zLineEnabled
+      ?`Con Z_L, la tensión en bornes depende de la corriente de los motores → se itera:\n`+
+       `  Ū_carga = Ū_AN·Z_p/(Z_L+Z_p) − (Z_L∥Z_p)·Σ(S_f,M/Ū_carga)*  ${su('(Z_p: paralelo de las cargas de impedancia)')}\n`+
+       `  Converge en ${r.motorIter} iteraciones → Ū_carga = ${sp(pStr(r.UloadF,r.UloadAng)+' V')}\n`
+      :`Sin Z_L los motores reciben Ū_AN = ${sp(pStr(r.Uf,0)+' V')} y absorben su potencia de placa.\n`;
+    t+=r.bkd.filter(b=>b.kind==='motor').map(b=>{
+      const Sf=cscale(Cx(b.m.Pin,b.m.Q),1/3);
+      return `${b.tag}: S_f = (P+jQ)/3 = ${rstr(Sf,1)} VA → Z_M,Y = U_f²/S*_f = ${fN(r.UloadF,3)}² / (${rstr(cconj(Sf),1)}) = ${sp(cstr(b.ZY)+' Ω')}`;
+    }).join('\n');
+    t+=`\n${su('Esta impedancia equivalente solo es válida en este punto de operación.')}`;
+    steps.push({t:'Punto de operación de los motores',b:t});
+  }
+
+  if(nL>1){
+    let t=r.bkd.map(b=>`Y_${b.tag} = 1/Z_${b.tag},Y = ${rstr(b.Y,5)} S`).join('\n');
+    t+=`\nY_eq = Σ Y_k = ${rstr(r.Yeq,5)} S\nZ_eq = 1/Y_eq = ${rstr(r.ZeqC,4)} Ω = ${sp(cstr(r.ZeqC,4)+' Ω')}`;
+    steps.push({t:'Paralelo de admitancias → Z_eq',b:t});
+  }
+
+  const Zt=r.ZtotC;
+  let mono='';
+  if(r.recMode){
+    // Modo receptor: Ī_A = Ū_A′N · Y_eq (cálculo directo)
+    mono+=`[MODO RECEPTOR] Dato: Ū_A′N = ${sp(pStr(r.UloadF,r.UloadAng)+' V')}  ${su('(tensión en bornes de carga)')}\n`;
+    mono+=`Y_eq = Σ Y_k = ${rstr(r.Yeq,5)} S\n`;
+    mono+=`Ī_A = Ū_A′N · Y_eq = (${fN(r.UloadF,3)} ∠0°) · (${cstr(r.Yeq,4)})\n`+
+      `    = ${sp(pStr(r.IL,r.IA)+' A')}\n`+
+      `fp${r.zLineEnabled?' (carga)':''} = ${sp(fN(r.fp,4)+' '+fpTag(r.φ))}  ${su(r.φd>=0?'(I retrasada respecto a U)':'(I adelantada respecto a U)')}`;
+  } else {
+    if(r.zLineEnabled)mono+=`Z_total = Z_L + Z_eq = (${rstr(r.ZLc)}) + (${rstr(r.ZeqC)}) = ${rstr(Zt)} Ω = ${spam(cstr(Zt,4)+' Ω')}\n`;
+    const zn=r.zLineEnabled?'Z_total':'Z_eq';
+    mono+=`Ī_A = Ū_AN / ${zn} = (${fN(r.Uf,3)} ∠0°) / (${cstr(Zt,4)})\n`+
+      `    = (${fN(r.Uf,3)} / ${fN(r.ZtotM,4)}) ∠(0° − (${fA(r.φd)})) = ${sp(pStr(r.IL,r.IA)+' A')}\n`+
+      `fp${r.zLineEnabled?' (entrada)':''} = cos(${fA(r.φd)}) = ${sp(fN(r.fp,4)+' '+fpTag(r.φ))}  ${su(r.φd>=0?'(I retrasada respecto a U)':'(I adelantada respecto a U)')}`;
+  }
+  steps.push({t:'Circuito monofásico equivalente',b:mono});
+
+  if(r.zLineEnabled){
+    const φZL=cang(r.ZLc);
+    if(r.recMode){
+      steps.push({t:'Tensión de fuente: cálculo hacia atrás',am:true,b:
+        `[MODO RECEPTOR] Ū_A′N = ${sp(pStr(r.UloadF,r.UloadAng)+' V')} (DATO)\n`+
+        `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+
+        `Ū_AN = Ū_A′N + ΔŪ = ${sp(pStr(r.Uf_src,r.UA)+' V')}  ${su('(tensión de fuente calculada)')}\n`+
+        `U_L,fuente = √3·|Ū_AN| = √3·${fN(r.Uf_src,4)} = ${sp(fN(r.UL_src,3)+' V')}\n`+
+        `δ = ∠Ū_AN = ${sp(fA(r.delta)+'  (ángulo de la fuente respecto al datum del receptor)')}`});
+    } else {
+      steps.push({t:'Tensión en la carga y caída en la línea',am:true,b:
+        `ΔŪ = Ī_A·Z_L = (${pStr(r.IL,r.IA)})·(${cstr(r.ZLc)}) = (${fN(r.IL,3)}·${fN(r.ZLM,3)}) ∠(${fA(r.IA)} + ${fA(φZL)}) = ${spam(cstr(r.dropC)+' V')}\n`+
+        `Ū_carga = Ū_AN − ΔŪ = ${sp(pStr(r.UloadF,r.UloadAng)+' V')}  →  U_carga,L = √3·U_carga = ${sp(fN(r.UloadL,3)+' V')}\n`+
+        `ΔU = (U_carga,L − U_L)/U_L = (${fN(r.UloadL,2)} − ${fN(r.UL,2)})/${fN(r.UL,2)} = ${spam(sgn(r.dUpct)+' %')}  ${su('(escalar: es la que evalúa la normativa)')}\n`+
+        `${su('|ΔŪ| = '+fN(r.UlineDropF,3)+' V ≠ |U_AN| − |U_carga| = '+fN(r.Uf-r.UloadF,3)+' V, porque ΔŪ no está en fase con Ū_AN')}\n`+
+        `${su('fp de la carga = cos(∠Z_eq) = '+fN(r.fpLoad,4)+' '+fpTag(r.φLoad))}`});
+    }
+  }
+
+  if(nL>1||r.bkd.some(b=>b.conn==='delta')||r.hasMotor){
+    const uL=r.zLineEnabled?'Ū_carga':'Ū_AN';
+    let t=`${uL} = ${sp(pStr(r.UloadF,r.UloadAng)+' V')}  ${su('(tensión fase-neutro que ve cada carga)')}\n`;
+    t+=r.bkd.map(b=>{
+      let s=`Ī_A,${b.tag} = ${uL}/Z_${b.tag},Y = (${pStr(r.UloadF,r.UloadAng)}) / (${cstr(b.ZY)}) = (${fN(r.UloadF,3)}/${fN(b.ZyMag,3)}) ∠(${fA(r.UloadAng)} − (${fA(b.ZyPhi)})) = ${sp(pStr(b.Ik,b.IkAng)+' A')}`;
+      s+=b.conn==='delta'
+        ?`\n  ${su(b.tag+' (Δ): I_f = I_L/√3 = '+fN(b.Ik,4)+'/√3 = ')}${spam(pStr(b.IkPhase,b.IkPhaseAng)+' A')} ${su('(rama AB, adelanta 30° a Ī_A en ABC)')}`
+        :`\n  ${su(b.tag+' (Y): I_f = I_L = '+fN(b.Ik,4)+' A')}`;
+      return s;}).join('\n');
+    if(nL>1){
+      const sum=cadd(...r.bkd.map(b=>cpol(b.Ik,b.IkAng)));
+      t+=`\nΣ Ī_A,k = ${sp(cstr(sum)+' A')}  ${su('= Ī_A total ✓ (suma fasorial, LKC)')}`;
+    }
+    steps.push({t:'Corrientes por carga',b:t});
+  }
+
+  if(r.recMode&&r.zLineEnabled){
+    steps.push({t:'Simetría: desfase 120°',b:
+      `[Receptor] Ū_A′N = ${sp(pStr(r.UloadF,r.UloadAng))} V (DATO)  →  Ī_A = ${sp(pStr(r.IL,r.IA))}\n`+
+      `           Ū_B′N = ${pStr(r.UloadF,r.UloadAng+r.dir*(-120))} V  →  Ī_B = ${sp(pStr(r.IL,r.IB))}\n`+
+      `           Ū_C′N = ${pStr(r.UloadF,r.UloadAng+r.dir*120)} V  →  Ī_C = ${sp(pStr(r.IL,r.IC))}\n`+
+      `[Fuente]  Ū_AN = ${sp(pStr(r.Uf_src,r.UA))} V  Ū_BN = ${pStr(r.Uf_src,r.UB)} V  Ū_CN = ${pStr(r.Uf_src,r.UC)} V\n`+
+      su(r.wires===4?'I_N = Ī_A + Ī_B + Ī_C = 0 → el neutro no transporta corriente en equilibrio'
+        :'Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)')});
+  } else {
+    steps.push({t:'Simetría: desfase 120°',b:
+      `Ū_AN = ${pStr(r.Uf,r.UA)}  →  Ī_A = ${sp(pStr(r.IL,r.IA))}\n`+
+      `Ū_BN = ${pStr(r.Uf,r.UB)}  →  Ī_B = ${sp(pStr(r.IL,r.IB))}\n`+
+      `Ū_CN = ${pStr(r.Uf,r.UC)}  →  Ī_C = ${sp(pStr(r.IL,r.IC))}\n`+
+      su(r.wires===4?'I_N = Ī_A + Ī_B + Ī_C = 0 → el neutro no transporta corriente en equilibrio'
+        :'Ī_A + Ī_B + Ī_C = 0 por LKC (no existe conductor de neutro)')});
+  }
+
+  steps.push({t:'Potencias totales',b:r.zLineEnabled
+    ?`P_carga = ${spam(fPow(r.Pload,'W'))}  |  P_línea = 3·I²·R_L = ${spam(fPow(r.Pline,'W'))}\n`+
+      `P_total = P_carga + P_línea = ${sp(fPow(r.P3,'W'))}\n`+
+      `Q = ${sp(fPow(r.Q3,'var'))}  |  S = √3·U_L·I_L = ${sp(fPow(r.S3,'VA'))}\n`+
+      `Rendimiento η = P_carga/P_total = ${sp(fN(r.Pload/r.P3*100,2)+' %')}`
+    :`P = √3·U_L·I_L·cosφ = √3·${fN(r.UL,2)}·${fN(r.IL,4)}·${fN(r.fp,4)} = ${sp(fPow(r.P3,'W'))}\n`+
+      `Q = √3·U_L·I_L·senφ = ${sp(fPow(r.Q3,'var'))}  |  S = √3·U_L·I_L = ${sp(fPow(r.S3,'VA'))}`});
+  $('steps-container').innerHTML=steps.map((s,i)=>`
+    <div class="step">
+      <div class="step-hdr"><span class="step-n${s.am?' am':''}">${s.am?'⚡ ':''}Paso ${i+1}</span><span class="step-title">${s.t}</span></div>
+      <div class="step-body">${s.b.replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+}
+
+function renderChecks(r){
+  const list=computeChecks(r);
+  $('check-list').innerHTML=list.map(c=>
+    `<div class="ck"><span class="ck-ic ${c.ok?'ck-ok':'ck-er'}">${c.ok?'✓':'✗'}</span><span>${c.txt}</span></div>`).join('');
+  const nOk=list.filter(c=>c.ok).length,all=nOk===list.length,b=$('check-badge');
+  b.textContent=all?`✓ ${nOk}/${list.length} OK`:`⚠ ${nOk}/${list.length}`;
+  b.className='badge '+(all?'gn':'am');
+}
+
+function renderNorm(r){
+  const items=normItems(r);
+  $('norm-list').innerHTML=items.map(i=>`<div class="sem"><span class="sem-dot ${i.s}"></span><div>
+    <div class="sem-t">${i.t}</div><div class="sem-s">${i.sub}</div>${i.src?`<div class="sem-src">${i.src}</div>`:''}</div></div>`).join('');
+  const nBad=items.filter(i=>i.s==='bad').length,nWarn=items.filter(i=>i.s==='warn').length,b=$('norm-badge');
+  b.textContent=nBad?`✗ ${nBad} incumple${nBad>1?'n':''}`:nWarn?`⚠ ${nWarn} aviso${nWarn>1?'s':''}`:'✓ Cumple';
+  b.className='badge '+(nBad||nWarn?'am':'gn');
+}
+
+function fpCorrHTML(r,print){
+  const f3=print?'#646c65':'var(--fg3)',am=print?'#8f5f0e':'var(--am)';
+  const note=t=>`<span style="font-size:10.5px;color:${f3}">${t}</span>`;
+  const warn=t=>`<span style="font-size:10.5px;color:${am}">${t}</span>`;
+  const lag=r.compType==='C',tg=lag?'ind.':'cap.';
+  // Un solo valor del banco: el final (tras ajustar por la variación de tensión).
+  const Qbank=lag?r.QC:r.QLr,Q0=Math.abs(r.Qneed0),differs=Math.abs(Q0-Qbank)>1e-3*Qbank;
+  const est=differs?note(`Fórmula con el estado inicial: ${fPow(Q0,'var')}. El banco final difiere porque al compensar cambia la tensión en bornes.`)+'<br>':'';
+  let h=`${note('fp medido en bornes de carga · carga '+(lag?'inductiva (en retraso)':'capacitiva (en adelanto)'))}<br>`;
+  h+=`fp actual: ${fN(r.fpLoad,4)} ${tg} → objetivo: <span class="hl">${fN(r.fpTgt,3)} ${tg}</span><br>`;
+  if(lag){
+    h+=`Q_C = P_carga·(tanφ₁ − tanφ₂) = <span class="hl">${fPow(Qbank,'var')}</span> ${note('(banco de condensadores)')}<br>`+est;
+    h+=`C_Y (estrella) = Q_C/(3·ω·U_f²) = <span class="hl">${fN(r.CY*1e6,3)} μF</span><br>`;
+    h+=`C_Δ (triángulo) = C_Y/3 = <span class="hl">${fN(r.CD*1e6,3)} μF</span><br>`;
+    h+=`Tensión de cada condensador: Y → ${fS(r.UcapF)} V · Δ → ${fS(r.UcapF*SQ3)} V<br>`;
+    h+=`Banco a U_L nominal (${fS(r.UL)} V): ${fPow(r.Qnom,'var')} → `+(bad(r.kvarStep)?'sin paso comercial en la lista'
+      :`paso comercial sugerido: <span class="hl">${r.kvarStep} kvar</span>`)+`<br>`;
+    h+=note('Un banco comercial ligeramente mayor sobrecompensa un poco; Q varía con (U/U_n)².')+'<br>';
+  }else{
+    h+=warn('⚠ La carga es capacitiva: añadir condensadores empeoraría el fp. Se requieren reactores (bobinas).')+'<br>';
+    h+=`Q_L = P_carga·(tan|φ₁| − tan|φ₂|) = <span class="hl">${fPow(Qbank,'var')}</span> ${note('(banco de reactores)')}<br>`+est;
+    h+=`L_Y (estrella) = 3·U_f²/(ω·Q_L) = <span class="hl">${fN(r.LY*1e3,3)} mH</span><br>`;
+    h+=`L_Δ (triángulo) = 3·L_Y = <span class="hl">${fN(r.LD*1e3,3)} mH</span><br>`;
+    h+=note('L_Δ requiere 3 veces la inductancia de L_Y')+'<br>';
+  }
+  if(r.zLineEnabled)h+=warn(`⚡ Con Z_L: se usa P_carga = ${fPow(r.Pload,'W')} (sin pérdidas de línea). El fp en la fuente quedará distinto al objetivo.`)+'<br>';
+  if(r.hasMotor&&r.zLineEnabled)h+=note(`Motores a potencia constante: al compensar sube la tensión en bornes, así que ${lag?'C':'L'} se ajustó en ${r.compIter} iteraciones para que el fp en bornes llegue exactamente al objetivo.`);
+  return h;
+}
+function renderFP(r){
+  const el=$('fp-corr-body'),muted=t=>`<div style="font-size:12px;color:var(--fg3)">${t}</div>`;
+  if(bad(r.fpTgt)){el.innerHTML=muted('Introduce un fp objetivo arriba.');return;}
+  if(!r.compType){el.innerHTML=muted(`fp objetivo (${fN(r.fpTgt,3)}) ≤ fp actual en bornes de carga (${fN(r.fpLoad,4)} ${fpTag(r.φLoad)}). No se requiere corrección.`);return;}
+  el.innerHTML=`<div class="fp-result">${fpCorrHTML(r,false)}</div>${compTableHTML(r,false)}`;
+}
+function compTableHTML(r,print){
+  const c=r.comp;if(!c)return'';
+  const pct=(a,b)=>(b-a)/a*100;
+  const rows=[
+    ['I_L (fuente)',`${fS(r.IL)} A`,`${fS(c.IL)} A`,pct(r.IL,c.IL)],
+    ['fp en la fuente',`${fN(r.fp,4)} ${fpTag(r.φ)}`,`${fN(c.fpS,4)} ${fpTag(c.φS)}`,null],
+    ['fp en la carga',`${fN(r.fpLoad,4)} ${fpTag(r.φLoad)}`,`${fN(c.fpL,4)} ${fpTag(c.φL)}`,null],
+    ['S total',fPow(r.S3,'VA'),fPow(c.Stot,'VA'),pct(r.S3,c.Stot)],
+  ];
+  if(r.zLineEnabled){
+    rows.push(['P pérdidas línea',fPow(r.Pline,'W'),fPow(c.Pline,'W'),pct(r.Pline,c.Pline)]);
+    rows.push(['U_carga (fase)',`${fS(r.UloadF)} V`,`${fS(c.UloadF)} V`,pct(r.UloadF,c.UloadF)]);
+    rows.push(['ΔU respecto a U_n',`${sgn(r.dUpct)} %`,`${sgn(c.dUpct)} %`,null]);
+  }
+  const bd=print?'#e3ddd0':'var(--bd-sub)',f3=print?'#7d857e':'var(--fg3)',gn=print?'#2b7a52':'var(--gn)',am=print?'#b87314':'var(--am)';
+  const td=`padding:4px 6px;border-bottom:1px solid ${bd};text-align:right`;
+  let h=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:${f3};margin:12px 0 4px">Efecto en la fuente tras compensar</div>`;
+  h+=`<table style="width:100%;border-collapse:collapse;font-family:${print?'monospace':'var(--mono)'};font-size:11.5px">`;
+  h+=`<tr><th style="${td};text-align:left;color:${f3};font-size:10px">Magnitud</th><th style="${td};color:${f3};font-size:10px">Antes</th><th style="${td};color:${f3};font-size:10px">Después</th><th style="${td};color:${f3};font-size:10px">Δ</th></tr>`;
+  rows.forEach(([l,a,b,p])=>{
+    const pc=p===null?'':`<span style="color:${p<0?gn:am}">${sgn(p,1)} %</span>`;
+    h+=`<tr><td style="${td};text-align:left">${l}</td><td style="${td}">${a}</td><td style="${td};font-weight:600">${b}</td><td style="${td}">${pc}</td></tr>`;
+  });
+  h+='</table>';
+  if(r.zLineEnabled)h+=`<div style="font-size:10.5px;color:${f3};margin-top:4px">U_carga sube al compensar: la línea transporta menos corriente reactiva y cae menos tensión en Z_L.</div>`;
+  return h;
+}
+
+function renderBreakdown(r){
+  const multi=r.bkd.length>1;
+  $('breakdown-tbody').innerHTML=r.bkd.map(b=>{
+    const isD=b.conn==='delta',isM=b.kind==='motor';
+    const ifNote=isD?`<span style="font-size:9px;color:var(--am)"> (Δ)</span>`:`<span style="font-size:9px;color:var(--fg3)"> (=I_L)</span>`;
+    const zTxt=isM?`${fS(b.ZyMag)} ∠${fA(b.ZyPhi)} <span style="font-size:9px;color:var(--fg3)">Y-eq.</span>`:`${fS(b.ZoMag)} ∠${fA(b.ZoPhi)}`;
+    return`<tr>
+      <td style="font-weight:600;color:var(--fg)">${b.tag}</td>
+      <td>${isM?'Motor ':''}${isD?'Δ':'Y'}</td>
+      <td>${zTxt}</td>
+      <td>${fS(b.Ik)}</td>
+      <td style="${isD?'color:var(--am);font-weight:600':''}">${fS(b.IkPhase)}${ifNote}</td>
+      <td>${fPow(b.Pk)}</td><td>${fPow(b.Qk)}</td><td>${fPow(b.Sk)}</td>
+      <td>${fN(b.fpk,4)}<span class="ftag">${fpTag(b.Qk)}</span></td></tr>`;}).join('')
+    +(!multi?'':`<tr class="tot"><td colspan="3">TOTAL (fuente)</td><td>${fS(r.IL)}</td>
+      <td style="color:var(--fg3);font-size:10px">ver cada carga</td>
+      <td>${fPow(r.P3)}</td><td>${fPow(r.Q3)}</td><td>${fPow(r.S3)}</td><td>${fN(r.fp,4)}<span class="ftag">${fpTag(r.φ)}</span></td></tr>`);
+  $('bk-notes').innerHTML=r.bkd.filter(b=>b.kind==='motor').map(b=>
+    `${b.tag}: I_n de placa = ${fS(b.m.Inom)} A · I de operación = ${fS(b.Ik)} A · U en bornes = ${fS(r.UloadL)} V (${sgn(b.dUmot)} % de U_n = ${fS(b.src.Unom)} V) · P_abs = ${fPow(b.m.Pin,'W')} constante`).join('<br>');
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 7. EXPORTACIÓN / IMPRESIÓN
+// ═════════════════════════════════════════════════════════════════════
+function showPrintView(){
+  if(!lastResult)return;
+  $('print-content').innerHTML=buildPrintHTML(lastResult);
+  $('print-modal').style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closePrint(){$('print-modal').style.display='none';document.body.style.overflow='';}
+$('print-modal').addEventListener('click',function(e){if(e.target===this)closePrint();});
+
+function buildPrintHTML(r){
+  const row=(l,v)=>`<tr><td class="pl">${l}</td><td class="pv">${v}</td></tr>`;
+  let h=`<div class="ph1">Circuito Trifásico Equilibrado</div><div class="ph2">Fraile Mora · Circuitos Eléctricos · Patrón 5</div><hr class="phr">`;
+  if(r.recMode&&r.zLineEnabled)h+=`<div style="background:#e8f5ec;border:1.5px solid #2b7a52;border-radius:6px;padding:6px 12px;margin-bottom:10px;font-size:12px;font-family:monospace;color:#2b7a52"><b>MODO RECEPTOR</b> — La tensión es el dato en los bornes del receptor (A′,B′,C′); la tensión de fuente se calcula hacia atrás.</div>`;
+  h+=`<div class="psec">Datos del circuito</div><table class="ptbl">`;
+  h+=row(r.recMode&&r.zLineEnabled?'U_L dato (en receptor A′,B′,C′)':'Tensión de línea U_L',`${fN(r.UL,3)} V`);
+  h+=row(r.recMode&&r.zLineEnabled?'U_f dato (en receptor, fase-neutro)':'Tensión de fase U_f',`${fN(r.Uf,4)} V`);
+  h+=row('Frecuencia',`${fN(r.f,0)} Hz → ω = ${fN(r.ω,3)} rad/s`);
+  h+=row('Secuencia de fases',r.seq==='abc'?'ABC directa':'ACB inversa');
+  h+=row('Sistema',`${r.wires} hilos${r.wires===3?' (neutro ficticio)':''}${r.wiresSel==='auto'?' · automático':''}`);
+  if(r.zLineEnabled)h+=row('<span style="color:#b87314">Impedancia de línea Z_L</span>',`<span style="color:#b87314">${rstr(r.ZLc)} Ω · |Z_L| = ${fN(r.ZLM,3)} Ω</span>`);
+  h+=`</table>`;
+  h+=`<div class="psec">Cargas del circuito</div><table class="ptbl2"><thead><tr><th>Carga</th><th>Conexión</th><th>Datos</th><th>Z por fase (Ω)</th></tr></thead><tbody>`;
+  r.bkd.forEach(b=>{
+    const l=b.src,cn=b.conn==='star'?'Y (Estrella)':'Δ (Triángulo)';
+    const datos=b.kind==='motor'
+      ?`Motor: ${fS(l.Pout)} ${l.Punit} · U_n ${fS(l.Unom)} V · cosφ ${fN(l.cosphi,2)} · η ${fN(l.eta,1)} %`
+      :`R ${fN(l.R,3)} · X_L ${fN(l.XL,3)} · X_C ${fN(l.XC,3)}`;
+    const z=b.kind==='motor'?`${cstr(b.ZY,4)} (Y-eq., en operación)`:cstr(Cx(l.R,l.XL-l.XC),4);
+    h+=`<tr><td><b>${b.tag}</b></td><td>${cn}</td><td>${datos}</td><td>${z}</td></tr>`;
+  });
+  h+=`</tbody></table>`;
+  h+=`<div class="psec">Resolución — Patrón 5</div>`;
+  const st=$('steps-container');if(st&&st.innerHTML.trim())h+=`<div class="psteps">${st.innerHTML}</div>`;
+  h+=`<div class="psec">Resultados</div><table class="ptbl">`;
+  h+=row('Z_eq (cargas)',`${cstr(r.ZeqC,4)} Ω`);
+  if(r.zLineEnabled)h+=row('Z_total (línea + cargas)',`${cstr(r.ZtotC,4)} Ω`);
+  h+=row('Corriente de línea I_L',`${pStr(r.IL,r.IA)} A`);
+  r.bkd.filter(b=>b.conn==='delta').forEach(b=>{h+=row(`Corriente de fase I_f en ${b.tag} (Δ)`,`${pStr(b.IkPhase,b.IkPhaseAng)} A <span style="font-size:10px;color:#7d857e">(I_L,${b.tag} = ${fN(b.Ik,4)} A)</span>`);});
+  if(r.zLineEnabled&&r.recMode){
+    h+=row('<b>U_L,fuente calculada</b>',`<b>${fN(r.UL_src,3)} V</b>`)+row('U_f,fuente calculada (fase)',`${pStr(r.Uf_src,r.UA)} V`);
+    h+=row('U_carga (dato, fase)',`${pStr(r.UloadF,r.UloadAng)} V`)+row('U_carga (dato, línea)',`${fN(r.UloadL,3)} V`);
+    h+=row('δ = ∠Ū_AN (ángulo fuente)',`${fA(r.delta)}`);
+    h+=row('|ΔŪ| (caída en línea)',`${fN(r.UlineDropF,3)} V/fase`);
+  } else if(r.zLineEnabled){
+    h+=row('U_carga (fase)',`${pStr(r.UloadF,r.UloadAng)} V`)+row('U_carga (línea)',`${fN(r.UloadL,3)} V`);
+    h+=row('Variación de tensión ΔU',`${sgn(r.dUpct)} % · |Ī·Z_L| = ${fN(r.UlineDropF,3)} V/fase`);
+  }
+  h+=row(`fp${r.zLineEnabled&&!r.recMode?' (entrada)':r.recMode?' (carga)':''}`,`${fN(r.fp,4)} ${fpTag(r.φ)}`);
+  if(r.zLineEnabled&&!r.recMode)h+=row('fp de las cargas',`${fN(r.fpLoad,4)} ${fpTag(r.φLoad)}`);
+  h+=`<tr class="ptot"><td>P activa total</td><td>${fPow(r.P3,'W')}</td></tr>`;
+  if(r.zLineEnabled)h+=row('  P en cargas',fPow(r.Pload,'W'))+row('  P pérdidas en línea',fPow(r.Pline,'W'))+row('  Rendimiento η',`${fN(r.Pload/r.P3*100,2)} %`);
+  h+=`<tr class="ptot"><td>Q reactiva total</td><td>${fPow(r.Q3,'var')} ${r.Q3>=0?'(inductiva)':'(capacitiva)'}</td></tr>`;
+  h+=`<tr class="ptot"><td>S aparente total</td><td>${fPow(r.S3,'VA')}</td></tr></table>`;
+  h+=`<div class="psec">Triángulo de potencias</div>${genTriangleSVG(r,true)}`;
+  if(r.compType){
+    h+=`<div class="psec" style="color:#2b7a52">Corrección de factor de potencia (en bornes de carga)</div>`;
+    h+=`<div style="font-family:monospace;font-size:12px;line-height:1.9;color:#4e5650">${fpCorrHTML(r,true).replace(/class="hl"/g,'style="color:#2b7a52;font-weight:600"')}</div>`;
+    h+=compTableHTML(r,true);
+  }
+  h+=`<div class="psec">Cumplimiento normativo</div><div style="font-family:monospace;font-size:12px;line-height:1.7;color:#4e5650">`;
+  normItems(r).forEach(i=>{
+    const c={ok:'#2b7a52',warn:'#b87314',bad:'#b84233',na:'#7d857e'}[i.s];
+    h+=`<div style="margin-bottom:6px"><span style="color:${c};font-weight:700">● ${i.t}</span><br>${i.sub}${i.src?`<br><span style="font-size:10px;color:#7d857e">${i.src}</span>`:''}</div>`;
+  });
+  h+=`</div><div class="psec">Verificación</div><div style="font-family:monospace;font-size:12px;line-height:1.9;color:#4e5650">`;
+  computeChecks(r).forEach(({ok,txt})=>{h+=`<div style="color:${ok?'#2b7a52':'#b84233'}">${ok?'✓':'✗'} ${txt}</div>`;});
+  h+=`</div><div class="pfooter">Fraile Mora · Circuitos Eléctricos · Patrón 5 · Dashboard trifásico equilibrado</div>`;
+  return h;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 8. LIMPIAR E INICIO
+// ═════════════════════════════════════════════════════════════════════
+function clearAll(){
+  stopWtAnim();waveHoverDeg=null;
+  $('inp-v').value='';$('inp-f').value=60;$('inp-seq').value='abc';
+  $('inp-fptgt').value='';$('inp-fpmin').value=0.94;$('inp-dumax').value='';
+  setVT('line');
+  setVRef('source');
+  if(zLineEnabled)setZL(false);
+  $('inp-rl').value=0;$('inp-xl').value=0;
+  loads=[];loadId=0;$('loads-list').innerHTML='';
+  addLoad({kind:'imp',R:0,XL:0,XC:0,conn:'star'});
+  setWires('auto');
+  $('results-section').style.display='none';$('bot-section').style.display='none';
+  $('empty-state').style.display='block';$('btn-export').style.display='none';
+  lastResult=null;hideAlert();onSourceChange();
+}
+
+renderPresets();
+syncThemeBtn();
+// Carga inicial con un ejercicio completo y realista para mostrar de inmediato las gráficas
+loadExercise(1);
+</script>
+</body>
+</html>
