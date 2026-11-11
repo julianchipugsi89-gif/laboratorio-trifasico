@@ -1,6 +1,6 @@
 # Registro de cambios
 
-## Sin publicar
+## 3.0.0 — 2026-11-11
 
 ### Corregido — modo receptor con Z_L
 
@@ -66,6 +66,11 @@ Casos numéricos usados (400 V de línea conocidos en el receptor, 50 Hz, secuen
 
 ### Añadido
 
+- Aplicación instalable (PWA) con uso sin conexión y aviso «Hay una actualización» cuando se publica una
+  versión nueva; número de versión en el pie de página.
+- Fuentes incluidas en el sitio (sin Google Fonts), con el mismo aspecto.
+- Flujo de GitHub Actions: lint y pruebas en cada push, y despliegue a GitHub Pages desde `main`.
+- README con uso en clase, límites del modelo y referencias normativas.
 - Pestaña «Laboratorio virtual» (entrega 3a, escena estática): banco con fuente, línea Z_L, embarrado,
   cargas Y/Δ, motores y banco de compensación; voltímetros de fuente y receptor, amperímetros de
   línea, dos vatímetros por el método de Aron (W1, W2 y su suma = P), cosfímetro y pilotos de alarma
